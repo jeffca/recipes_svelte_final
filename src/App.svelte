@@ -38,6 +38,14 @@
 :global(.svg) {
 	height: 1em;
 }
+
+:global(.category) {
+	width: 8em;
+	text-align: center;
+	height: 3em;
+	font-size: 20pt;
+}
+
 :global(.ingredient) {
 	font-size: 18pt;
 	color: black;

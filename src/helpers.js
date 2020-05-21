@@ -1,4 +1,7 @@
-
+function selectCategory(category) {
+  console.log(category);
+  return category;
+}
 
 function addToGroceryList(ingredient) {
     fetch('https://graphql-jeffrecipes.herokuapp.com/v1/graphql', {
@@ -99,4 +102,4 @@ function addToGroceryList(ingredient) {
   // }
 
 
-export {addAllItemsToGroceryList, addToGroceryList, markDone}
+export {addAllItemsToGroceryList, addToGroceryList, markDone, selectCategory}
