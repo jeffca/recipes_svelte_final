@@ -39,7 +39,7 @@
 <h1 class="text-center">Meal History</h1>
 
 {#if meals }
-<table class="table">
+<table table-responsiveclass="table">
     <thead>
     </thead>
     <tbody>

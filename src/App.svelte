@@ -64,7 +64,7 @@
 :global(.recipeBtn) {
 	margin-left: 1em;
 	margin-right: 1.5em;
-	width: 14em;
+	width: 10em;
 	height: 2.5em;
 }
 

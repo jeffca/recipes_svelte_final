@@ -61,7 +61,7 @@
 
 {#if ingredients }
 <form class="content">
-    <table class="table table-striped">
+    <table table-responsiveclass="table table-responsivetable-striped">
         <tbody>
         {#each ingredients as ing }
             <tr>

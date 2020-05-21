@@ -153,7 +153,7 @@
 <h2>Recent Meals with {ingredient.Ingredient}</h2>
 {/if}
 {#if meals}
-<table class="table table-light">
+<table class="table table-responsive table-light">
 	<thead>
 		<!-- <th>Meal</th>
 		<th>Date</th> -->

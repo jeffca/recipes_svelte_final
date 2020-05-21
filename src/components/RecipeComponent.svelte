@@ -22,7 +22,7 @@
 
 
 
-<table class="table table-light">
+<table class="table table-responsive table-light">
   <thead>
     <th>Recipe</th>
     <th>Meal</th>

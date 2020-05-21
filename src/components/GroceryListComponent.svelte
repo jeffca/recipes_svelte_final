@@ -28,7 +28,7 @@
 
 
 
-<table class="table table-light">
+<table class="table table-responsive table-light">
   <legend>Grocery List</legend>
   <thead>
     <!-- <th>Grocery List</th> -->
