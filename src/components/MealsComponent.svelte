@@ -53,65 +53,65 @@
 
 {#if !category}
 <div class="row">
-  <div class="col-md-4">
-    <div class="card" style="width: 18rem;">
+  <div class="col-sm-6 category">
+    <div class="card">
       <img class="card-img-top" src="/icons/breakfast_category.png" alt="produce" on:click="{() => selectCategory('Breakfast')}" />
       <div class="card-body text-center"> 
         <h5 class="card-title">
-        <button on:click="{() => selectCategory('Breakfast')}" class="btn btn-primary btn-lg category">Breakfast</button>
+        <button on:click="{() => selectCategory('Breakfast')}" class="btn btn-primary btn-lg">Breakfast</button>
         </h5>
       </div>
     </div>
   </div>
-  <div class="col-md-4">
-    <div class="card" style="width: 18rem;">
+  <div class="col-sm-6 category">
+    <div class="card">
       <img class="card-img-top" src="/icons/lunch_category.png" alt="fruit" on:click="{() => selectCategory('Lunch, Dinner')}" />
       <div class="card-body"> 
         <h5 class="card-title text-center">
-        <button on:click="{() => selectCategory('Lunch, Dinner')}" class="btn btn-primary btn-lg category">Lunch/Dinner</button>
+        <button on:click="{() => selectCategory('Lunch, Dinner')}" class="btn btn-primary btn-lg">Lunch/Dinner</button>
         </h5>
       </div>
     </div>
   </div>
-  <div class="col-md-4">
-    <div class="card" style="width: 18rem;">
+  <div class="col-sm-6 category">
+    <div class="card">
       <img class="card-img-top" src="/icons/salad_category.png" alt="dairy" on:click="{() => selectCategory('Salad')}" />
       <div class="card-body text-center"> 
         <h5 class="card-title">
-        <button on:click="{() => selectCategory('Salad')}" class="btn btn-primary btn-lg category">Salad</button>
+        <button on:click="{() => selectCategory('Salad')}" class="btn btn-primary btn-lg">Salad</button>
         </h5>
       </div>
     </div>
   </div>
-</div>
+<!-- </div> -->
 
-<div class="row">
-  <div class="col-md-4">
-    <div class="card" style="width: 18rem;">
+<!-- <div class="row"> -->
+  <div class="col-sm-6 category">
+    <div class="card">
       <img class="card-img-top" src="/icons/snacks_category.png" alt="produce" on:click="{() => selectCategory('Snack')}" />
       <div class="card-body text-center"> 
         <h5 class="card-title">
-        <button on:click="{() => selectCategory('Snack')}" class="btn btn-primary btn-lg category">Snack</button>
+        <button on:click="{() => selectCategory('Snack')}" class="btn btn-primary btn-lg">Snack</button>
         </h5>
       </div>
     </div>
   </div>
-  <div class="col-md-4">
-    <div class="card" style="width: 18rem;">
+  <div class="col-sm-6 category">
+    <div class="card">
       <img class="card-img-top" src="/icons/smoothie_category.svg" alt="fruit" on:click="{() => selectCategory('Smoothie')}" />
       <div class="card-body"> 
         <h5 class="card-title text-center">
-        <button on:click="{() => selectCategory('Smoothie')}" class="btn btn-primary btn-lg category">Smoothie</button>
+        <button on:click="{() => selectCategory('Smoothie')}" class="btn btn-primary btn-lg">Smoothie</button>
         </h5>
       </div>
     </div>
   </div>
-  <div class="col-md-4">
-    <div class="card" style="width: 18rem;">
+  <div class="col-sm-6 category">
+    <div class="card">
       <img class="card-img-top" src="/icons/dessert_category.png" alt="dairy" on:click="{() => selectCategory('Dessert')}" />
       <div class="card-body text-center"> 
         <h5 class="card-title">
-        <button on:click="{() => selectCategory('Dessert')}" class="btn btn-primary btn-lg category">Dessert</button>
+        <button on:click="{() => selectCategory('Dessert')}" class="btn btn-primary btn-lg">Dessert</button>
         </h5>
       </div>
     </div>
@@ -132,7 +132,7 @@
 <br />
 
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-2">
     <div class="card" style="width: 18rem;">
       <img class="card-img-top" src="/open-iconic-master/svg/lock-locked.svg" alt="produce" on:click="{() => selectCategory('Barfood')}" />
       <!-- <img class="card-img-top" src="/icons/barfood_category.png" alt="produce" on:click="{() => selectCategory('Barfood')}" /> -->
@@ -143,7 +143,7 @@
       </div>
     </div>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-2">
     <div class="card" style="width: 18rem;">
       <img class="card-img-top" src="/open-iconic-master/svg/lock-locked.svg" alt="produce" on:click="{() => selectCategory('Barfood')}" />
       <!-- <img class="card-img-top" src="/icons/asian_category.svg" alt="fruit" on:click="{() => selectCategory('Asian')}" /> -->
@@ -154,7 +154,7 @@
       </div>
     </div>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-2">
     <div class="card" style="width: 18rem;">
       <img class="card-img-top" src="/open-iconic-master/svg/lock-locked.svg" alt="produce" on:click="{() => selectCategory('Barfood')}" />
       <!-- <img class="card-img-top" src="/icons/italian_category.png" alt="dairy" on:click="{() => selectCategory('Italian')}" /> -->
@@ -165,7 +165,7 @@
       </div>
     </div>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-2">
     <div class="card" style="width: 18rem;">
       <img class="card-img-top" src="/open-iconic-master/svg/lock-locked.svg" alt="produce" on:click="{() => selectCategory('Barfood')}" />
       <!-- <img class="card-img-top" src="/icons/meatlovers_category.png" alt="dairy" on:click="{() => selectCategory('Meat Lovers')}" /> -->
@@ -230,8 +230,8 @@
 {#if category}
 
   <div class="col-md-4">
-    <div class="card" style="width: 18rem;">
-      <img on:click="{() => selectCategory(null)}" class="card-img-top" src="/open-iconic-master/svg/lock-locked.svg" alt="nuts"/>
+    <div class="card category" style="width: 18rem;">
+      <!-- <img on:click="{() => selectCategory(null)}" class="card-img-top" src="/open-iconic-master/svg/arrow-circle-left.svg" alt="nuts"/> -->
       <div class="card-body text-center"> 
         <h5 class="card-title">
         <button on:click="{() => selectCategory(null)}" class="btn btn-primary btn-lg category">&larr; Back</button>

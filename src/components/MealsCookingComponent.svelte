@@ -37,7 +37,7 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: 
             `{
-                recipes_by_pk(id: 10) {
+                recipes_by_pk(id: ` + params.id + `) {
                     Recipe
                 }
             }`
@@ -47,9 +47,9 @@
         .then(res => {
         recipe = res.data.recipes_by_pk;
         console.log(res.data);
-    });
-
+        });
   });
+
 
 </script>
 
@@ -61,7 +61,7 @@
 
 {#if ingredients }
 <form class="content">
-    <table table-responsiveclass="table table-responsivetable-striped">
+    <table class="table table-striped">
         <tbody>
         {#each ingredients as ing }
             <tr>

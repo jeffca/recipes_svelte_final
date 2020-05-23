@@ -1,4 +1,28 @@
 <script>
+	/* AUTH */
+	import {
+		Auth0Context,
+		authError,
+		authToken,
+		isAuthenticated,
+		isLoading,
+		login,
+		logout,
+		userInfo
+	} from '@dopry/svelte-auth0';
+	console.log(login);
+
+
+	authToken.subscribe(async token =>  {
+	if (token) {
+		console.log('user data ready!')
+
+	}
+	})	
+
+/* END AUTH */
+
+	import Home from './components/HomeComponent.svelte';
 	import Inventory from './components/Inventory.svelte';
 	import RecipeDetailComponent from './components/RecipeDetailComponent.svelte';
 	import RecipeComponent from './components/RecipeComponent.svelte';
@@ -9,12 +33,15 @@
 	import MealsDetailComponent from './components/MealsDetailComponent.svelte';
 	import IngredientsComponent from './components/IngredientsComponent.svelte';
 
+
+	import LoginSuccessfulComponent from './components/authentication/LoginSuccessfulComponent.svelte';
+
 	import Router from 'svelte-spa-router'
 	import {link} from 'svelte-spa-router'
 
 	const routes = {
     // Exact path
-	'/': Inventory,
+	'/': Home,
 	'/inventory': Inventory,
 	'/recipes': RecipeComponent,
 	'/recipes/:id': RecipeDetailComponent,
@@ -24,6 +51,9 @@
 	'/meals': MealsComponent,
 	'/meals/history': MealsHistoryComponent,
 	'/meals/:id': MealsDetailComponent,
+
+	//API 
+	'/callback': LoginSuccessfulComponent,
 	}
 
 </script>
@@ -35,14 +65,19 @@
 	font-weight: 850;
 }
 
+:global(.backArrow) {
+	width: 2.8em;
+
+}
+
 :global(.svg) {
 	height: 1em;
 }
 
 :global(.category) {
-	width: 8em;
+	width: 49%;
 	text-align: center;
-	height: 3em;
+	/* height: em; */
 	font-size: 20pt;
 }
 
@@ -106,14 +141,41 @@
 	font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+:global(#userProfilePicture) {
+	width: 2.7em;
+	float: right;
+}
+
 </style> 
 
+<div class="text-right container-fluid">
+	{#if !$isAuthenticated }
+	<Auth0Context domain="jeffca.auth0.com" client_id="URjctPE9nuCr4V9rFYWXbfEx04gZ9Faa" callback_url="http://localhost:5000/" logout_url="http://localhost:5000">
+		<!-- <span>Hi, Guest</span> -->
+		<button class="btn btn-lg btn-success" on:click|preventDefault='{() => login() }'>Login</button>
+	<!-- {#if $isAuthenticated} -->
+	<!-- <pre><span class="float-left">Hi, {$userInfo["nickname"]}</span> -->
+	<img src='{$userInfo["picture"]}' alt='profile_picture' id="userProfilePicture" />
+	<!-- </pre> -->
+	<button class="btn btn-sm btn-dark" on:click|preventDefault='{() => logout() }'>Logout</button><br />	
+	<!-- {/if} -->
+	<!-- {#if !authError} -->
+	<pre>isLoading: {$isLoading}</pre>
+	<pre>isAuthenticated: {$isAuthenticated}</pre>
+	<pre>authToken: {$authToken}</pre>
+	<pre>userInfo: {JSON.stringify($userInfo, null, 2)}</pre> 
+	<pre>authError: {$authError}</pre> 
+	<!-- {/if} -->
+	</Auth0Context>
+	{/if}
+</div>
+	
 <ul class="nav">
-  <!-- <li class="nav-item">
-    <a class="nav-link " href="/" use:link>Home</a>
-  </li> -->
   <li class="nav-item">
-    <a class="nav-link active" href="/" use:link>Inventory</a>
+    <a class="nav-link " href="/" use:link>Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="/inventory" use:link>Inventory</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="/meals" use:link>Meals</a>
@@ -122,8 +184,9 @@
     <a class="nav-link" href="/grocerylist" use:link>Grocery List</a>
   </li>
 </ul>
+
 <div class="container-fluid">
 
-    <Router {routes}/>
+<Router {routes}/>
 </div>
 

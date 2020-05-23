@@ -1,7 +1,4 @@
-function selectCategory(category) {
-  console.log(category);
-  return category;
-}
+import { getContext } from 'svelte';
 
 function addToGroceryList(ingredient) {
     fetch('https://graphql-jeffrecipes.herokuapp.com/v1/graphql', {
@@ -101,5 +98,18 @@ function addToGroceryList(ingredient) {
   //     })          
   // }
 
-
-export {addAllItemsToGroceryList, addToGroceryList, markDone, selectCategory}
+  async function executeGraphql(query, claims) {
+      console.log(claims);
+      const resp = await fetch("https://graphql-jeffrecipes.herokuapp.com/v1/graphql", {
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${claims}`,
+            "Content-Type": "application/json"
+          },
+          method: "POST",
+          body: JSON.stringify({ query: query })
+        });
+        return await resp.json();
+  }
+  
+export {addAllItemsToGroceryList, addToGroceryList, markDone, executeGraphql}
