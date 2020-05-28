@@ -26,7 +26,7 @@ export default {
 			}
 		}),
 		replace({
-			'CALLBACK_URL': production ? "http://vigilant-sinoussi-95d5cb.netlify.app" : "http://localhost:5000"
+			'CALLBACK_URL': production ? "https://vigilant-sinoussi-95d5cb.netlify.app" : "http://localhost:5000"
 		}),
 		commonjs({
 			// include: ['node_modules/**'],
