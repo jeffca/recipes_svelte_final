@@ -10,13 +10,10 @@
 		logout,
 		userInfo
 	} from '@dopry/svelte-auth0';
-	console.log(login);
-
 
 	authToken.subscribe(async token =>  {
 	if (token) {
-		console.log('user data ready!')
-
+		console.log('user is logged in!');
 	}
 	})	
 
@@ -72,6 +69,15 @@
 
 :global(.svg) {
 	height: 1em;
+}
+
+:global(.upcomingMeal) {
+	height: 16em;
+	margin-bottom: 5.8%;
+}
+
+:global(.card-body) {
+	overflow: scroll;
 }
 
 :global(.category) {
@@ -148,43 +154,28 @@
 
 </style> 
 
+{#if !$authToken }
 <div class="text-right container-fluid">
-	{#if !$isAuthenticated }
-	<Auth0Context domain="jeffca.auth0.com" client_id="URjctPE9nuCr4V9rFYWXbfEx04gZ9Faa" callback_url="http://localhost:5000/" logout_url="http://localhost:5000">
+	<Auth0Context domain="jeffca.auth0.com" client_id="URjctPE9nuCr4V9rFYWXbfEx04gZ9Faa" callback_url="CALLBACK_URL" logout_url="http://localhost:5000">
 		<!-- <span>Hi, Guest</span> -->
 		<button class="btn btn-lg btn-success" on:click|preventDefault='{() => login() }'>Login</button>
 	<!-- {#if $isAuthenticated} -->
 	<!-- <pre><span class="float-left">Hi, {$userInfo["nickname"]}</span> -->
-	<img src='{$userInfo["picture"]}' alt='profile_picture' id="userProfilePicture" />
+	<!-- <img src='{$userInfo["picture"]}' alt='profile_picture' id="userProfilePicture" /> -->
 	<!-- </pre> -->
-	<button class="btn btn-sm btn-dark" on:click|preventDefault='{() => logout() }'>Logout</button><br />	
+	<!-- <button class="btn btn-sm btn-dark" on:click|preventDefault='{() => logout() }'>Logout</button><br />	 -->
 	<!-- {/if} -->
-	<!-- {#if !authError} -->
+	{#if !authError}
 	<pre>isLoading: {$isLoading}</pre>
 	<pre>isAuthenticated: {$isAuthenticated}</pre>
 	<pre>authToken: {$authToken}</pre>
 	<pre>userInfo: {JSON.stringify($userInfo, null, 2)}</pre> 
 	<pre>authError: {$authError}</pre> 
-	<!-- {/if} -->
-	</Auth0Context>
 	{/if}
+	</Auth0Context>
 </div>
+{/if}
 	
-<ul class="nav">
-  <li class="nav-item">
-    <a class="nav-link " href="/" use:link>Home</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link active" href="/inventory" use:link>Inventory</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/meals" use:link>Meals</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/grocerylist" use:link>Grocery List</a>
-  </li>
-</ul>
-
 <div class="container-fluid">
 
 <Router {routes}/>

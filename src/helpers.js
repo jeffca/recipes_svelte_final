@@ -99,7 +99,6 @@ function addToGroceryList(ingredient) {
   // }
 
   async function executeGraphql(query, claims) {
-      console.log(claims);
       const resp = await fetch("https://graphql-jeffrecipes.herokuapp.com/v1/graphql", {
           headers: {
             Accept: "application/json",
