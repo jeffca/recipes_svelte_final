@@ -509,19 +509,19 @@
 <ul class="nav nav-pills nav-fill">
   <li class="nav-item">
     {#if recipes.length > 0}
-      <span class="nav-link menu" on:click={() => viewRecipes()}>Recipes</span> <span class="badge badge-success">Complete</span>
+      <span class="nav-link menu" on:click={() => viewRecipes()}><button type="button" class="btn btn-lg btn-outline-primary">Recipes</button></span> <span class="badge badge-success">Complete</span>
     {:else}
-      <span class="nav-link menu" on:click={() => viewRecipes()}>Recipes</span> <span class="badge badge-danger">Missing</span>
+      <span class="nav-link menu" on:click={() => viewRecipes()}><button type="button" class="btn btn-lg btn-outline-primary">Recipes</button></span> <span class="badge badge-danger">Missing</span>
     {/if}
   </li>
   <li class="nav-item">
-    <span class="nav-link menu">Inventory</span> <span class="badge badge-warning">Coming Soon</span>
+    <span class="nav-link menu"><button type="button" class="btn btn-lg btn-outline-primary">Inventory</button></span> <span class="badge badge-warning">Coming Soon</span>
   </li>
   <li class="nav-item">
-    <span class="nav-link menu">Meal Plans</span> <span class="badge badge-warning">Coming Soon</span>
+    <span class="nav-link menu"><button type="button" class="btn btn-lg btn-outline-primary">Meal Plans</button></span> <span class="badge badge-warning">Coming Soon</span>
   </li>
   <li class="nav-item">
-    <span class="nav-link menu" on:click={() => viewIngredients()}>Ingredients</span> <span class="badge badge-success">Complete</span>
+    <span class="nav-link menu" on:click={() => viewIngredients()}><button type="button" class="btn btn-lg btn-outline-primary">Ingredients</button></span> <span class="badge badge-success">Complete</span>
   </li>
 </ul>
 
