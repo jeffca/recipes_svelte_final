@@ -84,9 +84,21 @@
 	margin-bottom: 2%;
 }
 
+:global(.menu) {
+	font-size: 24pt;
+	font-weight: bold;
+	color: #0d52bf;
+}
+
 :global(.newRecipeIngredients) {
 	height: 12em;
 	overflow: scroll;
+}
+
+:global(#ingredientsList) {
+	height: 16em;
+	overflow: scroll;
+	margin-bottom: 1.1%;
 }
 
 :global(.form-check-label) {
@@ -171,8 +183,8 @@
 }
 
 :global(#userProfilePicture) {
-	width: 2.7em;
-	float: right;
+	width: 8.5em;
+	float: left;
 }
 
 </style> 

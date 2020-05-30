@@ -17,14 +17,9 @@
 		userInfo
   } from '@dopry/svelte-auth0';
      export let loading;
+     export let hasura_userID;
      export let loggingIn = false;
-     export let ingredient1 = {"id": 0};
-     export let ingredient2 = {"id": 0};
-     export let new_recipe_ingredrient_quantity_measurement_1 = "Quantity Measurement";
-     export let new_recipe_ingredrient_quantity_measurement_2 = "Quantity Measurement";
-     export let new_recipe_ingredrient_quantity_1;
-     export let new_recipe_ingredrient_quantity_2;
-     export let new_recipe_directions_1;
+
      export let ingredient, selected, quantity;
      export let quantity_measurement = "Quantity Measurement";
      export let ingredients;
@@ -32,8 +27,8 @@
      export let possible_ingredients = [], recipes_count, ingredients_count;
      export let categories = [];
      export let category;
-     export let enteringInventory, enteringRecipe, enteringIngredient;
-     export let new_recipe_name, new_ingredient_name, new_ingredient_brand, new_recipe_ingredients = [], new_recipe_ingredients_final = [], new_recipe_ingredient_quantity, new_ingredient_measurement, new_recipe_ingredient_shareable;
+     export let viewingRecipes, viewingInventory, viewingIngredients, enteringInventory, enteringRecipe, enteringIngredient;
+     export let new_recipe_name, new_ingredient_name, new_ingredient_brand, new_recipe_ingredients = [], new_recipe_ingredients_final = [], new_recipe_ingredient_quantity, new_ingredient_measurement, new_recipe_directions_1, new_recipe_ingredient_shareable;
      export let existing_ingredient, enteringRecipeIngredient2, enteringRecipeIngredient3;
      export let enteringRecipeIngredient = true;
     
@@ -48,7 +43,7 @@
       if ($claims) {
         console.log("claims should be ready!");
         const c = checkUser();
-        const res = getCategories();
+        // const res = getCategories();
         const res2 = getPossibleIngredients();
         const res3 = getPossibleRecipes();
         loading = false;
@@ -56,7 +51,7 @@
     })
 
     async function checkUser() {
-      let hasura_userID = $userInfo['https://hasura.io/jwt/claims']['x-hasura-user-id'];
+      hasura_userID = $userInfo['https://hasura.io/jwt/claims']['x-hasura-user-id'];
       console.log(hasura_userID);
       let q = `
           {
@@ -110,6 +105,43 @@
       }    
     }
 
+    async function userLevelUp() {
+      let levels_codes = {
+        1: "Apprentice",
+        2: "Prep Cook",
+        3: "Sous Chef",
+        4: "Executive Chef",
+      };
+      if (user_level < 4) {
+        let new_user_level = user_level + 1;
+        let q = `
+          mutation {
+            update_users(_set: {Onboarding_Level: ` + new_user_level + `, Onboarding_Code: "` + levels_codes[new_user_level] + `"}, where: {x_hasura_user_id: {_eq: "` + hasura_userID + `"}}) {
+              returning {
+                Onboarding_Code
+                Onboarding_Level
+              }
+            }
+          }
+          `
+        let temp = await executeGraphql(q, $claims);
+        user_level = new_user_level;
+        user_code = levels_codes[user_level];
+      }
+    }
+
+    async function viewRecipes() {
+      viewingRecipes = true;
+      viewingInventory = false;
+      viewingIngredients = false;
+    }
+
+    async function viewIngredients() {
+      viewingIngredients = true;
+      viewingRecipes = false;
+      viewingInventory = false;
+    }
+
     async function getPossibleIngredients() {
         let q = `
                 {
@@ -152,20 +184,20 @@
     }
 
     async function getPossibleRecipes() {
-      let q = `
-      {
-        recipes_aggregate {
-          aggregate {
-            count
-          }
-        }
-      }
-      `
+      // let q = `
+      // {
+      //   recipes_aggregate {
+      //     aggregate {
+      //       count
+      //     }
+      //   }
+      // }
+      // `
       let c = $claims;
-      let temp_recipes = await executeGraphql(q, c); 
-      recipes_count = temp_recipes.data.recipes_aggregate.aggregate.count;
+      // let temp_recipes = await executeGraphql(q, c); 
+      // recipes_count = temp_recipes.data.recipes_aggregate.aggregate.count;
 
-      q = `
+      let q = `
       {
         users_recipes {
           recipes {
@@ -178,6 +210,7 @@
       `
       let temp = await executeGraphql(q, c); 
       recipes = temp.data.users_recipes;
+      console.log(recipes);
   }
 
     async function addNewRecipeIngredients(n_r_i) {
@@ -261,7 +294,12 @@
         let result = temp.data;
         console.log(result);
       }
-      
+      new_recipe_ingredients = [];
+      name = "";
+      new_recipe_directions_1 = "";
+      new_recipe_ingredient_shareable = null;
+
+      userLevelUp();
       console.log("new recipe added!")
 
       getPossibleRecipes();
@@ -338,6 +376,8 @@
         `
     temp = await executeGraphql(q, $claims);
     let newUserIngredientID = temp.data.insert_users_ingredients_one.id;
+
+    userLevelUp();
 
     new_ingredient_name = "";
     document.getElementById("Ingredient").removeChild;
@@ -440,30 +480,95 @@
 </ul> -->
 
 <h1>Welcome, {$userInfo["nickname"]}!</h1>
-<h5>Chef Level: <b>{user_level} ({user_code})</b></h5>
+{#if user_level == 1}
+<div class="row">
+  <img id="userProfilePicture" src="/open-iconic-master/svg/person.svg" alt="Apprentice level"/>
+</div>
+{/if}
+{#if user_level == 2}
+<div class="row">
+  <img id="userProfilePicture" src="/icons/PrepCook.svg" alt="Prep cook level"/>
+</div>
+{/if}
+{#if user_level == 3}
+<div class="row">
+  <img id="userProfilePicture" src="/icons/SousChef.svg" alt="Sous chef level"/>
+</div>
+{/if}
+{#if user_level == 4}
+<div class="row">
+  <img id="userProfilePicture" src="/icons/ExecutiveChef.svg" alt="Executive chef level"/>
+</div>
+{/if}
 
-<div class="card">
-  <div class="card-body">
-    <div>
-    {#if recipes_count > 0}
-        <h3 class="title">Recipes</h3> <span class="badge badge-success">Complete</span>
+
+<div class="row">
+  <h5>Chef Level: <b>{user_level} ({user_code})</b></h5>
+</div>
+
+<ul class="nav nav-pills nav-fill">
+  <li class="nav-item">
+    {#if recipes.length > 0}
+      <span class="nav-link menu" on:click={() => viewRecipes()}>Recipes</span> <span class="badge badge-success">Complete</span>
     {:else}
-        <span class="badge badge-danger">Missing</span> <h2 class="title">Recipes</h2>
+      <span class="nav-link menu" on:click={() => viewRecipes()}>Recipes</span> <span class="badge badge-danger">Missing</span>
     {/if}
-    </div>
-    <div class="row">
-      <p>&nbsp;</p>
-    </div>
-     <div class="row">
-      <p>You have {recipes_count} recipes.</p>
-    </div>
+  </li>
+  <li class="nav-item">
+    <span class="nav-link menu">Inventory</span> <span class="badge badge-warning">Coming Soon</span>
+  </li>
+  <li class="nav-item">
+    <span class="nav-link menu">Meal Plans</span> <span class="badge badge-warning">Coming Soon</span>
+  </li>
+  <li class="nav-item">
+    <span class="nav-link menu" on:click={() => viewIngredients()}>Ingredients</span> <span class="badge badge-success">Complete</span>
+  </li>
+</ul>
+
+
+{#if viewingRecipes}
+<h1 class="text-center">My Recipes</h1>
+
+<!-- {#if recipes_count == 1}
+<div class="row">
+  <p>You know {recipes_count} recipe.</p>
+</div>
+{:else}
+<div class="row">
+  <p>You know {recipes_count} recipes.</p>
+</div>
+{/if} -->
+{#if recipes.length > 0}
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Recipe</th>
+    </tr>
+  </thead>
+  <tbody>
+  {#each recipes as rec}
+    <tr>  
+      <td>{rec.recipes.Recipe}</td>
+    </tr>
+  {/each}
+  </tbody>
+</table>
+{:else}
+  <p>Add your favorite recipes to Grimp below. Or learn a community recipe!</p>
+{/if}
+
+<br />
+<div class="row">
+  <div class="col-sm-4">
+    <button on:click="{() => enterRecipe()}" class="btn btn-md btn-info">Add New Recipe</button>
   </div>
-<button on:click="{() => enterRecipe()}" class="btn btn-md btn-secondary">Add New Recipe</button>
-<button on:click="{() => enterRecipe()}" class="btn btn-md btn-light">Learn a Community Recipe</button>
+  <div class="col-sm-4">
+    <button on:click="{() => enterRecipe()}" class="btn btn-md btn-outline-info">Learn a Community Recipe</button>
+  </div>
+
 </div>
 
 
-{#if enteringRecipe}
 
 <!-- <div class="card category">
   <img class="card-img-top" src="/icons/burrito.jpeg" alt="burrito">
@@ -479,6 +584,8 @@
   </div>
 </div> -->
 
+
+{#if enteringRecipe}
 <form on:submit|preventDefault> 
 <h2>Add New Recipe</h2>
     <div class="form-group row">
@@ -501,7 +608,7 @@
       </div>
     </div>
 
-    <p><b>* Add new ingredients below if you do not see your ingredient listed.</b></p>
+    <p><b>* Add missing ingredients on the <span style="color:blue;" on:click={() => viewIngredients()}>Ingredients page</span> if you do not see your ingredient listed.</b></p>
 
   <h3>Measurements</h3>
     <div class="form-group row">
@@ -531,13 +638,12 @@
     <button class="btn btn-lg btn-success" on:click="{() => addNewRecipe(new_recipe_name)}">Add Recipe to Recipe Book</button>  
     
 </form>
-
 {/if}
-<hr />
-
-<p> <button class="btn btn-md btn-primary" on:click="{() => enterInventory()}">Input Your Inventory</button><span class="badge badge-danger">Missing</span> You must enter your current food inventory to get started.</p>
+{/if}
 
 {#if enteringInventory}
+<p> <button class="btn btn-md btn-primary" on:click="{() => enterInventory()}">Input Your Inventory</button><span class="badge badge-danger">Missing</span> You must enter your current food inventory to get started.</p>
+
 <form on:submit|preventDefault> 
 <table class="table-responsive">
     <legend>Update Your Inventory</legend>
@@ -565,15 +671,33 @@
 </table>
 </form>
 {/if}
-<hr />
-<p><button class="btn btn-md btn-primary">Create a meal plan</button><span class="badge badge-danger">Missing</span> Plan your meals for the week. </p>
 
-<hr />
-{#if ingredients_count > 0}
-<p><button on:click="{() => enterIngredient()}" class="btn btn-md btn-secondary">Add ingredients</button><span class="badge badge-success">Complete</span> You have {ingredients_count} ingredients. </p>
-{:else}
-<p><button on:click="{() => enterIngredient()}" class="btn btn-md btn-success">Add ingredients</button><span class="badge badge-danger">Missing</span> You have {ingredients_count} ingredients. </p>
-{/if}
+{#if viewingIngredients }
+
+<h1>My Ingredients</h1>
+
+<div id="ingredientsList">
+  <table class="table">
+    <thead class="thead-light">
+      <th scope="col">Ingredient</th>
+    </thead>
+    <tbody>
+      {#each possible_ingredients as pos}
+        <tr>
+          <td>{pos.Ingredient}</td>
+        </tr>
+      {/each}
+    </tbody>
+  </table>
+</div>
+        <!-- {#each possible_ingredients as pos}
+          <input class="form-check-input" type="checkbox" value="{pos}" bind:group={new_recipe_ingredients} id="checkbox_{pos.id}">
+            <label class="form-check-label" for="checkbox_{pos.id}">
+              {pos.Ingredient}
+          </label>
+        {/each} -->
+
+<p><button on:click="{() => enterIngredient()}" class="btn btn-md btn-secondary">Add ingredients</button>
 
 {#if enteringIngredient}
 <form on:submit|preventDefault> 
@@ -599,6 +723,7 @@
 
 </table>
 </form>
+{/if}
 {/if}
 <hr />
 
@@ -686,20 +811,6 @@
 <br />
 <br />
 <br /> -->
-
-<h1 class="text-center">My Recipes</h1>
-
-<table class="table-light">
-  {#each recipes as rec}
-    <tr class="row-success">  
-      <td>{rec.recipes.Recipe}</td>
-    </tr>
-  {/each}
-</table>
-
-<br />
-
-
 
 <!-- <p>Enter your first inventory to get started.</p> -->
 <!-- {#if categories != []}
