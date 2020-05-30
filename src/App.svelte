@@ -17,9 +17,12 @@
 	}
 	})	
 
+
 /* END AUTH */
 
 	import Home from './components/HomeComponent.svelte';
+	import loading from './components/HomeComponent.svelte';
+	import loggingIn from './components/HomeComponent.svelte';
 	import Inventory from './components/Inventory.svelte';
 	import RecipeDetailComponent from './components/RecipeDetailComponent.svelte';
 	import RecipeComponent from './components/RecipeComponent.svelte';
@@ -69,6 +72,26 @@
 
 :global(.svg) {
 	height: 1em;
+}
+
+:global(.card .btn) {
+	width: 36%;
+	float: left;
+}
+
+:global(.title) {
+	float: left;
+	margin-bottom: 2%;
+}
+
+:global(.newRecipeIngredients) {
+	height: 12em;
+	overflow: scroll;
+}
+
+:global(.form-check-label) {
+	font-size: 15pt;
+	overflow: scroll;
 }
 
 :global(.upcomingMeal) {
@@ -154,28 +177,29 @@
 
 </style> 
 
-{#if !$authToken }
-<div class="text-right container-fluid">
-	<Auth0Context domain="jeffca.auth0.com" client_id="URjctPE9nuCr4V9rFYWXbfEx04gZ9Faa" callback_url="CALLBACK_URL" logout_url="http://localhost:5000">
-		<!-- <span>Hi, Guest</span> -->
-		<button class="btn btn-lg btn-success" on:click|preventDefault='{() => login() }'>Login</button>
-	<!-- {#if $isAuthenticated} -->
-	<!-- <pre><span class="float-left">Hi, {$userInfo["nickname"]}</span> -->
-	<!-- <img src='{$userInfo["picture"]}' alt='profile_picture' id="userProfilePicture" /> -->
-	<!-- </pre> -->
-	<!-- <button class="btn btn-sm btn-dark" on:click|preventDefault='{() => logout() }'>Logout</button><br />	 -->
-	<!-- {/if} -->
-	{#if !authError}
-	<pre>isLoading: {$isLoading}</pre>
-	<pre>isAuthenticated: {$isAuthenticated}</pre>
-	<pre>authToken: {$authToken}</pre>
-	<pre>userInfo: {JSON.stringify($userInfo, null, 2)}</pre> 
-	<pre>authError: {$authError}</pre> 
+	{#if !$authToken }
+	<div class="text-left container-fluid">
+		<h1>Welcome new user!</h1>
+		<h3>Login with Google, Facebook or your personal email to sign up.</h3>
+		<Auth0Context domain="jeffca.auth0.com" client_id="URjctPE9nuCr4V9rFYWXbfEx04gZ9Faa" callback_url="CALLBACK_URL" logout_url="http://localhost:5000">
+			<!-- <span>Hi, Guest</span> -->
+			<button class="btn btn-lg btn-success" on:click|preventDefault='{() => login() }'>Login</button>
+		<!-- {#if $isAuthenticated} -->
+		<!-- <pre><span class="float-left">Hi, {$userInfo["nickname"]}</span> -->
+		<!-- <img src='{$userInfo["picture"]}' alt='profile_picture' id="userProfilePicture" /> -->
+		<!-- </pre> -->
+		<!-- <button class="btn btn-sm btn-dark" on:click|preventDefault='{() => logout() }'>Logout</button><br />	 -->
+		<!-- {/if} -->
+		{#if !authError}
+		<pre>isLoading: {$isLoading}</pre>
+		<pre>isAuthenticated: {$isAuthenticated}</pre>
+		<pre>authToken: {$authToken}</pre>
+		<pre>userInfo: {JSON.stringify($userInfo, null, 2)}</pre> 
+		<pre>authError: {$authError}</pre> 
+		{/if}
+		</Auth0Context>
+	</div>
 	{/if}
-	</Auth0Context>
-</div>
-{/if}
-	
 <div class="container-fluid">
 
 <Router {routes}/>

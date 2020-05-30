@@ -16,7 +16,8 @@
 		logout,
 		userInfo
   } from '@dopry/svelte-auth0';
-
+     export let loading;
+     export let loggingIn = false;
      export let ingredient1 = {"id": 0};
      export let ingredient2 = {"id": 0};
      export let new_recipe_ingredrient_quantity_measurement_1 = "Quantity Measurement";
@@ -32,34 +33,94 @@
      export let categories = [];
      export let category;
      export let enteringInventory, enteringRecipe, enteringIngredient;
-     export let new_recipe_name, new_ingredient_name, new_ingredient_brand, new_recipe_ingredient_quantity, new_ingredient_measurement;
-     export let last_ingredientID;
+     export let new_recipe_name, new_ingredient_name, new_ingredient_brand, new_recipe_ingredients = [], new_recipe_ingredients_final = [], new_recipe_ingredient_quantity, new_ingredient_measurement, new_recipe_ingredient_shareable;
      export let existing_ingredient, enteringRecipeIngredient2, enteringRecipeIngredient3;
      export let enteringRecipeIngredient = true;
     
+    export let user_level, user_code;
 
     authToken.subscribe(value => {
       console.log("auth token changed!")
+      loggingIn = true;
       console.log($authToken);
     })
     claims.subscribe(v => {
-      console.log("claims changed!")
-      console.log($claims)
-      console.log("claims should be ready!");
-      const res = getCategories();
-      const res2 = getPossibleIngredients();
-      const res3 = getPossibleRecipes();
+      if ($claims) {
+        console.log("claims should be ready!");
+        const c = checkUser();
+        const res = getCategories();
+        const res2 = getPossibleIngredients();
+        const res3 = getPossibleRecipes();
+        loading = false;
+      } 
     })
+
+    async function checkUser() {
+      let hasura_userID = $userInfo['https://hasura.io/jwt/claims']['x-hasura-user-id'];
+      console.log(hasura_userID);
+      let q = `
+          {
+            users(where: {x_hasura_user_id: {_eq: "` + hasura_userID + `"}}) {
+              id
+              Onboarding_Level
+              Onboarding_Code
+            }
+          }
+      `
+      let temp = await executeGraphql(q, $claims);  
+      console.log(temp.data); 
+      if (temp.data.users.length == 0) {
+        console.log("new user detected!")
+        q = `
+            mutation {
+              insert_users_one(object: {x_hasura_user_id: "` + hasura_userID + `", Onboarding_Level: 1, Onboarding_Code: "Apprentice"}) {
+                id
+              }
+            }
+            `
+        temp = await executeGraphql(q, $claims);
+        console.log("new level 1 user created in database!")
+        user_level = 1;
+        user_code = "Apprentice";
+
+        q = `
+            {
+              ingredients(where: {Base_Ingredient: {_eq: true}}) {
+                id
+                Quantity_Measurement
+              }
+            }
+            `
+        temp = await executeGraphql(q, $claims);
+        let base_ingredients = temp.data.ingredients
+        for (var i = 0; i < base_ingredients.length; i++) {
+          q = `
+              mutation {
+                insert_users_ingredients_one(object: {IngredientID: ` + base_ingredients[i].id + `, Quantity_Measurement: "` + base_ingredients[i].Quantity_Measurement + `"}) {
+                  id
+                }
+              }
+              `
+          temp = await executeGraphql(q, $claims);
+        }
+        getPossibleIngredients();
+      } else {
+        user_level = temp.data.users[0].Onboarding_Level;
+        user_code = temp.data.users[0].Onboarding_Code;
+      }    
+    }
 
     async function getPossibleIngredients() {
         let q = `
                 {
                   users_ingredients(order_by: {ingredients: {Ingredient: asc}}) {
+                    id
                     ingredients {
                       id
                       Brand
                       Ingredient
                     }
+                    Quantity_Measurement
                   }
                 }
                 `
@@ -67,9 +128,10 @@
         let temp_ingredients = await executeGraphql(q, c); 
         temp_ingredients = temp_ingredients.data.users_ingredients;
         console.log(temp_ingredients);
+        possible_ingredients = [];
         for (var i = 0; i < temp_ingredients.length; i++) {
           console.log("added an ingredient to the users list!");
-          possible_ingredients.push({"id": temp_ingredients[i].ingredients.id, "Ingredient": temp_ingredients[i].ingredients.Ingredient, "Brand": temp_ingredients[i].ingredients.Brand});
+          possible_ingredients.push({"value": "", "id": temp_ingredients[i].id, "Ingredient": temp_ingredients[i].ingredients.Ingredient, "Brand": temp_ingredients[i].ingredients.Brand, "Quantity_Measurement": temp_ingredients[i].Quantity_Measurement});
         }
         console.log(possible_ingredients);
         possible_ingredients = possible_ingredients;
@@ -118,42 +180,52 @@
       recipes = temp.data.users_recipes;
   }
 
+    async function addNewRecipeIngredients(n_r_i) {
+      console.log(n_r_i);
+      console.log(new_recipe_ingredients);
+    }
+
+    async function findNewRecipeIngredient() {
+      console.log("STARTING finding the new recipe ingredient!");
+      new_recipe_ingredients_final = [];
+      for (var i = 0; i < new_recipe_ingredients.length; i++) {
+        let q =   `
+                {
+                  users_ingredients(where: {IngredientID: {_eq: ` + new_recipe_ingredients[i] + `}}) {
+                    Quantity_Measurement
+                    ingredients {
+                      Ingredient
+                    }
+                  }
+                }
+              `
+        let temp = await executeGraphql(q, $claims);
+        new_recipe_ingredients_final.push(temp.data.users_ingredients);
+      }
+      console.log(new_recipe_ingredients_final);
+    }
+
     async function addNewRecipe(name) {
+      console.log(new_recipe_ingredients);
+      for (var i = 0; i < new_recipe_ingredients.length; i++) {
+        console.log(new_recipe_ingredients[i].value);
+      }
       let q = `
-        query {
-          recipes(order_by: {id: desc_nulls_last}, limit: 1) {
-            id
-          }
-        }
-      `
-      let temp = await executeGraphql(q, $claims);
-      let last_recipeID = temp.data.recipes[0].id;
-      console.log(last_recipeID);
-      q = `
         mutation {
-          insert_recipes_one(object: {id: ` + (last_recipeID + 1) + `, Recipe: " ` + name + `", Directions: "` + new_recipe_directions_1 +  `"}) {
+          insert_recipes_one(object: {Recipe: " ` + name + `", Directions: "` + new_recipe_directions_1 +  `"}) {
             id
             }
         }
        `
-      temp = await executeGraphql(q, $claims);
+      let temp = await executeGraphql(q, $claims);
       let new_recipeID = temp.data.insert_recipes_one.id;
       console.log(new_recipeID);
 
       q = `
-        query {
-          users_recipes(order_by: {id: desc_nulls_last}, limit: 1) {
-            id
-          }
-        }
-      `
-      temp = await executeGraphql(q, $claims);
-      let last_users_recipesID = temp.data.users_recipes[0].id;
-
-      q = `
           mutation {
-            insert_users_recipes(objects: {RecipeID: ` + new_recipeID + `, id: ` + (last_users_recipesID + 1) + `}) {
+            insert_users_recipes(objects: {RecipeID: ` + new_recipeID + `}) {
               returning {
+                id
                 recipes {
                   Recipe
                 }
@@ -162,33 +234,23 @@
           }
        `
       temp = await executeGraphql(q, $claims);
-      let new_users_recipe = temp.data.insert_users_recipes.returning[0].recipes.Recipe;
-      console.log("counting the new recipe ingredients");
-
-      let new_recipe_ingredient_count = 0;
-
-      console.log(ingredient1.id);
-      console.log(ingredient2.id);
-
-      ingredient1.id > 0 ? new_recipe_ingredient_count + 1 : 0;
-      ingredient2.id > 0 ? new_recipe_ingredient_count + 1 : 0;
-
-      let new_ingredients = [];
-
-      if (new_recipe_ingredient_count == 2) {
-        new_ingredients.push(ingredient1.id);
-        new_ingredients.push(ingredient2.id);
-      }
-
-      for (var i = 1; i <= new_recipe_ingredient_count; i ++) {
-        let vartest = "ingredient" + i.toString();
-        console.log(vartest);
-        console.log(ingredient1.id);
+      let new_users_recipe_id = temp.data.insert_users_recipes.returning[0].id;
+      console.log(new_users_recipe_id);
+      console.log("STARTING INGREDIENTS_RECIPES INSERT")
+      for (var i = 0; i < new_recipe_ingredients.length; i++) {
+        console.log(new_recipe_ingredients[i].value)
+        let user_quantity = new_recipe_ingredients[i].value;
+        let temp_user_ingredient_id = new_recipe_ingredients[i].id;
         q = `
             mutation {
-              insert_ingredients_recipes(objects: {IngredientID: ` + new_ingredients[i].id + ` , RecipeID: ` + new_recipeID + `, Quantity_Measurement: "` + new_recipe_ingredrient_quantity_measurement_1 + `", Quantity: ` + new_recipe_ingredrient_quantity_1 + `}) {
-                returning {
-                  ingredients_recipe_2 {
+              insert_ingredients_recipes_one(object: {Quantity: ` + user_quantity + `, Quantity_Measurement: "` + new_recipe_ingredients[i].Quantity_Measurement + `", UserIngredientID: ` + temp_user_ingredient_id + `, UserRecipeID: ` + new_users_recipe_id + `}) {
+                user_ingredients {
+                  ingredients {
+                    Ingredient
+                  }
+                }
+                user_recipes {
+                  recipes {
                     Recipe
                   }
                 }
@@ -199,7 +261,10 @@
         let result = temp.data;
         console.log(result);
       }
+      
       console.log("new recipe added!")
+
+      getPossibleRecipes();
     }
 
     async function getCategories() {
@@ -252,17 +317,6 @@
     
 }
 
-  async function findLastIngredientID() {
-    let q = `
-      query {
-        ingredients(order_by: {id: desc_nulls_last}, limit: 1) {
-          id
-        }
-      }
-    `
-    let temp = await executeGraphql(q, $claims);
-    last_ingredientID = temp.data.ingredients[0].id;
-  }
 
   async function addNewIngredient(new_ing_name, brand, q_m) {
     let q = `
@@ -274,7 +328,6 @@
             `;
     let temp = await executeGraphql(q, $claims);
     let newIngredientID = temp.data.insert_ingredients_one.id;
-    last_ingredientID += 1;
 
     q = `
         mutation {
@@ -333,7 +386,6 @@
   }
 
   async function enterIngredient() {
-    findLastIngredientID();
     enteringIngredient = true;
   }
 
@@ -366,77 +418,113 @@
 
 </script>
 
-{#if !$claims}
-<h1>Hi, Guest!</h1>
-{/if}
+{#if loading}
+<h1>Loading...</h1>
+{:else}
 
-{#if $claims}
+{#if user_level}
 
-<ul class="nav">
+<!-- <ul class="nav">
   <li class="nav-item">
     <a class="nav-link " href="/" use:link>Home</a>
   </li>
-  <!-- <li class="nav-item">
+  <li class="nav-item">
     <a class="nav-link active" href="/inventory" use:link>Inventory</a>
-  </li> -->
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="/meals" use:link>Meals</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="/grocerylist" use:link>Grocery List</a>
   </li>
-</ul>
+</ul> -->
 
 <h1>Welcome, {$userInfo["nickname"]}!</h1>
+<h5>Chef Level: <b>{user_level} ({user_code})</b></h5>
 
-{#if recipes_count > 0}
-<p><button on:click="{() => enterRecipe()}" class="btn btn-md btn-secondary">Add recipe</button><span class="badge badge-success">Complete</span> You have {recipes_count} recipes. </p>
-{:else}
-<p><button on:click="{() => enterRecipe()}" class="btn btn-md btn-success">Add recipe</button><span class="badge badge-danger">Missing</span> You have {recipes_count} recipes. </p>
-{/if}
+<div class="card">
+  <div class="card-body">
+    <div>
+    {#if recipes_count > 0}
+        <h3 class="title">Recipes</h3> <span class="badge badge-success">Complete</span>
+    {:else}
+        <span class="badge badge-danger">Missing</span> <h2 class="title">Recipes</h2>
+    {/if}
+    </div>
+    <div class="row">
+      <p>&nbsp;</p>
+    </div>
+     <div class="row">
+      <p>You have {recipes_count} recipes.</p>
+    </div>
+  </div>
+<button on:click="{() => enterRecipe()}" class="btn btn-md btn-secondary">Add New Recipe</button>
+<button on:click="{() => enterRecipe()}" class="btn btn-md btn-light">Learn a Community Recipe</button>
+</div>
+
 
 {#if enteringRecipe}
+
+<!-- <div class="card category">
+  <img class="card-img-top" src="/icons/burrito.jpeg" alt="burrito">
+  <div class="card-body">
+    <p class="card-text"><button>Learn a Burrito Recipe</button></p>
+  </div>
+</div>
+
+<div class="card category">
+  <img class="card-img-top" src="/icons/salad_category.png" alt="burrito">
+  <div class="card-body">
+    <p class="card-text"><button>Learn a Salad Recipe</button></p>
+  </div>
+</div> -->
+
 <form on:submit|preventDefault> 
 <h2>Add New Recipe</h2>
-    <div class="form-group">
-      <label for="new_recipe_name">Recipe Name</label>
-      <input id="new_recipe_name" class="form-control" bind:value={new_recipe_name} type="text" />
+    <div class="form-group row">
+      <label for="new_recipe_name" class="col-sm-2 col-form-label">Recipe Name</label>
+      <div class="col-sm-10">
+        <input id="new_recipe_name" class="form-control" bind:value={new_recipe_name} type="text" />    
+      </div>
     </div>              
   <h3>Ingredients</h3>
-    <div class="form-group row">
-      <div class="col-sm-6">
-      <label for="new_recipe_ingredient_name"> Ingredient #1</label> 
-        <AutoComplete class="form-control input" items={possible_ingredients} valueFieldName="id" labelFieldName="Ingredient" bind:selectedItem={ingredient1} onSelectedItemChanged={updateQM(ingredient1.id, 1)} />
-      </div>
-      <div class="col-sm-6">
-      <label for="new_recipe_ingredrient_quantity_measurement_1" class="col-sm-6">Quantity:</label>
-        <input id="new_recipe_ingredrient_quantity_measurement_1" bind:value={new_recipe_ingredrient_quantity_1} type="text" /> (<strong>{new_recipe_ingredrient_quantity_measurement_1}</strong>)
-      </div>
-    </div>
-    <div class="form-group row">
-      <div class="col-sm-6">
-      <label for="new_recipe_ingredient_name"> Ingredient #2</label> 
-        <AutoComplete class="form-control input" items={possible_ingredients} valueFieldName="id" labelFieldName="Ingredient" bind:selectedItem={ingredient2} onSelectedItemChanged={updateQM(ingredient2.id, 2)} />
-      </div>
-      <div class="col-sm-6">
-      <label for="new_recipe_ingredient_quantity" class="col-sm-6">Quantity:</label>
-        <input id="new_recipe_ingredient_quantity" bind:value={new_recipe_ingredrient_quantity_2} type="text" /> (<strong>{new_recipe_ingredrient_quantity_measurement_2}</strong>)
-      </div>
-    </div>    
 
-    <div class="row">
-      <button class="btn btn-md btn-primary">Add More Ingredients</button>
+    <div class="form-group newRecipeIngredients">
+      <div class="form-check">
+
+        {#each possible_ingredients as pos}
+          <input class="form-check-input" type="checkbox" value="{pos}" bind:group={new_recipe_ingredients} id="checkbox_{pos.id}">
+            <label class="form-check-label" for="checkbox_{pos.id}">
+              {pos.Ingredient}
+          </label>
+        {/each}
+      </div>
     </div>
+
     <p><b>* Add new ingredients below if you do not see your ingredient listed.</b></p>
+
+  <h3>Measurements</h3>
+    <div class="form-group row">
+    {#each new_recipe_ingredients as nri, i}
+     <label for={nri.id} class="col-sm-2 col-form-label">{nri.Ingredient} ({nri.Brand})</label>
+     <div class="col-sm-10">
+      <input id={nri.id} class="form-control" type="text" bind:value={nri.value} /> <strong>{nri.Quantity_Measurement}</strong>
+     </div>
+    {/each}
+    </div> 
+
+    <!-- <div class="row">
+      <button class="btn btn-md btn-primary" on:click="{() => addNewRecipeIngredients(new_recipe_ingredients)}">Add Ingredients and Measurements</button>
+    </div> -->
 
   <h3>Directions</h3>
     <div class="form-group row">
-            <label for="new_recipe_directions_1">Step One:</label>
-      <input id="new_recipe_directions_1" class="form-control" bind:value={new_recipe_directions_1} type="text" />
+            <label for="new_recipe_directions_1">Use periods to differentiate steps.</label>
+      <input id="new_recipe_directions_1" class="form-control" bind:value={new_recipe_directions_1} type="textarea" />
     </div>    
 
-    <div class="row">
-      <button class="btn btn-md btn-primary">Add More Steps</button>
+    <div class="form-check row">
+      <input id="share" class="form-check-input" type="checkbox" bind:value={new_recipe_ingredient_shareable}> <label class="form-check-label" for="share">Share with Community?</label>
     </div>
     <br />
 
@@ -670,3 +758,4 @@
 {/if}-->
 
 {/if} 
+{/if}
