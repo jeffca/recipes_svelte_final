@@ -27,7 +27,8 @@
      export let possible_ingredients = [], recipes_count, ingredients_count;
      export let categories = [];
      export let category;
-     export let viewingRecipes, viewingInventory, viewingIngredients, enteringInventory, enteringRecipe, enteringIngredient;
+     export let filteredCommunityRecipes = {};
+     export let viewingRecipes, viewingMyRecipes, viewingCommunityRecipes, viewingFilteredCommunityRecipes, viewingInventory, viewingIngredients, enteringInventory, enteringRecipe, enteringIngredient;
      export let new_recipe_name, new_ingredient_name, new_ingredient_brand, new_recipe_ingredients = [], new_recipe_ingredients_final = [], new_recipe_ingredient_quantity, new_ingredient_measurement, new_recipe_directions_1, new_recipe_ingredient_shareable;
      export let existing_ingredient, enteringRecipeIngredient2, enteringRecipeIngredient3;
      export let enteringRecipeIngredient = true;
@@ -134,6 +135,73 @@
       viewingRecipes = true;
       viewingInventory = false;
       viewingIngredients = false;
+    }
+
+    async function viewMyRecipes() {
+      viewingMyRecipes = true;
+      enteringRecipe = false;
+    }
+
+    async function viewCommunityRecipes() {
+      viewingCommunityRecipes = true; 
+      viewingFilteredCommunityRecipes = false;
+      viewingMyRecipes = false;
+      enteringRecipe = false;      
+    }
+
+   async function filterCommunityRecipes(parent_category) {
+      viewingFilteredCommunityRecipes = true;
+      if (["Lunch or Dinner", "Breakfast", "Snacks", "Drinks"].includes(parent_category)) {
+        let category_subcategory = {
+          "Lunch or Dinner": [
+            {"American":{"category": "LD_American", "count": 1}}, 
+            {"Italian":{"category": "LD_Italian", "count":1}},
+            {"Mexican":{"category": "LD_Mexican", "count":1}}
+            ],
+          "Breakfast": [
+            {"Mexican":{"category": "B_Mexican", "count":1}}
+            ],
+          "Snacks": [
+            {"American":{"category": "S_American", "count":1}},
+            {"Chinese":{"category": "S_Chinese", "count":1}}
+            ],
+          "Drinks": [
+            {"Smoothies":{"category": "D_Smoothies", "count":1}}
+          ]
+        }
+        filteredCommunityRecipes = category_subcategory[parent_category];
+        console.log(filteredCommunityRecipes);
+        for (var i = 0; i < filteredCommunityRecipes.length; i++) {
+          console.log(filteredCommunityRecipes[i]);
+        }
+      } else {
+        let subcategory_subcategory = {
+          "LD_American": [
+            {"Fried Fish": {"id":6, "count":1}}
+          ],
+          "LD_Italian": [
+            {"Pizza": {"id":6, "count":1}}
+          ],
+          "LD_Mexican": [
+            {"Burrito": {"id":4, "count":1}}
+          ],
+          "B_Mexican": [
+            {"Frittata": {"id":2, "count":1}},
+          ],
+          "S_American": [
+            {"French Fries": {"id":5, "count":1}},
+          ],
+          "S_Chinese": [
+            {"Green Onion Pancake": {"id":1, "count":1}},
+          ],
+          "D_Smoothies": [
+            {"Vegetable Smoothie": {"id":3, "count":1}},
+          ]
+        }
+        filteredCommunityRecipes = subcategory_subcategory[parent_category];
+      }
+
+
     }
 
     async function viewIngredients() {
@@ -422,6 +490,7 @@
   }
 
   async function enterRecipe() {
+    viewingMyRecipes = false;
     enteringRecipe = true;
   }
 
@@ -527,6 +596,7 @@
 
 
 {#if viewingRecipes}
+
 <h1 class="text-center">My Recipes</h1>
 
 <!-- {#if recipes_count == 1}
@@ -538,32 +608,16 @@
   <p>You know {recipes_count} recipes.</p>
 </div>
 {/if} -->
-{#if recipes.length > 0}
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">Recipe</th>
-    </tr>
-  </thead>
-  <tbody>
-  {#each recipes as rec}
-    <tr>  
-      <td>{rec.recipes.Recipe}</td>
-    </tr>
-  {/each}
-  </tbody>
-</table>
-{:else}
-  <p>Add your favorite recipes to Grimp below. Or learn a community recipe!</p>
-{/if}
-
 <br />
-<div class="row">
+<div class="row text-center">
+  <div class="col-sm-4">
+    <button on:click={() => viewMyRecipes()} class="btn btn-md btn-outline-success">View My Recipes</button>
+  </div>
   <div class="col-sm-4">
     <button on:click="{() => enterRecipe()}" class="btn btn-md btn-info">Add New Recipe</button>
   </div>
   <div class="col-sm-4">
-    <button on:click="{() => enterRecipe()}" class="btn btn-md btn-outline-info">Learn a Community Recipe</button>
+    <button on:click="{() => viewCommunityRecipes()}" class="btn btn-md btn-outline-info">Learn a Community Recipe</button>
   </div>
 
 </div>
@@ -584,8 +638,27 @@
   </div>
 </div> -->
 
+{#if viewingMyRecipes}
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Recipe</th>
+    </tr>
+  </thead>
+  <tbody>
+  {#each recipes as rec}
+    <tr>  
+      <td>{rec.recipes.Recipe}</td>
+    </tr>
+  {/each}
+  </tbody>
+</table>
+{:else}
+{/if}
+
 
 {#if enteringRecipe}
+<p>Add your favorite recipes below. Or learn a community recipe!</p>
 <form on:submit|preventDefault> 
 <h2>Add New Recipe</h2>
     <div class="form-group row">
@@ -639,6 +712,44 @@
     
 </form>
 {/if}
+
+{#if viewingCommunityRecipes}
+{#if !viewingFilteredCommunityRecipes}
+<ul class="list-group">
+  <li class="list-group-item d-flex justify-content-between align-items-center" on:click={() => filterCommunityRecipes('Lunch or Dinner')}>
+    Lunch or Dinner
+    <span class="badge badge-primary badge-pill">3</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center" on:click={() => filterCommunityRecipes('Breakfast')}>
+    Breakfast
+    <span class="badge badge-primary badge-pill">1</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center" on:click={() => filterCommunityRecipes('Snacks')}>
+    Snacks
+    <span class="badge badge-primary badge-pill">2</span>
+  </li> 
+  <li class="list-group-item d-flex justify-content-between align-items-center" on:click={() => filterCommunityRecipes('Drinks')}>
+    Drinks
+    <span class="badge badge-primary badge-pill">1</span>
+  </li>    
+</ul>
+{/if}
+
+{#if viewingFilteredCommunityRecipes}
+<ul class="list-group">
+  {#each Object.keys(filteredCommunityRecipes) as fcr}
+    <li class="list-group-item d-flex justify-content-between align-items-center" on:click={() => filterCommunityRecipes(filteredCommunityRecipes[fcr][Object.keys(filteredCommunityRecipes[fcr])[0]]["category"]) }>
+      {Object.keys(filteredCommunityRecipes[fcr])[0]}
+      <span class="badge badge-primary badge-pill">{filteredCommunityRecipes[fcr][Object.keys(filteredCommunityRecipes[fcr])[0]]["count"]}</span>
+    </li>
+  {/each}
+</ul>
+<button class="btn btn-md btn-secondary" on:click={() => viewCommunityRecipes()}><img class="icon" alt="back" src="/open-iconic-master/svg/chevron-left.svg"> Back</button>
+{/if}
+
+{/if}
+
+
 {/if}
 
 {#if enteringInventory}

@@ -11,7 +11,7 @@
   fetch('https://graphql-jeffrecipes.herokuapp.com/v1/graphql', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query: '{ recipes_by_pk(id:' + params.id + ') { id Recipe Directions } }' })
+    body: JSON.stringify({ query: '{ users_recipes_by_pk(id:' + params.id + ') { id Recipe Directions } }' })
   })
     .then(res => res.json())
     .then(res => {

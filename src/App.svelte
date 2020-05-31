@@ -70,6 +70,10 @@
 
 }
 
+:global(.list-group) {
+	margin-bottom: 1%;
+}
+
 :global(.svg) {
 	height: 1em;
 }
