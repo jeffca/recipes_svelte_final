@@ -28,8 +28,8 @@
      export let categories = [];
      export let category;
      export let filteredCommunityRecipes = {};
-     export let viewingRecipes, viewingMyRecipes, viewingCommunityRecipes, viewingFilteredCommunityRecipes, viewingInventory, viewingIngredients, enteringInventory, enteringRecipe, enteringIngredient;
-     export let new_recipe_name, new_ingredient_name, new_ingredient_brand, new_recipe_ingredients = [], new_recipe_ingredients_final = [], new_recipe_ingredient_quantity, new_ingredient_measurement, new_recipe_directions_1, new_recipe_ingredient_shareable;
+     export let viewingRecipes, viewingMyRecipes, communityRecipe, viewingCommunityRecipe, viewingCommunityRecipes, viewingFilteredCommunityRecipes, viewingInventory, viewingIngredients, enteringInventory, enteringRecipe, enteringIngredient;
+     export let communityRecipeIngredients, new_recipe_name, new_ingredient_name, new_ingredient_brand, new_recipe_ingredients = [], new_recipe_ingredients_final = [], new_recipe_ingredient_quantity, new_ingredient_measurement, new_recipe_directions_1, new_recipe_ingredient_shareable;
      export let existing_ingredient, enteringRecipeIngredient2, enteringRecipeIngredient3;
      export let enteringRecipeIngredient = true;
     
@@ -106,31 +106,6 @@
       }    
     }
 
-    async function userLevelUp() {
-      let levels_codes = {
-        1: "Apprentice",
-        2: "Prep Cook",
-        3: "Sous Chef",
-        4: "Executive Chef",
-      };
-      if (user_level < 4) {
-        let new_user_level = user_level + 1;
-        let q = `
-          mutation {
-            update_users(_set: {Onboarding_Level: ` + new_user_level + `, Onboarding_Code: "` + levels_codes[new_user_level] + `"}, where: {x_hasura_user_id: {_eq: "` + hasura_userID + `"}}) {
-              returning {
-                Onboarding_Code
-                Onboarding_Level
-              }
-            }
-          }
-          `
-        let temp = await executeGraphql(q, $claims);
-        user_level = new_user_level;
-        user_code = levels_codes[user_level];
-      }
-    }
-
     async function viewRecipes() {
       viewingRecipes = true;
       viewingInventory = false;
@@ -147,11 +122,13 @@
       viewingFilteredCommunityRecipes = false;
       viewingMyRecipes = false;
       enteringRecipe = false;      
+      viewingCommunityRecipe = false;
     }
 
    async function filterCommunityRecipes(parent_category) {
       viewingFilteredCommunityRecipes = true;
       if (["Lunch or Dinner", "Breakfast", "Snacks", "Drinks"].includes(parent_category)) {
+        console.log("he wants to pick a sub category from the main categories")
         let category_subcategory = {
           "Lunch or Dinner": [
             {"American":{"category": "LD_American", "count": 1}}, 
@@ -168,40 +145,74 @@
           "Drinks": [
             {"Smoothies":{"category": "D_Smoothies", "count":1}}
           ]
-        }
+        };
         filteredCommunityRecipes = category_subcategory[parent_category];
         console.log(filteredCommunityRecipes);
         for (var i = 0; i < filteredCommunityRecipes.length; i++) {
           console.log(filteredCommunityRecipes[i]);
         }
-      } else {
+      } else if (["LD_American", "LD_Italian", "LD_Mexican", "B_Mexican", "S_American", "S_Chinese", "D_Smoothies"].includes(parent_category)) {
+        console.log("he wants to view a specific community recipe");
         let subcategory_subcategory = {
           "LD_American": [
-            {"Fried Fish": {"id":6, "count":1}}
+            {"Fried Fish": {"category":6, "count":1}}
           ],
           "LD_Italian": [
-            {"Pizza": {"id":6, "count":1}}
+            {"Pizza": {"category":6, "count":1}}
           ],
           "LD_Mexican": [
-            {"Burrito": {"id":4, "count":1}}
+            {"Burrito": {"category":4, "count":1}}
           ],
           "B_Mexican": [
-            {"Frittata": {"id":2, "count":1}},
+            {"Frittata": {"category":2, "count":1}},
           ],
           "S_American": [
-            {"French Fries": {"id":5, "count":1}},
+            {"French Fries": {"category":5, "count":1}},
           ],
           "S_Chinese": [
-            {"Green Onion Pancake": {"id":1, "count":1}},
+            {"Green Onion Pancake": {"category":1, "count":1}},
           ],
           "D_Smoothies": [
-            {"Vegetable Smoothie": {"id":3, "count":1}},
+            {"Vegetable Smoothie": {"category":3, "count":1}},
           ]
         }
         filteredCommunityRecipes = subcategory_subcategory[parent_category];
+      } else {
+        console.log("users wants to view a community recipe!");
+        console.log(parent_category);
+        let q = `
+                {
+                  users_recipes_by_pk(id: ` + parent_category + `) {
+                    recipes {
+                      Directions
+                      Recipe
+                    }
+                  }
+                }
+                `;
+        let temp = await executeGraphql(q, $claims);
+        viewingFilteredCommunityRecipes = false;
+        viewingCommunityRecipe = true;
+        viewingCommunityRecipes = false;
+        communityRecipe = temp.data.users_recipes_by_pk.recipes;
+        q = `
+            {
+              ingredients_recipes(where: {UserRecipeID: {_eq: ` + parent_category + `}}) {
+                Quantity
+                Quantity_Measurement
+                user_ingredients {
+                  ingredients {
+                    Ingredient
+                  }
+                }
+              }
+            }
+        `
+        temp = await executeGraphql(q, $claims);
+        communityRecipeIngredients = temp.data.ingredients_recipes;
+        console.log(communityRecipeIngredients); 
       }
-
-
+      console.log("filtered!");
     }
 
     async function viewIngredients() {
@@ -213,42 +224,34 @@
     async function getPossibleIngredients() {
         let q = `
                 {
-                  users_ingredients(order_by: {ingredients: {Ingredient: asc}}) {
+                  ingredients(order_by: {Ingredient: asc}) {
                     id
-                    ingredients {
-                      id
-                      Brand
-                      Ingredient
-                    }
+                    Brand
+                    Ingredient
                     Quantity_Measurement
                   }
                 }
                 `
-        let c = $claims;
-        let temp_ingredients = await executeGraphql(q, c); 
-        temp_ingredients = temp_ingredients.data.users_ingredients;
-        console.log(temp_ingredients);
+        let temp_ingredients = await executeGraphql(q, $claims); 
+        temp_ingredients = temp_ingredients.data.ingredients;
         possible_ingredients = [];
         for (var i = 0; i < temp_ingredients.length; i++) {
-          console.log("added an ingredient to the users list!");
-          possible_ingredients.push({"value": "", "id": temp_ingredients[i].id, "Ingredient": temp_ingredients[i].ingredients.Ingredient, "Brand": temp_ingredients[i].ingredients.Brand, "Quantity_Measurement": temp_ingredients[i].Quantity_Measurement});
+          possible_ingredients.push({"value": "", "id": temp_ingredients[i].id, "Ingredient": temp_ingredients[i].Ingredient, "Brand": temp_ingredients[i].Brand, "Quantity_Measurement": temp_ingredients[i].Quantity_Measurement});
         }
-        console.log(possible_ingredients);
         possible_ingredients = possible_ingredients;
-
-        q  = `
-              {
-                users_ingredients_aggregate {
-                  aggregate {
-                    count
-                  }
-                }
-              }
-          `;
-        let temp_ingredients_count = await executeGraphql(q, c); 
-        ingredients_count = temp_ingredients_count.data.users_ingredients_aggregate.aggregate.count;
-        console.log("set the ingredients count");
-        console.log(ingredients_count);
+        // q  = `
+        //       {
+        //         users_ingredients_aggregate {
+        //           aggregate {
+        //             count
+        //           }
+        //         }
+        //       }
+        //   `;
+        // let temp_ingredients_count = await executeGraphql(q, c); 
+        // ingredients_count = temp_ingredients_count.data.users_ingredients_aggregate.aggregate.count;
+        // console.log("set the ingredients count");
+        // console.log(ingredients_count);
     }
 
     async function getPossibleRecipes() {
@@ -307,10 +310,6 @@
     }
 
     async function addNewRecipe(name) {
-      console.log(new_recipe_ingredients);
-      for (var i = 0; i < new_recipe_ingredients.length; i++) {
-        console.log(new_recipe_ingredients[i].value);
-      }
       let q = `
         mutation {
           insert_recipes_one(object: {Recipe: " ` + name + `", Directions: "` + new_recipe_directions_1 +  `"}) {
@@ -345,10 +344,8 @@
         q = `
             mutation {
               insert_ingredients_recipes_one(object: {Quantity: ` + user_quantity + `, Quantity_Measurement: "` + new_recipe_ingredients[i].Quantity_Measurement + `", UserIngredientID: ` + temp_user_ingredient_id + `, UserRecipeID: ` + new_users_recipe_id + `}) {
-                user_ingredients {
-                  ingredients {
-                    Ingredient
-                  }
+                ingredients {
+                  Ingredient
                 }
                 user_recipes {
                   recipes {
@@ -435,25 +432,15 @@
     let temp = await executeGraphql(q, $claims);
     let newIngredientID = temp.data.insert_ingredients_one.id;
 
-    q = `
-        mutation {
-          insert_users_ingredients_one(object: {IngredientID: ` + newIngredientID + `, Quantity_Measurement: "` + q_m + `"}) {
-            id
-          }
-        }
-        `
-    temp = await executeGraphql(q, $claims);
-    let newUserIngredientID = temp.data.insert_users_ingredients_one.id;
-
     userLevelUp();
 
-    new_ingredient_name = "";
+    new_ingredient_name = null;
     document.getElementById("Ingredient").removeChild;
     document.getElementById("Brand").removeChild;
-    new_ingredient_brand = "";
+    new_ingredient_brand = null;
     document.getElementById("Quantity_Measurement").removeChild;  
     getPossibleIngredients();
-    document.getElementById("Ingredient").focus();
+    document.getElementByClass("menu").focus();
 
   }
  
@@ -531,8 +518,6 @@
 <h1>Loading...</h1>
 {:else}
 
-{#if user_level}
-
 <!-- <ul class="nav">
   <li class="nav-item">
     <a class="nav-link " href="/" use:link>Home</a>
@@ -548,56 +533,35 @@
   </li>
 </ul> -->
 
-<h1>Welcome, {$userInfo["nickname"]}!</h1>
-{#if user_level == 1}
-<div class="row">
-  <img id="userProfilePicture" src="/open-iconic-master/svg/person.svg" alt="Apprentice level"/>
-</div>
-{/if}
-{#if user_level == 2}
-<div class="row">
-  <img id="userProfilePicture" src="/icons/PrepCook.svg" alt="Prep cook level"/>
-</div>
-{/if}
-{#if user_level == 3}
-<div class="row">
-  <img id="userProfilePicture" src="/icons/SousChef.svg" alt="Sous chef level"/>
-</div>
-{/if}
-{#if user_level == 4}
-<div class="row">
-  <img id="userProfilePicture" src="/icons/ExecutiveChef.svg" alt="Executive chef level"/>
-</div>
-{/if}
-
-
-<div class="row">
-  <h5>Chef Level: <b>{user_level} ({user_code})</b></h5>
-</div>
-
+{#if $userInfo["nickname"]}
 <ul class="nav nav-pills nav-fill">
-  <li class="nav-item">
-    {#if recipes.length > 0}
+  <li class="nav-item col-sm-6">
+    <a href="/food" use:link class="btn btn-lg btn-outline-primary">Cook Food</a>
+  </li>
+  <li class="nav-item col-sm-6">
+    <button class="btn btn-lg btn-outline-primary disabled">Update Inventory</button>
+  </li>  
+</ul>
+{/if}
+    <!-- {#if recipes.length > 0}
       <span class="nav-link menu" on:click={() => viewRecipes()}><button type="button" class="btn btn-lg btn-outline-primary">Recipes</button></span> <span class="badge badge-success">Complete</span>
     {:else}
       <span class="nav-link menu" on:click={() => viewRecipes()}><button type="button" class="btn btn-lg btn-outline-primary">Recipes</button></span> <span class="badge badge-danger">Missing</span>
     {/if}
-  </li>
-  <li class="nav-item">
+  </li> -->
+  <!-- <li class="nav-item">
     <span class="nav-link menu"><button type="button" class="btn btn-lg btn-outline-primary">Inventory</button></span> <span class="badge badge-warning">Coming Soon</span>
   </li>
   <li class="nav-item">
     <span class="nav-link menu"><button type="button" class="btn btn-lg btn-outline-primary">Meal Plans</button></span> <span class="badge badge-warning">Coming Soon</span>
-  </li>
-  <li class="nav-item">
-    <span class="nav-link menu" on:click={() => viewIngredients()}><button type="button" class="btn btn-lg btn-outline-primary">Ingredients</button></span> <span class="badge badge-success">Complete</span>
-  </li>
-</ul>
+  </li> -->
+  <!-- <li class="nav-item">
+    <span class="nav-link menu"><button type="button" class="btn btn-lg btn-outline-primary">Grocery Lists</button></span> <span class="badge badge-success">Complete</span>
+  </li> -->
+<!-- </ul> -->
 
 
 {#if viewingRecipes}
-
-<h1 class="text-center">My Recipes</h1>
 
 <!-- {#if recipes_count == 1}
 <div class="row">
@@ -608,19 +572,7 @@
   <p>You know {recipes_count} recipes.</p>
 </div>
 {/if} -->
-<br />
-<div class="row text-center">
-  <div class="col-sm-4">
-    <button on:click={() => viewMyRecipes()} class="btn btn-md btn-outline-success">View My Recipes</button>
-  </div>
-  <div class="col-sm-4">
-    <button on:click="{() => enterRecipe()}" class="btn btn-md btn-info">Add New Recipe</button>
-  </div>
-  <div class="col-sm-4">
-    <button on:click="{() => viewCommunityRecipes()}" class="btn btn-md btn-outline-info">Learn a Community Recipe</button>
-  </div>
 
-</div>
 
 
 
@@ -638,104 +590,10 @@
   </div>
 </div> -->
 
-{#if viewingMyRecipes}
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">Recipe</th>
-    </tr>
-  </thead>
-  <tbody>
-  {#each recipes as rec}
-    <tr>  
-      <td>{rec.recipes.Recipe}</td>
-    </tr>
-  {/each}
-  </tbody>
-</table>
-{:else}
-{/if}
-
-
-{#if enteringRecipe}
-<p>Add your favorite recipes below. Or learn a community recipe!</p>
-<form on:submit|preventDefault> 
-<h2>Add New Recipe</h2>
-    <div class="form-group row">
-      <label for="new_recipe_name" class="col-sm-2 col-form-label">Recipe Name</label>
-      <div class="col-sm-10">
-        <input id="new_recipe_name" class="form-control" bind:value={new_recipe_name} type="text" />    
-      </div>
-    </div>              
-  <h3>Ingredients</h3>
-
-    <div class="form-group newRecipeIngredients">
-      <div class="form-check">
-
-        {#each possible_ingredients as pos}
-          <input class="form-check-input" type="checkbox" value="{pos}" bind:group={new_recipe_ingredients} id="checkbox_{pos.id}">
-            <label class="form-check-label" for="checkbox_{pos.id}">
-              {pos.Ingredient}
-          </label>
-        {/each}
-      </div>
-    </div>
-
-    <p><b>* Add missing ingredients on the <span style="color:blue;" on:click={() => viewIngredients()}>Ingredients page</span> if you do not see your ingredient listed.</b></p>
-
-  <h3>Measurements</h3>
-    <div class="form-group row">
-    {#each new_recipe_ingredients as nri, i}
-     <label for={nri.id} class="col-sm-2 col-form-label">{nri.Ingredient} ({nri.Brand})</label>
-     <div class="col-sm-10">
-      <input id={nri.id} class="form-control" type="text" bind:value={nri.value} /> <strong>{nri.Quantity_Measurement}</strong>
-     </div>
-    {/each}
-    </div> 
-
-    <!-- <div class="row">
-      <button class="btn btn-md btn-primary" on:click="{() => addNewRecipeIngredients(new_recipe_ingredients)}">Add Ingredients and Measurements</button>
-    </div> -->
-
-  <h3>Directions</h3>
-    <div class="form-group row">
-            <label for="new_recipe_directions_1">Use periods to differentiate steps.</label>
-      <input id="new_recipe_directions_1" class="form-control" bind:value={new_recipe_directions_1} type="textarea" />
-    </div>    
-
-    <div class="form-check row">
-      <input id="share" class="form-check-input" type="checkbox" bind:value={new_recipe_ingredient_shareable}> <label class="form-check-label" for="share">Share with Community?</label>
-    </div>
-    <br />
-
-    <button class="btn btn-lg btn-success" on:click="{() => addNewRecipe(new_recipe_name)}">Add Recipe to Recipe Book</button>  
-    
-</form>
-{/if}
-
 {#if viewingCommunityRecipes}
 {#if !viewingFilteredCommunityRecipes}
-<ul class="list-group">
-  <li class="list-group-item d-flex justify-content-between align-items-center" on:click={() => filterCommunityRecipes('Lunch or Dinner')}>
-    Lunch or Dinner
-    <span class="badge badge-primary badge-pill">3</span>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center" on:click={() => filterCommunityRecipes('Breakfast')}>
-    Breakfast
-    <span class="badge badge-primary badge-pill">1</span>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center" on:click={() => filterCommunityRecipes('Snacks')}>
-    Snacks
-    <span class="badge badge-primary badge-pill">2</span>
-  </li> 
-  <li class="list-group-item d-flex justify-content-between align-items-center" on:click={() => filterCommunityRecipes('Drinks')}>
-    Drinks
-    <span class="badge badge-primary badge-pill">1</span>
-  </li>    
-</ul>
-{/if}
 
-{#if viewingFilteredCommunityRecipes}
+{:else}
 <ul class="list-group">
   {#each Object.keys(filteredCommunityRecipes) as fcr}
     <li class="list-group-item d-flex justify-content-between align-items-center" on:click={() => filterCommunityRecipes(filteredCommunityRecipes[fcr][Object.keys(filteredCommunityRecipes[fcr])[0]]["category"]) }>
@@ -746,9 +604,17 @@
 </ul>
 <button class="btn btn-md btn-secondary" on:click={() => viewCommunityRecipes()}><img class="icon" alt="back" src="/open-iconic-master/svg/chevron-left.svg"> Back</button>
 {/if}
-
 {/if}
 
+{#if viewingCommunityRecipe}
+
+  <h2>{communityRecipe.Recipe}</h2>
+  <ul class="list-group">
+  {#each communityRecipe.Directions.split(".") as dir}
+    <li class="list-group-item">{dir}</li>
+  {/each}
+  </ul>
+<button class="btn btn-md btn-secondary" on:click={() => viewCommunityRecipes()}><img class="icon" alt="back" src="/open-iconic-master/svg/chevron-left.svg"> Back</button>
 
 {/if}
 
@@ -810,31 +676,6 @@
 
 <p><button on:click="{() => enterIngredient()}" class="btn btn-md btn-secondary">Add ingredients</button>
 
-{#if enteringIngredient}
-<form on:submit|preventDefault> 
-<table class="table-responsive">
-    <legend>Add New Ingredient</legend>
-    <tr>
-            <td>Ingredient: <input id="Ingredient" placeholder="Pineapple" bind:value={new_ingredient_name} type="text" />
-            <!-- <td>Ingredient: <AutoComplete items={possible_ingredients} labelFieldName="Ingredient" bind:selectedItem={new_ingredient_name} /></td> -->
-            <td>Brand: <input id="Brand" placeholder="Dole" bind:value={new_ingredient_brand} type="text" /></td>
-            <td><label>How Do You Measure the Quantity?<select bind:value={new_ingredient_measurement} id="Quantity_Measurement">
-              <option>Each</option>
-              <option>Oz</option>
-              <option>Lb</option>
-              <option>Grams</option>
-              <option>Slices</option>
-              <option>Cups</option>
-              <option>Tablespoons</option>
-              <option>Teaspoons</option>
-            </select></label>
-            </td>
-            <td><button class="btn btn-lg btn-primary" on:click="{() => addNewIngredient(new_ingredient_name, new_ingredient_brand, new_ingredient_measurement)}">Add</button></td>
-    </tr>
-
-</table>
-</form>
-{/if}
 {/if}
 <hr />
 

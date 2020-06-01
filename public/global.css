@@ -1,3 +1,178 @@
+
+:global(a) {
+	color: gray;
+	font-weight: 850;
+}
+
+:global(a:visited) {
+	color: white;
+	font-weight: 900;
+}
+
+:global(.recipeList) {
+	height: 18em;
+	overflow: scroll;
+}
+
+:global(.backArrow) {
+	width: 2.8em;
+
+}
+
+:global(.list-group) {
+	margin-bottom: 1%;
+}
+
+:global(.svg) {
+	height: 1em;
+}
+
+:global(.card .btn) {
+	width: 36%;
+	float: left;
+}
+
+:global(.title) {
+	float: left;
+	margin-bottom: 2%;
+}
+
+:global(.row) {
+	margin-bottom: 1%;
+}
+
+:global(.welcome) {
+	font-family: "Scope One", serif;
+}
+
+.welcome {
+	font-family: "Scope One", serif;
+}
+
+.recipesNav {
+	color: royalblue;
+	font-family: "Rancho", cursive;
+	font-size: 24pt;
+	font-weight: bolder;
+	letter-spacing: 1.5px;
+}
+
+.menuIcon {
+	height: .7em;
+}
+
+.menuIconNotificiation {
+	height: 20px;
+	width: 20px;
+	font-size: 14.5px;
+}
+
+:global(.menu) {
+	font-size: 24pt;
+	font-weight: bold;
+	color: #0d52bf;
+}
+
+.newRecipeIngredients {
+	height: 12em;
+	overflow: scroll;
+}
+
+:global(#ingredientsList) {
+	height: 16em;
+	overflow: scroll;
+	margin-bottom: 1.1%;
+}
+
+:global(.form-check-label) {
+	font-size: 15pt;
+	overflow: scroll;
+}
+
+:global(.upcomingMeal) {
+	height: 16em;
+	margin-bottom: 5.8%;
+}
+
+:global(.card-body) {
+	overflow: scroll;
+}
+
+:global(.category) {
+	width: 49%;
+	text-align: center;
+	/* height: em; */
+	font-size: 20pt;
+}
+
+:global(.ingredient) {
+	font-size: 18pt;
+	color: black;
+}
+
+.ingredientsBtn {
+	font-family: "Rasa", serif;
+	font-size: 20pt;
+	color: gray;
+}
+
+:global(.recipe) {
+	font-size: 20pt;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana';
+	text-align: center;
+}
+
+:global(.recipeBtn) {
+	margin-left: 1em;
+	margin-right: 1.5em;
+	width: 10em;
+	height: 2.5em;
+}
+
+:global(.recipeBtnColumn) {
+	width: 12em;
+}
+
+:global(.iCookedThisBtn) {
+	float: right;
+	margin-right: 3.5em;
+	width: 10em;
+}
+
+:global(.iCookedThisBtnColumn) {
+	width: 12em;
+}
+
+:global(.addToGroceryList) {
+	float: right;
+	width: 12em;
+	text-align: center;
+}
+
+:global(.markDone) {
+	float: right;
+	margin-right: 2.5em;
+	width: 9em;
+}
+
+:global(.groceryListItem) {
+	font-size: 24pt;
+	font-family: Helvetica;
+	font-weight: 400;
+	text-align: center;
+}
+
+:global(legend) {
+	font-size: 36pt;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+:global(#userProfilePicture) {
+	width: 8.5em;
+	float: left;
+}
+
+
 html, body {
 	position: relative;
 	width: 100%;
@@ -19,10 +194,6 @@ a {
 
 a:hover {
 	text-decoration: underline;
-}
-
-a:visited {
-	color: rgb(0,80,160);
 }
 
 label {
