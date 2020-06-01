@@ -7,6 +7,8 @@
 
     export let hasura_userID;
 
+    export let loadingRecipes = false;
+
     export let recipes = [];
     export let possible_ingredients = []
     export let filteredCommunityRecipes = {};
@@ -31,12 +33,14 @@
     })
 
     async function viewMyRecipes() {
+      loadingRecipes = true;
       viewingMyRecipes = true;
       console.log("SET VIEWING MY RECIPES TO TRUE");
       viewingMyFilteredRecipes = false;
       viewingMyCategoryFilteredRecipes = false;
       viewingCommunityRecipes = false;
       viewingFilteredCommunityRecipes = false;
+      viewingCommunityCategoryFilteredRecipes = false; 
       unique_categories = [];
       unique_category_counts = [];
       unique_meal_types = [];
@@ -47,12 +51,15 @@
     async function filterMyRecipes(parent_meal, parent_category, recipe_name) {
         viewingMyRecipes = false;
         let q = ``;
+        unique_category_counts = [];
+        unique_categories = [];
+        unique_categories = unique_categories;
+        unique_category_counts = unique_category_counts;
         if (parent_meal != null && parent_category != null && recipe_name == null) {
             console.log("second level filter!")
             viewingMyCategoryFilteredRecipes = true;
             viewingMyFilteredRecipes = false;
-            unique_category_counts = [];
-            unique_categories = [];
+
             recipeNames = [];
             recipeNames = recipeNames;
             recipes_ids = [];
@@ -311,7 +318,9 @@
       }
       unique_meal_types = unique_meal_types;
       unique_meal_types_counts = unique_meal_types_counts;
+      loadingRecipes = false;
       console.log(unique_meal_types_counts);
+
   }
 
   onMount(async () => {
@@ -343,7 +352,13 @@
         {/each}  
     </ul>
     {:else}
-        <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="icon" alt="loading"></p>
+        {#if loadingRecipes}
+            <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="svg" alt="loading"></p>
+        {:else}
+            <p>Welcome to your first time using Grimp!</p>
+            <p><a href="/recipes/new" use:link class="btn btn-lg btn-outline-success">Create a new recipe</a></p>
+            <p><button on:click={() => viewCommunityRecipes()} class="btn btn-lg btn-outline-info">View the Community Recipes</button></p>
+        {/if}
     {/if}
 {/if}
 
@@ -358,7 +373,7 @@
   {/each}
 </ul>
 {:else}
-    <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="icon" alt="loading"></p>
+    <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="svg" alt="loading"></p>
 {/if}
 <p>
     <button class="btn btn-md btn-secondary" on:click={() => viewMyRecipes()}><img class="icon" alt="back" src="/open-iconic-master/svg/chevron-left.svg"> Back</button>
@@ -375,10 +390,10 @@
   {/each}
 </ul>
 {:else}
-    <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="icon" alt="loading"></p>
+    <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="svg" alt="loading"></p>
 {/if}
 <p>
-    <button class="btn btn-md btn-secondary" on:click={() => viewMyRecipes()}><img class="icon" alt="back" src="/open-iconic-master/svg/chevron-left.svg"> Back</button>
+    <button class="btn btn-md btn-secondary" on:click={() => filterMyRecipes(current_meal_type, null, null)}><img class="icon" alt="back" src="/open-iconic-master/svg/chevron-left.svg"> Back</button>
 </p>
 {/if}
 
@@ -396,7 +411,7 @@
         {/each}  
     </ul>
     {:else}
-        <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="icon" alt="loading"></p>
+        <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="svg" alt="loading"></p>
     {/if}
 {/if}
 {/if}
@@ -412,7 +427,7 @@
     {/each}
     </ul>
     {:else}
-        <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="icon" alt="loading"></p>
+        <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="svg" alt="loading"></p>
     {/if}
     <p>
         <button class="btn btn-md btn-secondary" on:click={() => viewCommunityRecipes()}><img class="icon" alt="back" src="/open-iconic-master/svg/chevron-left.svg"> Back</button>
@@ -429,7 +444,7 @@
   {/each}
 </ul>
 {:else}
-    <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="icon" alt="loading"></p>
+    <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="svg" alt="loading"></p>
 {/if}
 <p>
     <button class="btn btn-md btn-secondary" on:click={() => filterCommunityRecipes(current_meal_type, null, null)}><img class="icon" alt="back" src="/open-iconic-master/svg/chevron-left.svg"> Back</button>

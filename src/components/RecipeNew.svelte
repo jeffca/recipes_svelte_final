@@ -58,7 +58,7 @@
         temp_ingredients = temp_ingredients.data.ingredients;
         possible_ingredients = [];
         for (var i = 0; i < temp_ingredients.length; i++) {
-          possible_ingredients.push({"value": temp_ingredients[i].id, "id": temp_ingredients[i].id, "Ingredient": temp_ingredients[i].Ingredient, "Brand": temp_ingredients[i].Brand, "Quantity_Measurement": temp_ingredients[i].Quantity_Measurement});
+          possible_ingredients.push({"value": "", "id": temp_ingredients[i].id, "Ingredient": temp_ingredients[i].Ingredient, "Brand": temp_ingredients[i].Brand, "Quantity_Measurement": temp_ingredients[i].Quantity_Measurement});
         }
         possible_ingredients = possible_ingredients;
     }
