@@ -58,7 +58,7 @@
         temp_ingredients = temp_ingredients.data.ingredients;
         possible_ingredients = [];
         for (var i = 0; i < temp_ingredients.length; i++) {
-          possible_ingredients.push({"value": "", "id": temp_ingredients[i].id, "Ingredient": temp_ingredients[i].Ingredient, "Brand": temp_ingredients[i].Brand, "Quantity_Measurement": temp_ingredients[i].Quantity_Measurement});
+          possible_ingredients.push({"value": temp_ingredients[i].id, "id": temp_ingredients[i].id, "Ingredient": temp_ingredients[i].Ingredient, "Brand": temp_ingredients[i].Brand, "Quantity_Measurement": temp_ingredients[i].Quantity_Measurement});
         }
         possible_ingredients = possible_ingredients;
     }
@@ -89,7 +89,6 @@
        `
       temp = await executeGraphql(q, $claims);
       let new_users_recipe_id = temp.data.insert_users_recipes.returning[0].id;
-      console.log(new_users_recipe_id);
       console.log("STARTING INGREDIENTS_RECIPES INSERT")
       for (var i = 0; i < new_recipe_ingredients.length; i++) {
         console.log(new_recipe_ingredients[i].value)
@@ -97,14 +96,12 @@
         let temp_user_ingredient_id = new_recipe_ingredients[i].id;
         q = `
             mutation {
-              insert_ingredients_recipes_one(object: {Quantity: ` + user_quantity + `, Quantity_Measurement: "` + new_recipe_ingredients[i].Quantity_Measurement + `", UserIngredientID: ` + temp_user_ingredient_id + `, UserRecipeID: ` + new_users_recipe_id + `}) {
+              insert_ingredients_recipes_one(object: {Quantity: ` + user_quantity + `, Quantity_Measurement: "` + new_recipe_ingredients[i].Quantity_Measurement + `", UserIngredientID: ` + temp_user_ingredient_id + `, UserRecipeID: ` + new_recipeID + `}) {
                 ingredients {
                   Ingredient
                 }
                 user_recipes {
-                  recipes {
-                    Recipe
-                  }
+                  Recipe
                 }
               }
             }

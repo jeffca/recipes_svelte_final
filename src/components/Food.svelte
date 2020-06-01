@@ -15,7 +15,7 @@
     export let recipes_ids = [];
     export let viewingMyFilteredRecipes;
     export let viewingMyCategoryFilteredRecipes;
-    export let viewingRecipes, viewingMyRecipes, communityRecipe, viewingCommunityRecipe, viewingCommunityRecipes, viewingFilteredCommunityRecipes, viewingInventory, viewingIngredients, enteringRecipe, enteringIngredient;
+    export let viewingRecipes, viewingMyRecipes, communityRecipe, viewingCommunityRecipe, viewingCommunityRecipes, viewingFilteredCommunityRecipes, viewingCommunityCategoryFilteredRecipes, viewingInventory, viewingIngredients, enteringRecipe, enteringIngredient;
     export let communityRecipeIngredients;
     export let current_meal_type;
     export let current_category;
@@ -26,42 +26,22 @@
 
     claims.subscribe(v => {
       if ($claims) {
-        getPossibleIngredients();
         getPossibleRecipes();
       } 
     })
 
-    async function userLevelUp() {
-      let levels_codes = {
-        1: "Apprentice",
-        2: "Prep Cook",
-        3: "Sous Chef",
-        4: "Executive Chef",
-      };
-      if (user_level < 4) {
-        let new_user_level = user_level + 1;
-        let q = `
-          mutation {
-            update_users(_set: {Onboarding_Level: ` + new_user_level + `, Onboarding_Code: "` + levels_codes[new_user_level] + `"}, where: {x_hasura_user_id: {_eq: "` + hasura_userID + `"}}) {
-              returning {
-                Onboarding_Code
-                Onboarding_Level
-              }
-            }
-          }
-          `
-        let temp = await executeGraphql(q, $claims);
-        user_level = new_user_level;
-        user_code = levels_codes[user_level];
-      }
-    }
-
     async function viewMyRecipes() {
       viewingMyRecipes = true;
+      console.log("SET VIEWING MY RECIPES TO TRUE");
       viewingMyFilteredRecipes = false;
       viewingMyCategoryFilteredRecipes = false;
+      viewingCommunityRecipes = false;
+      viewingFilteredCommunityRecipes = false;
       unique_categories = [];
       unique_category_counts = [];
+      unique_meal_types = [];
+      unique_meal_types_counts = [];
+      getPossibleRecipes();
     }
 
     async function filterMyRecipes(parent_meal, parent_category, recipe_name) {
@@ -84,8 +64,8 @@
                         Meal_Type
                         Category
                         Recipe
-                        }
                         id
+                        }
                     }
                 }
                 `;
@@ -119,7 +99,7 @@
         for (var i = 0; i < filteredMyRecipes.length; i++) {
             recipeNames.push('"' + filteredMyRecipes[i]["recipes"]["Recipe"] + '"');
             let recipe_id_mapping = {}
-            recipe_id_mapping[filteredMyRecipes[i]["recipes"]["Recipe"]] = filteredMyRecipes[i]["id"]
+            recipe_id_mapping[filteredMyRecipes[i]["recipes"]["Recipe"]] = filteredMyRecipes[i]["recipes"]["id"]
             recipes_ids.push(recipe_id_mapping);
             if (!unique_categories.includes(filteredMyRecipes[i]["recipes"]["Category"])) {
                 unique_categories.push(filteredMyRecipes[i]["recipes"]["Category"]);
@@ -147,118 +127,146 @@
     }
 
     async function viewCommunityRecipes() {
-      viewingCommunityRecipes = true; 
-      viewingFilteredCommunityRecipes = false;
-      viewingMyRecipes = false;
-      enteringRecipe = false;      
-      viewingCommunityRecipe = false;
-    }
-
-   async function filterCommunityRecipes(parent_category) {
-      viewingFilteredCommunityRecipes = true;
-      if (["Lunch or Dinner", "Breakfast", "Snacks", "Drinks"].includes(parent_category)) {
-        console.log("he wants to pick a sub category from the main categories")
-        let category_subcategory = {
-          "Lunch or Dinner": [
-            {"American":{"category": "LD_American", "count": 1}}, 
-            {"Italian":{"category": "LD_Italian", "count":1}},
-            {"Mexican":{"category": "LD_Mexican", "count":1}}
-            ],
-          "Breakfast": [
-            {"Mexican":{"category": "B_Mexican", "count":1}}
-            ],
-          "Snacks": [
-            {"American":{"category": "S_American", "count":1}},
-            {"Chinese":{"category": "S_Chinese", "count":1}}
-            ],
-          "Drinks": [
-            {"Smoothies":{"category": "D_Smoothies", "count":1}}
-          ]
-        };
-        filteredCommunityRecipes = category_subcategory[parent_category];
-      } else if (["LD_American", "LD_Italian", "LD_Mexican", "B_Mexican", "S_American", "S_Chinese", "D_Smoothies"].includes(parent_category)) {
-        let subcategory_subcategory = {
-          "LD_American": [
-            {"Fried Fish": {"category":6, "count":1}}
-          ],
-          "LD_Italian": [
-            {"Pizza": {"category":6, "count":1}}
-          ],
-          "LD_Mexican": [
-            {"Burrito": {"category":4, "count":1}}
-          ],
-          "B_Mexican": [
-            {"Frittata": {"category":2, "count":1}},
-          ],
-          "S_American": [
-            {"French Fries": {"category":5, "count":1}},
-          ],
-          "S_Chinese": [
-            {"Green Onion Pancake": {"category":1, "count":1}},
-          ],
-          "D_Smoothies": [
-            {"Vegetable Smoothie": {"category":3, "count":1}},
-          ]
-        }
-        filteredCommunityRecipes = subcategory_subcategory[parent_category];
-      } else {
+        viewingCommunityRecipes = true; 
+        viewingFilteredCommunityRecipes = false;
+        viewingMyRecipes = false;
+        viewingMyFilteredRecipes = false;
+        viewingMyCategoryFilteredRecipes = false;
+        viewingCommunityCategoryFilteredRecipes = false;
+        unique_category_counts = [];
+        unique_categories = [];
+        unique_meal_types = [];
+        unique_meal_types_counts = [];
+        recipes_ids = [];
+        recipes_ids = recipes_ids;
+        unique_categories = unique_categories;
+        unique_meal_types = unique_meal_types;
+        unique_category_counts = unique_category_counts;
+        unique_meal_types_counts = unique_meal_types_counts;
         let q = `
                 {
-                  users_recipes_by_pk(id: ` + parent_category + `) {
-                    recipes {
-                      Directions
-                      Recipe
-                    }
-                  }
+                recipes(where: {Shareable: {_eq: true}}, order_by: {Meal_Type: asc}) {
+                    Recipe
+                    Meal_Type
+                    Category
+                    id
+                }
                 }
                 `;
         let temp = await executeGraphql(q, $claims);
-        viewingFilteredCommunityRecipes = false;
-        viewingCommunityRecipe = true;
-        viewingCommunityRecipes = false;
-        communityRecipe = temp.data.users_recipes_by_pk.recipes;
-        q = `
-            {
-              ingredients_recipes(where: {UserRecipeID: {_eq: ` + parent_category + `}}) {
-                Quantity
-                Quantity_Measurement
-                user_ingredients {
-                  ingredients {
-                    Ingredient
-                  }
-                }
-              }
+        let communityRecipes = temp.data.recipes;
+        for (var i = 0; i < communityRecipes.length; i++) {
+            recipeNames.push('"' + communityRecipes[i]["Recipe"] + '"');
+            let recipe_id_mapping = {}
+            recipe_id_mapping[communityRecipes[i]["Recipe"]] = communityRecipes[i]["id"]
+            recipes_ids.push(recipe_id_mapping);
+            if (!unique_meal_types.includes(communityRecipes[i]["Meal_Type"])) {
+                unique_meal_types.push(communityRecipes[i]["Meal_Type"]);
             }
-        `
+        }
+        console.log(unique_meal_types);
+        for (var i = 0; i < unique_meal_types.length; i ++) {
+            q = `
+                {
+                    recipes_aggregate(where: {Meal_Type: {_eq: "` + unique_meal_types[i] + `"}}) {
+                        aggregate {
+                        count
+                        }
+                    }
+                }
+                `;
+            temp = await executeGraphql(q, $claims);
+            let category_count_mapping = {};
+            category_count_mapping[unique_meal_types[i]] = temp.data.recipes_aggregate.aggregate.count;
+            unique_meal_types_counts.push(category_count_mapping);
+        }
+        unique_meal_types_counts = unique_meal_types_counts;
+        recipes_ids = recipes_ids;
+        console.log(recipes_ids);
+        console.log(unique_meal_types_counts);
+    }
+
+    async function filterCommunityRecipes(parent_meal_type, parent_category, recipe_name) {
+        recipes_ids = [];
+        recipes_ids = recipes_ids;
+        viewingCommunityRecipes = false;
+        let q = ``;
+        let temp;
+        console.log(parent_meal_type);
+        if (parent_meal_type != null && parent_category == null && recipe_name == null) {
+            console.log("top level filter!");
+            unique_categories = [];
+            unique_category_counts = [];
+            unique_meal_types = [];
+            unique_meal_types_counts = [];
+            unique_categories = unique_categories;
+            unique_category_counts = unique_category_counts;
+            unique_meal_types = unique_meal_types;
+            unique_meal_types_counts = unique_meal_types_counts;
+
+            viewingFilteredCommunityRecipes = true;
+            viewingCommunityCategoryFilteredRecipes = false;
+            q = `
+                {
+                recipes(where: {Shareable: {_eq: true}, Meal_Type: {_eq: "` + parent_meal_type + `"}}, order_by: {Category: asc}) {
+                    Recipe
+                    Meal_Type
+                    Category
+                    id
+                }
+                }
+              `;
+        } else if (parent_meal_type != null && parent_category != null && recipe_name == null) {
+            console.log("second level filter!");
+            viewingCommunityCategoryFilteredRecipes = true;
+            viewingFilteredCommunityRecipes = false;
+            q = `
+                {
+                recipes(where: {Shareable: {_eq: true}, Meal_Type: {_eq: "` + parent_meal_type + `"}, Category: {_eq: "` + parent_category + `"}}, order_by: {Category: asc}) {
+                    Recipe
+                    Meal_Type
+                    Category
+                    id
+                }
+                }
+            `
+        }
         temp = await executeGraphql(q, $claims);
-        communityRecipeIngredients = temp.data.ingredients_recipes;
-      }
+        temp = temp.data.recipes;
+
+        for (var i = 0; i < temp.length; i++) {
+            let recipe_id_mapping = {}
+            recipe_id_mapping[temp[i]["Recipe"]] = temp[i]["id"]
+            recipes_ids.push(recipe_id_mapping);
+            if (!unique_categories.includes(temp[i]["Category"])) {
+                unique_categories.push(temp[i]["Category"]);
+            }
+        }        
+        unique_categories = unique_categories;
+        recipes_ids = recipes_ids;
+        for (var i = 0; i < unique_categories.length; i++) {
+            q = `
+                {
+                    recipes_aggregate(where: {Category: {_eq: "` + unique_categories[i] + `"}, Meal_Type: {_eq: "` + parent_meal_type + `"}}) {
+                        aggregate {
+                        count
+                        }
+                    }
+                }
+                `;
+            temp = await executeGraphql(q, $claims);
+            let category_count_mapping = {};
+            category_count_mapping[unique_categories[i]] = temp.data.recipes_aggregate.aggregate.count;
+            unique_category_counts.push(category_count_mapping);
+        }
+        current_meal_type = parent_meal_type;
+        unique_category_counts = unique_category_counts;
     }
 
     async function viewIngredients() {
       viewingIngredients = true;
       viewingRecipes = false;
       viewingInventory = false;
-    }
-
-    async function getPossibleIngredients() {
-        let q = `
-                {
-                  ingredients(order_by: {Ingredient: asc}) {
-                    id
-                    Brand
-                    Ingredient
-                    Quantity_Measurement
-                  }
-                }
-                `
-        let temp_ingredients = await executeGraphql(q, $claims); 
-        temp_ingredients = temp_ingredients.data.ingredients;
-        possible_ingredients = [];
-        for (var i = 0; i < temp_ingredients.length; i++) {
-          possible_ingredients.push({"value": "", "id": temp_ingredients[i].id, "Ingredient": temp_ingredients[i].Ingredient, "Brand": temp_ingredients[i].Brand, "Quantity_Measurement": temp_ingredients[i].Quantity_Measurement});
-        }
-        possible_ingredients = possible_ingredients;
     }
 
     async function getPossibleRecipes() {
@@ -278,19 +286,14 @@
       `
       let temp = await executeGraphql(q, $claims); 
       recipes = temp.data.users_recipes;
-      console.log(recipes);
 
       let recipeNames = [];
       for (var i = 0; i < recipes.length; i++) {
-          console.log("adding unique meal types");
-          console.log("adding recipe names to new array");
           if (!unique_meal_types.includes(recipes[i]["recipes"]["Meal_Type"])) {
               unique_meal_types.push(recipes[i]["recipes"]["Meal_Type"])
           }
           recipeNames.push('"' + recipes[i]["recipes"]["Recipe"] + '"');
       }
-      console.log(unique_meal_types);
-      console.log(recipeNames);
       for (var i = 0; i < unique_meal_types.length; i++) {
         q = `
             {
@@ -306,60 +309,10 @@
         meal_type_count_mapping[unique_meal_types[i]] = temp.data.recipes_aggregate.aggregate.count;
         unique_meal_types_counts.push(meal_type_count_mapping);
       }
+      unique_meal_types = unique_meal_types;
+      unique_meal_types_counts = unique_meal_types_counts;
       console.log(unique_meal_types_counts);
   }
-
-  async function addNewIngredient(new_ing_name, brand, q_m) {
-    let q = `
-            mutation {
-              insert_ingredients_one(object: {Brand: "` + brand + `", Ingredient: "` + new_ing_name + `", Quantity_Measurement: "` + q_m + `"}) {
-                id
-              }
-            }
-            `;
-    let temp = await executeGraphql(q, $claims);
-    let newIngredientID = temp.data.insert_ingredients_one.id;
-
-    userLevelUp();
-
-    new_ingredient_name = null;
-    document.getElementById("Ingredient").removeChild;
-    document.getElementById("Brand").removeChild;
-    new_ingredient_brand = null;
-    document.getElementById("Quantity_Measurement").removeChild;  
-    getPossibleIngredients();
-    document.getElementByClass("menu").focus();
-
-  }
- 
-  async function enterRecipe() {
-    viewingMyRecipes = false;
-    enteringRecipe = true;
-  }
-
-  async function enterIngredient() {
-    enteringIngredient = true;
-  }
-
-  async function updateQM(ingredientID, new_ingredient_number) {
-    console.log("updating QM!");
-    console.log(ingredientID);
-    let q = ` {
-              users_ingredients(where: {IngredientID: {_eq: ` + ingredientID + `}}) {
-                Quantity_Measurement
-              }
-            }
-            `
-    let temp = await executeGraphql(q, $claims)
-    console.log(temp.data);
-    if (new_ingredient_number == 1) {
-      new_recipe_ingredrient_quantity_measurement_1 = temp.data.users_ingredients[0].Quantity_Measurement;
-    } else if (new_ingredient_number == 2) {
-      new_recipe_ingredrient_quantity_measurement_2 = temp.data.users_ingredients[0].Quantity_Measurement;
-    }
-    console.log(new_recipe_ingredrient_quantity_measurement_1);
-  }
-
 
   onMount(async () => {
   });
@@ -368,13 +321,13 @@
 
 <div class="row text-center">
   <div class="col-sm-4">
-    <button on:click={() => viewingMyRecipes = true} class="btn btn-md btn-outline-success">View My Recipes</button>
+    <button on:click={() => viewMyRecipes()} class="btn btn-md btn-outline-success">View My Recipes</button>
   </div>
   <div class="col-sm-4">
     <a href="/food/recipes/new" use:link class="btn btn-md btn-info">Add New Recipe</a>
   </div>
   <div class="col-sm-4">
-    <button class="btn btn-md btn-outline-info">Learn a Community Recipe</button>
+    <button on:click={() => viewCommunityRecipes()} class="btn btn-md btn-outline-info">Learn a Community Recipe</button>
   </div>
 </div>
 
@@ -390,11 +343,12 @@
         {/each}  
     </ul>
     {:else}
-        <p>Add a new recipe to get started. Or learn a Community Recipe!</p>
+        <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="icon" alt="loading"></p>
     {/if}
 {/if}
 
 {#if viewingMyFilteredRecipes}
+{#if unique_category_counts.length > 0}
 <ul class="list-group">
   {#each unique_category_counts as ucc}
     <li class="list-group-item d-flex justify-content-between align-items-center" on:click={() => filterMyRecipes(current_meal_type, Object.keys(ucc)[0], null) }>
@@ -403,12 +357,16 @@
     </li>
   {/each}
 </ul>
+{:else}
+    <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="icon" alt="loading"></p>
+{/if}
 <p>
     <button class="btn btn-md btn-secondary" on:click={() => viewMyRecipes()}><img class="icon" alt="back" src="/open-iconic-master/svg/chevron-left.svg"> Back</button>
 </p>
 {/if}
 
 {#if viewingMyCategoryFilteredRecipes}
+{#if recipes_ids.length > 0}
 <ul class="list-group">
   {#each recipes_ids as rn}
     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -416,7 +374,64 @@
     </li>
   {/each}
 </ul>
+{:else}
+    <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="icon" alt="loading"></p>
+{/if}
 <p>
     <button class="btn btn-md btn-secondary" on:click={() => viewMyRecipes()}><img class="icon" alt="back" src="/open-iconic-master/svg/chevron-left.svg"> Back</button>
+</p>
+{/if}
+
+
+
+{#if viewingCommunityRecipes}
+{#if !viewingMyRecipes}
+    {#if unique_meal_types_counts.length > 0}
+    <ul class="list-group">
+        {#each unique_meal_types_counts as umt}
+            <li class="list-group-item d-flex justify-content-between align-items-center" on:click={() => filterCommunityRecipes(Object.keys(umt)[0], null, null)}>
+                <label class="recipesNav">{Object.keys(umt)[0]}</label>
+                <span class="badge badge-primary badge-pill">{umt[Object.keys(umt)[0]]}</span>
+            </li>
+        {/each}  
+    </ul>
+    {:else}
+        <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="icon" alt="loading"></p>
+    {/if}
+{/if}
+{/if}
+
+{#if viewingFilteredCommunityRecipes}
+    {#if unique_category_counts.length > 0}
+    <ul class="list-group">
+    {#each unique_category_counts as ucc}
+        <li class="list-group-item d-flex justify-content-between align-items-center" on:click={() => filterCommunityRecipes(current_meal_type, Object.keys(ucc)[0], null) }>
+        <label class="recipesNav">{Object.keys(ucc)[0]}</label>
+        <span class="badge badge-primary badge-pill">{ucc[Object.keys(ucc)[0]]}</span>
+        </li>
+    {/each}
+    </ul>
+    {:else}
+        <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="icon" alt="loading"></p>
+    {/if}
+    <p>
+        <button class="btn btn-md btn-secondary" on:click={() => viewCommunityRecipes()}><img class="icon" alt="back" src="/open-iconic-master/svg/chevron-left.svg"> Back</button>
+    </p>
+{/if} 
+
+{#if viewingCommunityCategoryFilteredRecipes}
+{#if recipes_ids.length > 0}
+<ul class="list-group">
+  {#each recipes_ids as rn}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <a href={"/food/recipes/" + rn[Object.keys(rn)[0]]} use:link><label class="recipesNav">{Object.keys(rn)[0]}</label></a>
+    </li>
+  {/each}
+</ul>
+{:else}
+    <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="icon" alt="loading"></p>
+{/if}
+<p>
+    <button class="btn btn-md btn-secondary" on:click={() => filterCommunityRecipes(current_meal_type, null, null)}><img class="icon" alt="back" src="/open-iconic-master/svg/chevron-left.svg"> Back</button>
 </p>
 {/if}

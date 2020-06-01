@@ -23,7 +23,7 @@
 	margin-bottom: 1%;
 }
 
-:global(.svg) {
+.svg {
 	height: 1em;
 }
 
@@ -45,6 +45,8 @@
 	font-family: "Scope One", serif;
 }
 
+
+
 .welcome {
 	font-family: "Scope One", serif;
 }
@@ -65,6 +67,29 @@
 	height: 20px;
 	width: 20px;
 	font-size: 14.5px;
+}
+
+#recipeBackground {
+	background-color: #ffedba;
+	border: 2px dashed grey;
+	padding: 1%;
+	margin-bottom: 2%;
+}
+
+#recipeDirections {
+	font-family: 'Quattrocento Sans', sans-serif;
+	font-size: 15pt;
+	letter-spacing: .8px;
+}
+
+#recipeTitle {
+	font-family: "Quattrocento Sans", serif;
+	font-size: 38pt;
+}
+
+#directionsTitle {
+	font-family: 'Gravitas One', cursive;
+	font-size: 32pt;
 }
 
 :global(.menu) {

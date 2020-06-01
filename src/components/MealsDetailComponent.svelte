@@ -69,7 +69,7 @@
 <h2>Ingredients</h2>
 
 {#if ingredients}
-<table table-responsiveclass="table">
+<table class="table">
 	<thead>
 	</thead>
 	<tbody>

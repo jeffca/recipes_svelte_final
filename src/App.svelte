@@ -68,6 +68,7 @@
 </script>
 
 	{#if !$authToken }
+        <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="icon" alt="loading"></p>
 	<div class="text-left container-fluid">
 		<h1 class="text-center welcome">Welcome new user!</h1>
 		<h4 class="text-center">Login with Google, Facebook or your personal email to sign up.</h4>
@@ -94,7 +95,10 @@
 	{/if}
 <div class="container-fluid">
 {#if $userInfo["nickname"]}
+<div on:click={() => window.location.assign("/")}>
 	<h1 class="text-center welcome">Welcome, {$userInfo["nickname"]}! <img class="menuIcon" src="/open-iconic-master/svg/bell.svg" alt="notifications"><span class="menuIconNotificiation badge badge-light">0</span> <img class="menuIcon" src="/open-iconic-master/svg/cog.svg" alt="settings"></h1>
+</div>
+<hr />
 <!-- <div class="row">
   <h5>Chef Level: <b>{user_level} ({user_code})</b></h5>
 </div> -->
