@@ -356,7 +356,7 @@
             <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="svg" alt="loading"></p>
         {:else}
             <p>Welcome to your first time using Grimp!</p>
-            <p><a href="/recipes/new" use:link class="btn btn-lg btn-outline-success">Create a new recipe</a></p>
+            <p><a href="/food/recipes/new" use:link class="btn btn-lg btn-outline-success">Create a new recipe</a></p>
             <p><button on:click={() => viewCommunityRecipes()} class="btn btn-lg btn-outline-info">View the Community Recipes</button></p>
         {/if}
     {/if}
