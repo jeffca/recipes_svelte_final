@@ -70,8 +70,11 @@
 	{#if !$authToken }
         <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="icon" alt="loading"></p>
 	<div class="text-left container-fluid">
-		<h1 class="text-center welcome">Welcome new user!</h1>
-		<h4 class="text-center">Login with Google, Facebook or your personal email to sign up.</h4>
+		<h1 class="text-center welcome">Welcome to Jeff Cairns' recipe book & more!</h1>
+		<h2 class="text-center">Grimp! saves all of your home recipes and allows you to easily share them with friends. Easily manage your grocery list and track your inventory, too.</h2>
+		<p>&nbsp;</p>
+		<h4 class="text-center">Sign up or login with Google, Facebook or your personal email.</h4>
+		<h6 class="text-center"><em>Jeff Cairns will receive your name, email and profile picture if you sign up with Google or Facebook</em></h6>
 		<div class="text-center">
 			<Auth0Context domain="jeffca.auth0.com" client_id="URjctPE9nuCr4V9rFYWXbfEx04gZ9Faa" callback_url="CALLBACK_URL" logout_url="http://localhost:5000">
 				<!-- <span>Hi, Guest</span> -->
