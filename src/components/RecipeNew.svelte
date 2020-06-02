@@ -38,8 +38,6 @@
           }
           `
         let temp = await executeGraphql(q, $claims);
-        user_level = new_user_level;
-        user_code = levels_codes[user_level];
       }
     }
 
@@ -115,9 +113,44 @@
       new_recipe_directions_1 = "";
       new_recipe_ingredient_shareable = null;
 
-      console.log("new recipe added!")
+      console.log("new recipe added!....")
+
+      q = `
+            mutation {
+                insert_users_notifications_one(object: {NotificationID: 1}) {
+                    id
+                }
+            }
+          `
+      temp = await executeGraphql(q, $claims);
+
+      userLevelUp();
+
       window.location.assign("/#/food");
     }
+
+  async function addNewIngredient(new_ing_name, brand, q_m) {
+    let q = `
+            mutation {
+              insert_ingredients_one(object: {Brand: "` + brand + `", Ingredient: "` + new_ing_name + `", Quantity_Measurement: "` + q_m + `"}) {
+                id
+              }
+            }
+            `;
+    let temp = await executeGraphql(q, $claims);
+    let newIngredientID = temp.data.insert_ingredients_one.id;
+
+    userLevelUp();
+
+    new_ingredient_name = null;
+    document.getElementById("Ingredient").removeChild;
+    document.getElementById("Brand").removeChild;
+    new_ingredient_brand = null;
+    document.getElementById("Quantity_Measurement").removeChild;  
+    getPossibleIngredients();
+    document.getElementById("new_ingredient").focus();
+
+  }
 
 
 </script>
@@ -155,7 +188,7 @@
             <div class="form-group row">
                 <label for="staticEmail" class="col-sm-2 col-form-label">Ingredient</label>
                 <div class="col-sm-10">
-                <input type="text" bind:value={new_ingredient_name} class="form-control" id="staticEmail">
+                <input type="text" bind:value={new_ingredient_name} class="form-control" id="new_ingredient">
                 </div>
             </div>
             <div class="form-group row">

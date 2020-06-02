@@ -54,7 +54,7 @@
   {#if ingredients}
     <div class="row">
       <div class="ml-auto mr-3">
-          <button class="btn btn-lg btn-outline-dark" disabled={disabled} on:click={() =>  disabled = addAllItemsToGroceryList(ingredients, disabled)}><img class="svg" src="/open-iconic-master/svg/cart.svg" alt='cart'> &nbsp;Add All Ingredients to Grocery List</button>
+          <button class="btn btn-md btn-outline-secondary" disabled={disabled} on:click={() =>  disabled = addAllItemsToGroceryList(ingredients, disabled)}><img class="svg" src="/open-iconic-master/svg/cart.svg" alt='cart'> &nbsp;Add All Ingredients to Grocery List</button>
       </div>
     </div>
     <p></p>
