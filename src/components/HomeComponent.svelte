@@ -18,7 +18,6 @@
   } from '@dopry/svelte-auth0';
      export let loading;
      export let hasura_userID;
-     export let loggingIn = false;
 
      export let ingredient, selected, quantity;
      export let quantity_measurement = "Quantity Measurement";
@@ -35,11 +34,7 @@
     
     export let user_level, user_code;
 
-    authToken.subscribe(value => {
-      console.log("auth token changed!")
-      loggingIn = true;
-      console.log($authToken);
-    })
+
     claims.subscribe(v => {
       if ($claims) {
         console.log("claims should be ready!");
@@ -53,7 +48,6 @@
 
     async function checkUser() {
       hasura_userID = $userInfo['https://hasura.io/jwt/claims']['x-hasura-user-id'];
-      console.log(hasura_userID);
       let q = `
           {
             users(where: {x_hasura_user_id: {_eq: "` + hasura_userID + `"}}) {

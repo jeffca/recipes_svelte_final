@@ -1,5 +1,7 @@
 import { getContext } from 'svelte';
 
+import { authToken, userInfo } from '@dopry/svelte-auth0';
+
 function addToGroceryList(ingredient) {
     fetch('https://graphql-jeffrecipes.herokuapp.com/v1/graphql', {
         method: 'POST',
@@ -102,7 +104,8 @@ function addToGroceryList(ingredient) {
       const resp = await fetch("https://graphql-jeffrecipes.herokuapp.com/v1/graphql", {
           headers: {
             Accept: "application/json",
-            Authorization: `Bearer ${claims}`,
+            Authorization: `Bearer ${claims} `,
+            // "x-hasura-admin-secret": 'bicycling',
             "Content-Type": "application/json"
           },
           method: "POST",

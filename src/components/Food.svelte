@@ -150,6 +150,7 @@
         unique_meal_types = unique_meal_types;
         unique_category_counts = unique_category_counts;
         unique_meal_types_counts = unique_meal_types_counts;
+        console.log($claims);
         let q = `
                 {
                 recipes(where: {Shareable: {_eq: true}}, order_by: {Meal_Type: asc}) {
@@ -327,6 +328,7 @@
   });
 
 </script>
+
 
 <div class="row text-center">
   <div class="col-sm-4">
