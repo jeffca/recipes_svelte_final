@@ -30,6 +30,16 @@
 	}
 	});
 
+	var env;
+
+	console.log(window.location.href);
+	if (window.location.href == 'http://localhost:5000/') {
+		env = 'http://localhost:5000/';
+	} else {
+		env = 'https://vigilant-sinoussi-95d5cb.netlify.app/';
+	}
+
+	console.log(env);
 
 /* END AUTH */
 
@@ -97,7 +107,7 @@
 			<h4 class="text-center">Sign up or login with Google, Facebook or your personal email.</h4>
 			<h6 class="text-center"><em>Jeff Cairns will receive your name, email and profile picture if you sign up with Google or Facebook</em></h6>
 			<div class="text-center">
-				<Auth0Context domain="jeffca.auth0.com" client_id="URjctPE9nuCr4V9rFYWXbfEx04gZ9Faa" callback_url="CALLBACK_URL" logout_url="http://localhost:5000">
+				<Auth0Context domain="jeffca.auth0.com" client_id="URjctPE9nuCr4V9rFYWXbfEx04gZ9Faa" callback_url="{env	}" logout_url="http://localhost:5000">
 					<Auth0LoginButton class="btn">Login</Auth0LoginButton>
 				</Auth0Context>		
 			</div>
