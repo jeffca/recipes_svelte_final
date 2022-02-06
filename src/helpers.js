@@ -1,16 +1,22 @@
 import { getContext } from 'svelte';
 
-import { authToken, userInfo } from '@dopry/svelte-auth0';
+import { authToken, userInfo, idToken } from '@dopry/svelte-auth0';
 
-function addToGroceryList(ingredient) {
+
+
+function addToGroceryList(ingredient, claims) {
     fetch('https://graphql-jeffrecipes.herokuapp.com/v1/graphql', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+           Authorization: `Bearer ${claims} `
+         },
         body: JSON.stringify({ query: `mutation {
             insert_grocerylist_one(object:{
-              GroceryListID: 1,
-              Item: "${ingredient}",
-              Done: "No"
+                GroceryListID: 1,
+                Item: "${ingredient}",
+                Done: "No"                
             }) {
               Item
             }
@@ -25,11 +31,15 @@ function addToGroceryList(ingredient) {
       });       
   }
 
-  function markDone(ingredient, html_element) {
+  function markDone(ingredient, html_element, claims) {
     html_element.className = 'table-success';
     fetch('https://graphql-jeffrecipes.herokuapp.com/v1/graphql', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          Accept: 'application/json',
+          'Content-Type': 'application/json' ,
+          Authorization: `Bearer ${claims}`
+        },
         body: JSON.stringify({ query: `mutation {
             update_grocerylist(where: {Item: { _eq: "${ingredient}"}},
             _set: {

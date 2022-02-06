@@ -1301,15 +1301,19 @@ var app = (function () {
     ***************************************************************************** */
     var e=function(t,n){return (e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t;}||function(e,t){for(var n in t)Object.prototype.hasOwnProperty.call(t,n)&&(e[n]=t[n]);})(t,n)};function t(t,n){if("function"!=typeof n&&null!==n)throw new TypeError("Class extends value "+String(n)+" is not a constructor or null");function r(){this.constructor=t;}e(t,n),t.prototype=null===n?Object.create(n):(r.prototype=n.prototype,new r);}var n=function(){return (n=Object.assign||function(e){for(var t,n=1,r=arguments.length;n<r;n++)for(var o in t=arguments[n])Object.prototype.hasOwnProperty.call(t,o)&&(e[o]=t[o]);return e}).apply(this,arguments)};function r(e,t){var n={};for(var r in e)Object.prototype.hasOwnProperty.call(e,r)&&t.indexOf(r)<0&&(n[r]=e[r]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols){var o=0;for(r=Object.getOwnPropertySymbols(e);o<r.length;o++)t.indexOf(r[o])<0&&Object.prototype.propertyIsEnumerable.call(e,r[o])&&(n[r[o]]=e[r[o]]);}return n}function o(e,t,n,r){return new(n||(n=Promise))((function(o,i){function a(e){try{s(r.next(e));}catch(e){i(e);}}function c(e){try{s(r.throw(e));}catch(e){i(e);}}function s(e){var t;e.done?o(e.value):(t=e.value,t instanceof n?t:new n((function(e){e(t);}))).then(a,c);}s((r=r.apply(e,t||[])).next());}))}function i$1(e,t){var n,r,o,i,a={label:0,sent:function(){if(1&o[0])throw o[1];return o[1]},trys:[],ops:[]};return i={next:c(0),throw:c(1),return:c(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function c(i){return function(c){return function(i){if(n)throw new TypeError("Generator is already executing.");for(;a;)try{if(n=1,r&&(o=2&i[0]?r.return:i[0]?r.throw||((o=r.return)&&o.call(r),0):r.next)&&!(o=o.call(r,i[1])).done)return o;switch(r=0,o&&(i=[2&i[0],o.value]),i[0]){case 0:case 1:o=i;break;case 4:return a.label++,{value:i[1],done:!1};case 5:a.label++,r=i[1],i=[0];continue;case 7:i=a.ops.pop(),a.trys.pop();continue;default:if(!(o=a.trys,(o=o.length>0&&o[o.length-1])||6!==i[0]&&2!==i[0])){a=0;continue}if(3===i[0]&&(!o||i[1]>o[0]&&i[1]<o[3])){a.label=i[1];break}if(6===i[0]&&a.label<o[1]){a.label=o[1],o=i;break}if(o&&a.label<o[2]){a.label=o[2],a.ops.push(i);break}o[2]&&a.ops.pop(),a.trys.pop();continue}i=t.call(e,a);}catch(e){i=[6,e],r=0;}finally{n=o=0;}if(5&i[0])throw i[1];return {value:i[0]?i[1]:void 0,done:!0}}([i,c])}}}function a(e,t){var n="function"==typeof Symbol&&e[Symbol.iterator];if(!n)return e;var r,o,i=n.call(e),a=[];try{for(;(void 0===t||t-- >0)&&!(r=i.next()).done;)a.push(r.value);}catch(e){o={error:e};}finally{try{r&&!r.done&&(n=i.return)&&n.call(i);}finally{if(o)throw o.error}}return a}function c(e,t,n){if(n||2===arguments.length)for(var r,o=0,i=t.length;o<i;o++)!r&&o in t||(r||(r=Array.prototype.slice.call(t,0,o)),r[o]=t[o]);return e.concat(r||Array.prototype.slice.call(t))}var s="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:{};function u(e){return e&&e.__esModule&&Object.prototype.hasOwnProperty.call(e,"default")?e.default:e}function l(e,t){return e(t={exports:{}},t.exports),t.exports}var f,d,h=function(e){return e&&e.Math==Math&&e},p=h("object"==typeof globalThis&&globalThis)||h("object"==typeof window&&window)||h("object"==typeof self&&self)||h("object"==typeof s&&s)||function(){return this}()||Function("return this")(),y=function(e){try{return !!e()}catch(e){return !0}},v=!y((function(){return 7!=Object.defineProperty({},1,{get:function(){return 7}})[1]})),m=Function.prototype.call,g=m.bind?m.bind(m):function(){return m.apply(m,arguments)},b={}.propertyIsEnumerable,w=Object.getOwnPropertyDescriptor,S={f:w&&!b.call({1:2},1)?function(e){var t=w(this,e);return !!t&&t.enumerable}:b},_=function(e,t){return {enumerable:!(1&e),configurable:!(2&e),writable:!(4&e),value:t}},k=Function.prototype,I=k.bind,T=k.call,O=I&&I.bind(T),E=I?function(e){return e&&O(T,e)}:function(e){return e&&function(){return T.apply(e,arguments)}},x=E({}.toString),C=E("".slice),R=function(e){return C(x(e),8,-1)},F=p.Object,A=E("".split),j=y((function(){return !F("z").propertyIsEnumerable(0)}))?function(e){return "String"==R(e)?A(e,""):F(e)}:F,U=p.TypeError,K=function(e){if(null==e)throw U("Can't call method on "+e);return e},P=function(e){return j(K(e))},L=function(e){return "function"==typeof e},W=function(e){return "object"==typeof e?null!==e:L(e)},Z=function(e){return L(e)?e:void 0},V=function(e,t){return arguments.length<2?Z(p[e]):p[e]&&p[e][t]},N=E({}.isPrototypeOf),X=V("navigator","userAgent")||"",D=p.process,z=p.Deno,Y=D&&D.versions||z&&z.version,J=Y&&Y.v8;J&&(d=(f=J.split("."))[0]>0&&f[0]<4?1:+(f[0]+f[1])),!d&&X&&(!(f=X.match(/Edge\/(\d+)/))||f[1]>=74)&&(f=X.match(/Chrome\/(\d+)/))&&(d=+f[1]);var B=d,G=!!Object.getOwnPropertySymbols&&!y((function(){var e=Symbol();return !String(e)||!(Object(e)instanceof Symbol)||!Symbol.sham&&B&&B<41})),M=G&&!Symbol.sham&&"symbol"==typeof Symbol.iterator,H=p.Object,q=M?function(e){return "symbol"==typeof e}:function(e){var t=V("Symbol");return L(t)&&N(t.prototype,H(e))},Q=p.String,$=function(e){try{return Q(e)}catch(e){return "Object"}},ee=p.TypeError,te=function(e){if(L(e))return e;throw ee($(e)+" is not a function")},ne=function(e,t){var n=e[t];return null==n?void 0:te(n)},re=p.TypeError,oe=Object.defineProperty,ie=function(e,t){try{oe(p,e,{value:t,configurable:!0,writable:!0});}catch(n){p[e]=t;}return t},ae=p["__core-js_shared__"]||ie("__core-js_shared__",{}),ce=l((function(e){(e.exports=function(e,t){return ae[e]||(ae[e]=void 0!==t?t:{})})("versions",[]).push({version:"3.20.0",mode:"global",copyright:"© 2021 Denis Pushkarev (zloirock.ru)"});})),se=p.Object,ue=function(e){return se(K(e))},le=E({}.hasOwnProperty),fe=Object.hasOwn||function(e,t){return le(ue(e),t)},de=0,he=Math.random(),pe=E(1..toString),ye=function(e){return "Symbol("+(void 0===e?"":e)+")_"+pe(++de+he,36)},ve=ce("wks"),me=p.Symbol,ge=me&&me.for,be=M?me:me&&me.withoutSetter||ye,we=function(e){if(!fe(ve,e)||!G&&"string"!=typeof ve[e]){var t="Symbol."+e;G&&fe(me,e)?ve[e]=me[e]:ve[e]=M&&ge?ge(t):be(t);}return ve[e]},Se=p.TypeError,_e=we("toPrimitive"),ke=function(e,t){if(!W(e)||q(e))return e;var n,r=ne(e,_e);if(r){if(void 0===t&&(t="default"),n=g(r,e,t),!W(n)||q(n))return n;throw Se("Can't convert object to primitive value")}return void 0===t&&(t="number"),function(e,t){var n,r;if("string"===t&&L(n=e.toString)&&!W(r=g(n,e)))return r;if(L(n=e.valueOf)&&!W(r=g(n,e)))return r;if("string"!==t&&L(n=e.toString)&&!W(r=g(n,e)))return r;throw re("Can't convert object to primitive value")}(e,t)},Ie=function(e){var t=ke(e,"string");return q(t)?t:t+""},Te=p.document,Oe=W(Te)&&W(Te.createElement),Ee=function(e){return Oe?Te.createElement(e):{}},xe=!v&&!y((function(){return 7!=Object.defineProperty(Ee("div"),"a",{get:function(){return 7}}).a})),Ce=Object.getOwnPropertyDescriptor,Re={f:v?Ce:function(e,t){if(e=P(e),t=Ie(t),xe)try{return Ce(e,t)}catch(e){}if(fe(e,t))return _(!g(S.f,e,t),e[t])}},Fe=p.String,Ae=p.TypeError,je=function(e){if(W(e))return e;throw Ae(Fe(e)+" is not an object")},Ue=p.TypeError,Ke=Object.defineProperty,Pe={f:v?Ke:function(e,t,n){if(je(e),t=Ie(t),je(n),xe)try{return Ke(e,t,n)}catch(e){}if("get"in n||"set"in n)throw Ue("Accessors not supported");return "value"in n&&(e[t]=n.value),e}},Le=v?function(e,t,n){return Pe.f(e,t,_(1,n))}:function(e,t,n){return e[t]=n,e},We=E(Function.toString);L(ae.inspectSource)||(ae.inspectSource=function(e){return We(e)});var Ze,Ve,Ne,Xe=ae.inspectSource,De=p.WeakMap,ze=L(De)&&/native code/.test(Xe(De)),Ye=ce("keys"),Je=function(e){return Ye[e]||(Ye[e]=ye(e))},Be={},Ge=p.TypeError,Me=p.WeakMap;if(ze||ae.state){var He=ae.state||(ae.state=new Me),qe=E(He.get),Qe=E(He.has),$e=E(He.set);Ze=function(e,t){if(Qe(He,e))throw new Ge("Object already initialized");return t.facade=e,$e(He,e,t),t},Ve=function(e){return qe(He,e)||{}},Ne=function(e){return Qe(He,e)};}else {var et=Je("state");Be[et]=!0,Ze=function(e,t){if(fe(e,et))throw new Ge("Object already initialized");return t.facade=e,Le(e,et,t),t},Ve=function(e){return fe(e,et)?e[et]:{}},Ne=function(e){return fe(e,et)};}var tt={set:Ze,get:Ve,has:Ne,enforce:function(e){return Ne(e)?Ve(e):Ze(e,{})},getterFor:function(e){return function(t){var n;if(!W(t)||(n=Ve(t)).type!==e)throw Ge("Incompatible receiver, "+e+" required");return n}}},nt=Function.prototype,rt=v&&Object.getOwnPropertyDescriptor,ot=fe(nt,"name"),it={EXISTS:ot,PROPER:ot&&"something"===function(){}.name,CONFIGURABLE:ot&&(!v||v&&rt(nt,"name").configurable)},at=l((function(e){var t=it.CONFIGURABLE,n=tt.get,r=tt.enforce,o=String(String).split("String");(e.exports=function(e,n,i,a){var c,s=!!a&&!!a.unsafe,u=!!a&&!!a.enumerable,l=!!a&&!!a.noTargetGet,f=a&&void 0!==a.name?a.name:n;L(i)&&("Symbol("===String(f).slice(0,7)&&(f="["+String(f).replace(/^Symbol\(([^)]*)\)/,"$1")+"]"),(!fe(i,"name")||t&&i.name!==f)&&Le(i,"name",f),(c=r(i)).source||(c.source=o.join("string"==typeof f?f:""))),e!==p?(s?!l&&e[n]&&(u=!0):delete e[n],u?e[n]=i:Le(e,n,i)):u?e[n]=i:ie(n,i);})(Function.prototype,"toString",(function(){return L(this)&&n(this).source||Xe(this)}));})),ct=Math.ceil,st=Math.floor,ut=function(e){var t=+e;return t!=t||0===t?0:(t>0?st:ct)(t)},lt=Math.max,ft=Math.min,dt=function(e,t){var n=ut(e);return n<0?lt(n+t,0):ft(n,t)},ht=Math.min,pt=function(e){return e>0?ht(ut(e),9007199254740991):0},yt=function(e){return pt(e.length)},vt=function(e){return function(t,n,r){var o,i=P(t),a=yt(i),c=dt(r,a);if(e&&n!=n){for(;a>c;)if((o=i[c++])!=o)return !0}else for(;a>c;c++)if((e||c in i)&&i[c]===n)return e||c||0;return !e&&-1}},mt={includes:vt(!0),indexOf:vt(!1)},gt=mt.indexOf,bt=E([].push),wt=function(e,t){var n,r=P(e),o=0,i=[];for(n in r)!fe(Be,n)&&fe(r,n)&&bt(i,n);for(;t.length>o;)fe(r,n=t[o++])&&(~gt(i,n)||bt(i,n));return i},St=["constructor","hasOwnProperty","isPrototypeOf","propertyIsEnumerable","toLocaleString","toString","valueOf"],_t=St.concat("length","prototype"),kt={f:Object.getOwnPropertyNames||function(e){return wt(e,_t)}},It={f:Object.getOwnPropertySymbols},Tt=E([].concat),Ot=V("Reflect","ownKeys")||function(e){var t=kt.f(je(e)),n=It.f;return n?Tt(t,n(e)):t},Et=function(e,t,n){for(var r=Ot(t),o=Pe.f,i=Re.f,a=0;a<r.length;a++){var c=r[a];fe(e,c)||n&&fe(n,c)||o(e,c,i(t,c));}},xt=/#|\.prototype\./,Ct=function(e,t){var n=Ft[Rt(e)];return n==jt||n!=At&&(L(t)?y(t):!!t)},Rt=Ct.normalize=function(e){return String(e).replace(xt,".").toLowerCase()},Ft=Ct.data={},At=Ct.NATIVE="N",jt=Ct.POLYFILL="P",Ut=Ct,Kt=Re.f,Pt=function(e,t){var n,r,o,i,a,c=e.target,s=e.global,u=e.stat;if(n=s?p:u?p[c]||ie(c,{}):(p[c]||{}).prototype)for(r in t){if(i=t[r],o=e.noTargetGet?(a=Kt(n,r))&&a.value:n[r],!Ut(s?r:c+(u?".":"#")+r,e.forced)&&void 0!==o){if(typeof i==typeof o)continue;Et(i,o);}(e.sham||o&&o.sham)&&Le(i,"sham",!0),at(n,r,i,e);}},Lt={};Lt[we("toStringTag")]="z";var Wt,Zt="[object z]"===String(Lt),Vt=we("toStringTag"),Nt=p.Object,Xt="Arguments"==R(function(){return arguments}()),Dt=Zt?R:function(e){var t,n,r;return void 0===e?"Undefined":null===e?"Null":"string"==typeof(n=function(e,t){try{return e[t]}catch(e){}}(t=Nt(e),Vt))?n:Xt?R(t):"Object"==(r=R(t))&&L(t.callee)?"Arguments":r},zt=p.String,Yt=function(e){if("Symbol"===Dt(e))throw TypeError("Cannot convert a Symbol value to a string");return zt(e)},Jt=we("match"),Bt=p.TypeError,Gt=function(e){if(function(e){var t;return W(e)&&(void 0!==(t=e[Jt])?!!t:"RegExp"==R(e))}(e))throw Bt("The method doesn't accept regular expressions");return e},Mt=we("match"),Ht=function(e){var t=/./;try{"/./"[e](t);}catch(n){try{return t[Mt]=!1,"/./"[e](t)}catch(e){}}return !1},qt=Re.f,Qt=E("".startsWith),$t=E("".slice),en=Math.min,tn=Ht("startsWith"),nn=!(tn||(Wt=qt(String.prototype,"startsWith"),!Wt||Wt.writable));Pt({target:"String",proto:!0,forced:!nn&&!tn},{startsWith:function(e){var t=Yt(K(this));Gt(e);var n=pt(en(arguments.length>1?arguments[1]:void 0,t.length)),r=Yt(e);return Qt?Qt(t,r,n):$t(t,n,n+r.length)===r}});var rn=function(e,t){return E(p[e].prototype[t])};rn("String","startsWith");var on=Array.isArray||function(e){return "Array"==R(e)},an=function(e,t,n){var r=Ie(t);r in e?Pe.f(e,r,_(0,n)):e[r]=n;},cn=function(){},sn=[],un=V("Reflect","construct"),ln=/^\s*(?:class|function)\b/,fn=E(ln.exec),dn=!ln.exec(cn),hn=function(e){if(!L(e))return !1;try{return un(cn,sn,e),!0}catch(e){return !1}},pn=function(e){if(!L(e))return !1;switch(Dt(e)){case"AsyncFunction":case"GeneratorFunction":case"AsyncGeneratorFunction":return !1}try{return dn||!!fn(ln,Xe(e))}catch(e){return !0}};pn.sham=!0;var yn,vn=!un||y((function(){var e;return hn(hn.call)||!hn(Object)||!hn((function(){e=!0;}))||e}))?pn:hn,mn=we("species"),gn=p.Array,bn=function(e,t){return new(function(e){var t;return on(e)&&(t=e.constructor,(vn(t)&&(t===gn||on(t.prototype))||W(t)&&null===(t=t[mn]))&&(t=void 0)),void 0===t?gn:t}(e))(0===t?0:t)},wn=we("species"),Sn=we("isConcatSpreadable"),_n=p.TypeError,kn=B>=51||!y((function(){var e=[];return e[Sn]=!1,e.concat()[0]!==e})),In=(yn="concat",B>=51||!y((function(){var e=[];return (e.constructor={})[wn]=function(){return {foo:1}},1!==e[yn](Boolean).foo}))),Tn=function(e){if(!W(e))return !1;var t=e[Sn];return void 0!==t?!!t:on(e)};Pt({target:"Array",proto:!0,forced:!kn||!In},{concat:function(e){var t,n,r,o,i,a=ue(this),c=bn(a,0),s=0;for(t=-1,r=arguments.length;t<r;t++)if(Tn(i=-1===t?a:arguments[t])){if(s+(o=yt(i))>9007199254740991)throw _n("Maximum allowed index exceeded");for(n=0;n<o;n++,s++)n in i&&an(c,s,i[n]);}else {if(s>=9007199254740991)throw _n("Maximum allowed index exceeded");an(c,s++,i);}return c.length=s,c}});var On=Zt?{}.toString:function(){return "[object "+Dt(this)+"]"};Zt||at(Object.prototype,"toString",On,{unsafe:!0});var En,xn=Function.prototype,Cn=xn.apply,Rn=xn.bind,Fn=xn.call,An="object"==typeof Reflect&&Reflect.apply||(Rn?Fn.bind(Cn):function(){return Fn.apply(Cn,arguments)}),jn=Object.keys||function(e){return wt(e,St)},Un=v?Object.defineProperties:function(e,t){je(e);for(var n,r=P(t),o=jn(t),i=o.length,a=0;i>a;)Pe.f(e,n=o[a++],r[n]);return e},Kn=V("document","documentElement"),Pn=Je("IE_PROTO"),Ln=function(){},Wn=function(e){return "<script>"+e+"<\/script>"},Zn=function(e){e.write(Wn("")),e.close();var t=e.parentWindow.Object;return e=null,t},Vn=function(){try{En=new ActiveXObject("htmlfile");}catch(e){}var e,t;Vn="undefined"!=typeof document?document.domain&&En?Zn(En):((t=Ee("iframe")).style.display="none",Kn.appendChild(t),t.src=String("javascript:"),(e=t.contentWindow.document).open(),e.write(Wn("document.F=Object")),e.close(),e.F):Zn(En);for(var n=St.length;n--;)delete Vn.prototype[St[n]];return Vn()};Be[Pn]=!0;var Nn=Object.create||function(e,t){var n;return null!==e?(Ln.prototype=je(e),n=new Ln,Ln.prototype=null,n[Pn]=e):n=Vn(),void 0===t?n:Un(n,t)},Xn=p.Array,Dn=Math.max,zn=kt.f,Yn="object"==typeof window&&window&&Object.getOwnPropertyNames?Object.getOwnPropertyNames(window):[],Jn=function(e){try{return zn(e)}catch(e){return function(e,t,n){for(var r=yt(e),o=dt(t,r),i=dt(void 0===n?r:n,r),a=Xn(Dn(i-o,0)),c=0;o<i;o++,c++)an(a,c,e[o]);return a.length=c,a}(Yn)}},Bn={f:function(e){return Yn&&"Window"==R(e)?Jn(e):zn(P(e))}},Gn=E([].slice),Mn={f:we},Hn=p,qn=Pe.f,Qn=function(e){var t=Hn.Symbol||(Hn.Symbol={});fe(t,e)||qn(t,e,{value:Mn.f(e)});},$n=Pe.f,er=we("toStringTag"),tr=function(e,t,n){e&&!n&&(e=e.prototype),e&&!fe(e,er)&&$n(e,er,{configurable:!0,value:t});},nr=E(E.bind),rr=function(e,t){return te(e),void 0===t?e:nr?nr(e,t):function(){return e.apply(t,arguments)}},or=E([].push),ir=function(e){var t=1==e,n=2==e,r=3==e,o=4==e,i=6==e,a=7==e,c=5==e||i;return function(s,u,l,f){for(var d,h,p=ue(s),y=j(p),v=rr(u,l),m=yt(y),g=0,b=f||bn,w=t?b(s,m):n||a?b(s,0):void 0;m>g;g++)if((c||g in y)&&(h=v(d=y[g],g,p),e))if(t)w[g]=h;else if(h)switch(e){case 3:return !0;case 5:return d;case 6:return g;case 2:or(w,d);}else switch(e){case 4:return !1;case 7:or(w,d);}return i?-1:r||o?o:w}},ar={forEach:ir(0),map:ir(1),filter:ir(2),some:ir(3),every:ir(4),find:ir(5),findIndex:ir(6),filterReject:ir(7)}.forEach,cr=Je("hidden"),sr=we("toPrimitive"),ur=tt.set,lr=tt.getterFor("Symbol"),fr=Object.prototype,dr=p.Symbol,hr=dr&&dr.prototype,pr=p.TypeError,yr=p.QObject,vr=V("JSON","stringify"),mr=Re.f,gr=Pe.f,br=Bn.f,wr=S.f,Sr=E([].push),_r=ce("symbols"),kr=ce("op-symbols"),Ir=ce("string-to-symbol-registry"),Tr=ce("symbol-to-string-registry"),Or=ce("wks"),Er=!yr||!yr.prototype||!yr.prototype.findChild,xr=v&&y((function(){return 7!=Nn(gr({},"a",{get:function(){return gr(this,"a",{value:7}).a}})).a}))?function(e,t,n){var r=mr(fr,t);r&&delete fr[t],gr(e,t,n),r&&e!==fr&&gr(fr,t,r);}:gr,Cr=function(e,t){var n=_r[e]=Nn(hr);return ur(n,{type:"Symbol",tag:e,description:t}),v||(n.description=t),n},Rr=function(e,t,n){e===fr&&Rr(kr,t,n),je(e);var r=Ie(t);return je(n),fe(_r,r)?(n.enumerable?(fe(e,cr)&&e[cr][r]&&(e[cr][r]=!1),n=Nn(n,{enumerable:_(0,!1)})):(fe(e,cr)||gr(e,cr,_(1,{})),e[cr][r]=!0),xr(e,r,n)):gr(e,r,n)},Fr=function(e,t){je(e);var n=P(t),r=jn(n).concat(Kr(n));return ar(r,(function(t){v&&!g(Ar,n,t)||Rr(e,t,n[t]);})),e},Ar=function(e){var t=Ie(e),n=g(wr,this,t);return !(this===fr&&fe(_r,t)&&!fe(kr,t))&&(!(n||!fe(this,t)||!fe(_r,t)||fe(this,cr)&&this[cr][t])||n)},jr=function(e,t){var n=P(e),r=Ie(t);if(n!==fr||!fe(_r,r)||fe(kr,r)){var o=mr(n,r);return !o||!fe(_r,r)||fe(n,cr)&&n[cr][r]||(o.enumerable=!0),o}},Ur=function(e){var t=br(P(e)),n=[];return ar(t,(function(e){fe(_r,e)||fe(Be,e)||Sr(n,e);})),n},Kr=function(e){var t=e===fr,n=br(t?kr:P(e)),r=[];return ar(n,(function(e){!fe(_r,e)||t&&!fe(fr,e)||Sr(r,_r[e]);})),r};if(G||(hr=(dr=function(){if(N(hr,this))throw pr("Symbol is not a constructor");var e=arguments.length&&void 0!==arguments[0]?Yt(arguments[0]):void 0,t=ye(e),n=function(e){this===fr&&g(n,kr,e),fe(this,cr)&&fe(this[cr],t)&&(this[cr][t]=!1),xr(this,t,_(1,e));};return v&&Er&&xr(fr,t,{configurable:!0,set:n}),Cr(t,e)}).prototype,at(hr,"toString",(function(){return lr(this).tag})),at(dr,"withoutSetter",(function(e){return Cr(ye(e),e)})),S.f=Ar,Pe.f=Rr,Re.f=jr,kt.f=Bn.f=Ur,It.f=Kr,Mn.f=function(e){return Cr(we(e),e)},v&&(gr(hr,"description",{configurable:!0,get:function(){return lr(this).description}}),at(fr,"propertyIsEnumerable",Ar,{unsafe:!0}))),Pt({global:!0,wrap:!0,forced:!G,sham:!G},{Symbol:dr}),ar(jn(Or),(function(e){Qn(e);})),Pt({target:"Symbol",stat:!0,forced:!G},{for:function(e){var t=Yt(e);if(fe(Ir,t))return Ir[t];var n=dr(t);return Ir[t]=n,Tr[n]=t,n},keyFor:function(e){if(!q(e))throw pr(e+" is not a symbol");if(fe(Tr,e))return Tr[e]},useSetter:function(){Er=!0;},useSimple:function(){Er=!1;}}),Pt({target:"Object",stat:!0,forced:!G,sham:!v},{create:function(e,t){return void 0===t?Nn(e):Fr(Nn(e),t)},defineProperty:Rr,defineProperties:Fr,getOwnPropertyDescriptor:jr}),Pt({target:"Object",stat:!0,forced:!G},{getOwnPropertyNames:Ur,getOwnPropertySymbols:Kr}),Pt({target:"Object",stat:!0,forced:y((function(){It.f(1);}))},{getOwnPropertySymbols:function(e){return It.f(ue(e))}}),vr){var Pr=!G||y((function(){var e=dr();return "[null]"!=vr([e])||"{}"!=vr({a:e})||"{}"!=vr(Object(e))}));Pt({target:"JSON",stat:!0,forced:Pr},{stringify:function(e,t,n){var r=Gn(arguments),o=t;if((W(t)||void 0!==e)&&!q(e))return on(t)||(t=function(e,t){if(L(o)&&(t=g(o,this,e,t)),!q(t))return t}),r[1]=t,An(vr,null,r)}});}if(!hr[sr]){var Lr=hr.valueOf;at(hr,sr,(function(e){return g(Lr,this)}));}tr(dr,"Symbol"),Be[cr]=!0,Qn("asyncIterator");var Wr=Pe.f,Zr=p.Symbol,Vr=Zr&&Zr.prototype;if(v&&L(Zr)&&(!("description"in Vr)||void 0!==Zr().description)){var Nr={},Xr=function(){var e=arguments.length<1||void 0===arguments[0]?void 0:Yt(arguments[0]),t=N(Vr,this)?new Zr(e):void 0===e?Zr():Zr(e);return ""===e&&(Nr[t]=!0),t};Et(Xr,Zr),Xr.prototype=Vr,Vr.constructor=Xr;var Dr="Symbol(test)"==String(Zr("test")),zr=E(Vr.toString),Yr=E(Vr.valueOf),Jr=/^Symbol\((.*)\)[^)]+$/,Br=E("".replace),Gr=E("".slice);Wr(Vr,"description",{configurable:!0,get:function(){var e=Yr(this),t=zr(e);if(fe(Nr,e))return "";var n=Dr?Gr(t,7,-1):Br(t,Jr,"$1");return ""===n?void 0:n}}),Pt({global:!0,forced:!0},{Symbol:Xr});}Qn("hasInstance"),Qn("isConcatSpreadable"),Qn("iterator"),Qn("match"),Qn("matchAll"),Qn("replace"),Qn("search"),Qn("species"),Qn("split"),Qn("toPrimitive"),Qn("toStringTag"),Qn("unscopables"),tr(p.JSON,"JSON",!0),tr(Math,"Math",!0),Pt({global:!0},{Reflect:{}}),tr(p.Reflect,"Reflect",!0),Hn.Symbol;var Mr,Hr,qr,Qr=E("".charAt),$r=E("".charCodeAt),eo=E("".slice),to=function(e){return function(t,n){var r,o,i=Yt(K(t)),a=ut(n),c=i.length;return a<0||a>=c?e?"":void 0:(r=$r(i,a))<55296||r>56319||a+1===c||(o=$r(i,a+1))<56320||o>57343?e?Qr(i,a):r:e?eo(i,a,a+2):o-56320+(r-55296<<10)+65536}},no={codeAt:to(!1),charAt:to(!0)},ro=!y((function(){function e(){}return e.prototype.constructor=null,Object.getPrototypeOf(new e)!==e.prototype})),oo=Je("IE_PROTO"),io=p.Object,ao=io.prototype,co=ro?io.getPrototypeOf:function(e){var t=ue(e);if(fe(t,oo))return t[oo];var n=t.constructor;return L(n)&&t instanceof n?n.prototype:t instanceof io?ao:null},so=we("iterator"),uo=!1;[].keys&&("next"in(qr=[].keys())?(Hr=co(co(qr)))!==Object.prototype&&(Mr=Hr):uo=!0),(null==Mr||y((function(){var e={};return Mr[so].call(e)!==e})))&&(Mr={}),L(Mr[so])||at(Mr,so,(function(){return this}));var lo={IteratorPrototype:Mr,BUGGY_SAFARI_ITERATORS:uo},fo={},ho=lo.IteratorPrototype,po=function(){return this},yo=p.String,vo=p.TypeError,mo=Object.setPrototypeOf||("__proto__"in{}?function(){var e,t=!1,n={};try{(e=E(Object.getOwnPropertyDescriptor(Object.prototype,"__proto__").set))(n,[]),t=n instanceof Array;}catch(e){}return function(n,r){return je(n),function(e){if("object"==typeof e||L(e))return e;throw vo("Can't set "+yo(e)+" as a prototype")}(r),t?e(n,r):n.__proto__=r,n}}():void 0),go=it.PROPER,bo=it.CONFIGURABLE,wo=lo.IteratorPrototype,So=lo.BUGGY_SAFARI_ITERATORS,_o=we("iterator"),ko=function(){return this},Io=function(e,t,n,r,o,i,a){!function(e,t,n,r){var o=t+" Iterator";e.prototype=Nn(ho,{next:_(+!r,n)}),tr(e,o,!1),fo[o]=po;}(n,t,r);var c,s,u,l=function(e){if(e===o&&y)return y;if(!So&&e in h)return h[e];switch(e){case"keys":case"values":case"entries":return function(){return new n(this,e)}}return function(){return new n(this)}},f=t+" Iterator",d=!1,h=e.prototype,p=h[_o]||h["@@iterator"]||o&&h[o],y=!So&&p||l(o),v="Array"==t&&h.entries||p;if(v&&(c=co(v.call(new e)))!==Object.prototype&&c.next&&(co(c)!==wo&&(mo?mo(c,wo):L(c[_o])||at(c,_o,ko)),tr(c,f,!0)),go&&"values"==o&&p&&"values"!==p.name&&(bo?Le(h,"name","values"):(d=!0,y=function(){return g(p,this)})),o)if(s={values:l("values"),keys:i?y:l("keys"),entries:l("entries")},a)for(u in s)(So||d||!(u in h))&&at(h,u,s[u]);else Pt({target:t,proto:!0,forced:So||d},s);return h[_o]!==y&&at(h,_o,y,{name:o}),fo[t]=y,s},To=no.charAt,Oo=tt.set,Eo=tt.getterFor("String Iterator");Io(String,"String",(function(e){Oo(this,{type:"String Iterator",string:Yt(e),index:0});}),(function(){var e,t=Eo(this),n=t.string,r=t.index;return r>=n.length?{value:void 0,done:!0}:(e=To(n,r),t.index+=e.length,{value:e,done:!1})}));var xo=function(e,t,n){var r,o;je(e);try{if(!(r=ne(e,"return"))){if("throw"===t)throw n;return n}r=g(r,e);}catch(e){o=!0,r=e;}if("throw"===t)throw n;if(o)throw r;return je(r),n},Co=function(e,t,n,r){try{return r?t(je(n)[0],n[1]):t(n)}catch(t){xo(e,"throw",t);}},Ro=we("iterator"),Fo=Array.prototype,Ao=function(e){return void 0!==e&&(fo.Array===e||Fo[Ro]===e)},jo=we("iterator"),Uo=function(e){if(null!=e)return ne(e,jo)||ne(e,"@@iterator")||fo[Dt(e)]},Ko=p.TypeError,Po=function(e,t){var n=arguments.length<2?Uo(e):t;if(te(n))return je(g(n,e));throw Ko($(e)+" is not iterable")},Lo=p.Array,Wo=we("iterator"),Zo=!1;try{var Vo=0,No={next:function(){return {done:!!Vo++}},return:function(){Zo=!0;}};No[Wo]=function(){return this},Array.from(No,(function(){throw 2}));}catch(e){}var Xo=function(e,t){if(!t&&!Zo)return !1;var n=!1;try{var r={};r[Wo]=function(){return {next:function(){return {done:n=!0}}}},e(r);}catch(e){}return n},Do=!Xo((function(e){Array.from(e);}));Pt({target:"Array",stat:!0,forced:Do},{from:function(e){var t=ue(e),n=vn(this),r=arguments.length,o=r>1?arguments[1]:void 0,i=void 0!==o;i&&(o=rr(o,r>2?arguments[2]:void 0));var a,c,s,u,l,f,d=Uo(t),h=0;if(!d||this==Lo&&Ao(d))for(a=yt(t),c=n?new this(a):Lo(a);a>h;h++)f=i?o(t[h],h):t[h],an(c,h,f);else for(l=(u=Po(t,d)).next,c=n?new this:[];!(s=g(l,u)).done;h++)f=i?Co(u,o,[s.value,h],!0):s.value,an(c,h,f);return c.length=h,c}}),Hn.Array.from;var zo,Yo,Jo,Bo="undefined"!=typeof ArrayBuffer&&"undefined"!=typeof DataView,Go=Pe.f,Mo=p.Int8Array,Ho=Mo&&Mo.prototype,qo=p.Uint8ClampedArray,Qo=qo&&qo.prototype,$o=Mo&&co(Mo),ei=Ho&&co(Ho),ti=Object.prototype,ni=p.TypeError,ri=we("toStringTag"),oi=ye("TYPED_ARRAY_TAG"),ii=ye("TYPED_ARRAY_CONSTRUCTOR"),ai=Bo&&!!mo&&"Opera"!==Dt(p.opera),ci=!1,si={Int8Array:1,Uint8Array:1,Uint8ClampedArray:1,Int16Array:2,Uint16Array:2,Int32Array:4,Uint32Array:4,Float32Array:4,Float64Array:8},ui={BigInt64Array:8,BigUint64Array:8},li=function(e){if(!W(e))return !1;var t=Dt(e);return fe(si,t)||fe(ui,t)};for(zo in si)(Jo=(Yo=p[zo])&&Yo.prototype)?Le(Jo,ii,Yo):ai=!1;for(zo in ui)(Jo=(Yo=p[zo])&&Yo.prototype)&&Le(Jo,ii,Yo);if((!ai||!L($o)||$o===Function.prototype)&&($o=function(){throw ni("Incorrect invocation")},ai))for(zo in si)p[zo]&&mo(p[zo],$o);if((!ai||!ei||ei===ti)&&(ei=$o.prototype,ai))for(zo in si)p[zo]&&mo(p[zo].prototype,ei);if(ai&&co(Qo)!==ei&&mo(Qo,ei),v&&!fe(ei,ri))for(zo in ci=!0,Go(ei,ri,{get:function(){return W(this)?this[oi]:void 0}}),si)p[zo]&&Le(p[zo],oi,zo);var fi={NATIVE_ARRAY_BUFFER_VIEWS:ai,TYPED_ARRAY_CONSTRUCTOR:ii,TYPED_ARRAY_TAG:ci&&oi,aTypedArray:function(e){if(li(e))return e;throw ni("Target is not a typed array")},aTypedArrayConstructor:function(e){if(L(e)&&(!mo||N($o,e)))return e;throw ni($(e)+" is not a typed array constructor")},exportTypedArrayMethod:function(e,t,n,r){if(v){if(n)for(var o in si){var i=p[o];if(i&&fe(i.prototype,e))try{delete i.prototype[e];}catch(e){}}ei[e]&&!n||at(ei,e,n?t:ai&&Ho[e]||t,r);}},exportTypedArrayStaticMethod:function(e,t,n){var r,o;if(v){if(mo){if(n)for(r in si)if((o=p[r])&&fe(o,e))try{delete o[e];}catch(e){}if($o[e]&&!n)return;try{return at($o,e,n?t:ai&&$o[e]||t)}catch(e){}}for(r in si)!(o=p[r])||o[e]&&!n||at(o,e,t);}},isView:function(e){if(!W(e))return !1;var t=Dt(e);return "DataView"===t||fe(si,t)||fe(ui,t)},isTypedArray:li,TypedArray:$o,TypedArrayPrototype:ei},di=p.TypeError,hi=we("species"),pi=function(e,t){var n,r=je(e).constructor;return void 0===r||null==(n=je(r)[hi])?t:function(e){if(vn(e))return e;throw di($(e)+" is not a constructor")}(n)},yi=fi.TYPED_ARRAY_CONSTRUCTOR,vi=fi.aTypedArrayConstructor,mi=fi.aTypedArray;(0, fi.exportTypedArrayMethod)("slice",(function(e,t){for(var n,r=Gn(mi(this),e,t),o=vi(pi(n=this,n[yi])),i=0,a=r.length,c=new o(a);a>i;)c[i]=r[i++];return c}),y((function(){new Int8Array(1).slice();})));var gi=we("unscopables"),bi=Array.prototype;null==bi[gi]&&Pe.f(bi,gi,{configurable:!0,value:Nn(null)});var wi=function(e){bi[gi][e]=!0;},Si=mt.includes;Pt({target:"Array",proto:!0},{includes:function(e){return Si(this,e,arguments.length>1?arguments[1]:void 0)}}),wi("includes"),rn("Array","includes");var _i=E("".indexOf);Pt({target:"String",proto:!0,forced:!Ht("includes")},{includes:function(e){return !!~_i(Yt(K(this)),Yt(Gt(e)),arguments.length>1?arguments[1]:void 0)}}),rn("String","includes");var ki=Pe.f,Ii=tt.set,Ti=tt.getterFor("Array Iterator");Io(Array,"Array",(function(e,t){Ii(this,{type:"Array Iterator",target:P(e),index:0,kind:t});}),(function(){var e=Ti(this),t=e.target,n=e.kind,r=e.index++;return !t||r>=t.length?(e.target=void 0,{value:void 0,done:!0}):"keys"==n?{value:r,done:!1}:"values"==n?{value:t[r],done:!1}:{value:[r,t[r]],done:!1}}),"values");var Oi=fo.Arguments=fo.Array;if(wi("keys"),wi("values"),wi("entries"),v&&"values"!==Oi.name)try{ki(Oi,"name",{value:"values"});}catch(e){}var Ei=y((function(){if("function"==typeof ArrayBuffer){var e=new ArrayBuffer(8);Object.isExtensible(e)&&Object.defineProperty(e,"a",{value:8});}})),xi=Object.isExtensible,Ci=y((function(){xi(1);}))||Ei?function(e){return !!W(e)&&((!Ei||"ArrayBuffer"!=R(e))&&(!xi||xi(e)))}:xi,Ri=!y((function(){return Object.isExtensible(Object.preventExtensions({}))})),Fi=l((function(e){var t=Pe.f,n=!1,r=ye("meta"),o=0,i=function(e){t(e,r,{value:{objectID:"O"+o++,weakData:{}}});},a=e.exports={enable:function(){a.enable=function(){},n=!0;var e=kt.f,t=E([].splice),o={};o[r]=1,e(o).length&&(kt.f=function(n){for(var o=e(n),i=0,a=o.length;i<a;i++)if(o[i]===r){t(o,i,1);break}return o},Pt({target:"Object",stat:!0,forced:!0},{getOwnPropertyNames:Bn.f}));},fastKey:function(e,t){if(!W(e))return "symbol"==typeof e?e:("string"==typeof e?"S":"P")+e;if(!fe(e,r)){if(!Ci(e))return "F";if(!t)return "E";i(e);}return e[r].objectID},getWeakData:function(e,t){if(!fe(e,r)){if(!Ci(e))return !0;if(!t)return !1;i(e);}return e[r].weakData},onFreeze:function(e){return Ri&&n&&Ci(e)&&!fe(e,r)&&i(e),e}};Be[r]=!0;}));Fi.enable,Fi.fastKey,Fi.getWeakData,Fi.onFreeze;var Ai=p.TypeError,ji=function(e,t){this.stopped=e,this.result=t;},Ui=ji.prototype,Ki=function(e,t,n){var r,o,i,a,c,s,u,l=n&&n.that,f=!(!n||!n.AS_ENTRIES),d=!(!n||!n.IS_ITERATOR),h=!(!n||!n.INTERRUPTED),p=rr(t,l),y=function(e){return r&&xo(r,"normal",e),new ji(!0,e)},v=function(e){return f?(je(e),h?p(e[0],e[1],y):p(e[0],e[1])):h?p(e,y):p(e)};if(d)r=e;else {if(!(o=Uo(e)))throw Ai($(e)+" is not iterable");if(Ao(o)){for(i=0,a=yt(e);a>i;i++)if((c=v(e[i]))&&N(Ui,c))return c;return new ji(!1)}r=Po(e,o);}for(s=r.next;!(u=g(s,r)).done;){try{c=v(u.value);}catch(e){xo(r,"throw",e);}if("object"==typeof c&&c&&N(Ui,c))return c}return new ji(!1)},Pi=p.TypeError,Li=function(e,t){if(N(t,e))return e;throw Pi("Incorrect invocation")},Wi=function(e,t,n){for(var r in t)at(e,r,t[r],n);return e},Zi=we("species"),Vi=Pe.f,Ni=Fi.fastKey,Xi=tt.set,Di=tt.getterFor,zi={getConstructor:function(e,t,n,r){var o=e((function(e,o){Li(e,i),Xi(e,{type:t,index:Nn(null),first:void 0,last:void 0,size:0}),v||(e.size=0),null!=o&&Ki(o,e[r],{that:e,AS_ENTRIES:n});})),i=o.prototype,a=Di(t),c=function(e,t,n){var r,o,i=a(e),c=s(e,t);return c?c.value=n:(i.last=c={index:o=Ni(t,!0),key:t,value:n,previous:r=i.last,next:void 0,removed:!1},i.first||(i.first=c),r&&(r.next=c),v?i.size++:e.size++,"F"!==o&&(i.index[o]=c)),e},s=function(e,t){var n,r=a(e),o=Ni(t);if("F"!==o)return r.index[o];for(n=r.first;n;n=n.next)if(n.key==t)return n};return Wi(i,{clear:function(){for(var e=a(this),t=e.index,n=e.first;n;)n.removed=!0,n.previous&&(n.previous=n.previous.next=void 0),delete t[n.index],n=n.next;e.first=e.last=void 0,v?e.size=0:this.size=0;},delete:function(e){var t=this,n=a(t),r=s(t,e);if(r){var o=r.next,i=r.previous;delete n.index[r.index],r.removed=!0,i&&(i.next=o),o&&(o.previous=i),n.first==r&&(n.first=o),n.last==r&&(n.last=i),v?n.size--:t.size--;}return !!r},forEach:function(e){for(var t,n=a(this),r=rr(e,arguments.length>1?arguments[1]:void 0);t=t?t.next:n.first;)for(r(t.value,t.key,this);t&&t.removed;)t=t.previous;},has:function(e){return !!s(this,e)}}),Wi(i,n?{get:function(e){var t=s(this,e);return t&&t.value},set:function(e,t){return c(this,0===e?0:e,t)}}:{add:function(e){return c(this,e=0===e?0:e,e)}}),v&&Vi(i,"size",{get:function(){return a(this).size}}),o},setStrong:function(e,t,n){var r=t+" Iterator",o=Di(t),i=Di(r);Io(e,t,(function(e,t){Xi(this,{type:r,target:e,state:o(e),kind:t,last:void 0});}),(function(){for(var e=i(this),t=e.kind,n=e.last;n&&n.removed;)n=n.previous;return e.target&&(e.last=n=n?n.next:e.state.first)?"keys"==t?{value:n.key,done:!1}:"values"==t?{value:n.value,done:!1}:{value:[n.key,n.value],done:!1}:(e.target=void 0,{value:void 0,done:!0})}),n?"entries":"values",!n,!0),function(e){var t=V(e),n=Pe.f;v&&t&&!t[Zi]&&n(t,Zi,{configurable:!0,get:function(){return this}});}(t);}};function Yi(e){var t=this.constructor;return this.then((function(n){return t.resolve(e()).then((function(){return n}))}),(function(n){return t.resolve(e()).then((function(){return t.reject(n)}))}))}function Ji(e){return new this((function(t,n){if(!e||void 0===e.length)return n(new TypeError(typeof e+" "+e+" is not iterable(cannot read property Symbol(Symbol.iterator))"));var r=Array.prototype.slice.call(e);if(0===r.length)return t([]);var o=r.length;function i(e,n){if(n&&("object"==typeof n||"function"==typeof n)){var a=n.then;if("function"==typeof a)return void a.call(n,(function(t){i(e,t);}),(function(n){r[e]={status:"rejected",reason:n},0==--o&&t(r);}))}r[e]={status:"fulfilled",value:n},0==--o&&t(r);}for(var a=0;a<r.length;a++)i(a,r[a]);}))}!function(e,t,n){var r=-1!==e.indexOf("Map"),o=-1!==e.indexOf("Weak"),i=r?"set":"add",a=p[e],c=a&&a.prototype,s=a,u={},l=function(e){var t=E(c[e]);at(c,e,"add"==e?function(e){return t(this,0===e?0:e),this}:"delete"==e?function(e){return !(o&&!W(e))&&t(this,0===e?0:e)}:"get"==e?function(e){return o&&!W(e)?void 0:t(this,0===e?0:e)}:"has"==e?function(e){return !(o&&!W(e))&&t(this,0===e?0:e)}:function(e,n){return t(this,0===e?0:e,n),this});};if(Ut(e,!L(a)||!(o||c.forEach&&!y((function(){(new a).entries().next();})))))s=n.getConstructor(t,e,r,i),Fi.enable();else if(Ut(e,!0)){var f=new s,d=f[i](o?{}:-0,1)!=f,h=y((function(){f.has(1);})),v=Xo((function(e){new a(e);})),m=!o&&y((function(){for(var e=new a,t=5;t--;)e[i](t,t);return !e.has(-0)}));v||((s=t((function(e,t){Li(e,c);var n=function(e,t,n){var r,o;return mo&&L(r=t.constructor)&&r!==n&&W(o=r.prototype)&&o!==n.prototype&&mo(e,o),e}(new a,e,s);return null!=t&&Ki(t,n[i],{that:n,AS_ENTRIES:r}),n}))).prototype=c,c.constructor=s),(h||m)&&(l("delete"),l("has"),r&&l("get")),(m||d)&&l(i),o&&c.clear&&delete c.clear;}u[e]=s,Pt({global:!0,forced:s!=a},u),tr(s,e),o||n.setStrong(s,e,r);}("Set",(function(e){return function(){return e(this,arguments.length?arguments[0]:void 0)}}),zi),Hn.Set;var Bi=setTimeout,Gi="undefined"!=typeof setImmediate?setImmediate:null;function Mi(e){return Boolean(e&&void 0!==e.length)}function Hi(){}function qi(e){if(!(this instanceof qi))throw new TypeError("Promises must be constructed via new");if("function"!=typeof e)throw new TypeError("not a function");this._state=0,this._handled=!1,this._value=void 0,this._deferreds=[],ra(e,this);}function Qi(e,t){for(;3===e._state;)e=e._value;0!==e._state?(e._handled=!0,qi._immediateFn((function(){var n=1===e._state?t.onFulfilled:t.onRejected;if(null!==n){var r;try{r=n(e._value);}catch(e){return void ea(t.promise,e)}$i(t.promise,r);}else (1===e._state?$i:ea)(t.promise,e._value);}))):e._deferreds.push(t);}function $i(e,t){try{if(t===e)throw new TypeError("A promise cannot be resolved with itself.");if(t&&("object"==typeof t||"function"==typeof t)){var n=t.then;if(t instanceof qi)return e._state=3,e._value=t,void ta(e);if("function"==typeof n)return void ra((r=n,o=t,function(){r.apply(o,arguments);}),e)}e._state=1,e._value=t,ta(e);}catch(t){ea(e,t);}var r,o;}function ea(e,t){e._state=2,e._value=t,ta(e);}function ta(e){2===e._state&&0===e._deferreds.length&&qi._immediateFn((function(){e._handled||qi._unhandledRejectionFn(e._value);}));for(var t=0,n=e._deferreds.length;t<n;t++)Qi(e,e._deferreds[t]);e._deferreds=null;}function na(e,t,n){this.onFulfilled="function"==typeof e?e:null,this.onRejected="function"==typeof t?t:null,this.promise=n;}function ra(e,t){var n=!1;try{e((function(e){n||(n=!0,$i(t,e));}),(function(e){n||(n=!0,ea(t,e));}));}catch(e){if(n)return;n=!0,ea(t,e);}}qi.prototype.catch=function(e){return this.then(null,e)},qi.prototype.then=function(e,t){var n=new this.constructor(Hi);return Qi(this,new na(e,t,n)),n},qi.prototype.finally=Yi,qi.all=function(e){return new qi((function(t,n){if(!Mi(e))return n(new TypeError("Promise.all accepts an array"));var r=Array.prototype.slice.call(e);if(0===r.length)return t([]);var o=r.length;function i(e,a){try{if(a&&("object"==typeof a||"function"==typeof a)){var c=a.then;if("function"==typeof c)return void c.call(a,(function(t){i(e,t);}),n)}r[e]=a,0==--o&&t(r);}catch(e){n(e);}}for(var a=0;a<r.length;a++)i(a,r[a]);}))},qi.allSettled=Ji,qi.resolve=function(e){return e&&"object"==typeof e&&e.constructor===qi?e:new qi((function(t){t(e);}))},qi.reject=function(e){return new qi((function(t,n){n(e);}))},qi.race=function(e){return new qi((function(t,n){if(!Mi(e))return n(new TypeError("Promise.race accepts an array"));for(var r=0,o=e.length;r<o;r++)qi.resolve(e[r]).then(t,n);}))},qi._immediateFn="function"==typeof Gi&&function(e){Gi(e);}||function(e){Bi(e,0);},qi._unhandledRejectionFn=function(e){"undefined"!=typeof console&&console&&console.warn("Possible Unhandled Promise Rejection:",e);};var oa=function(){if("undefined"!=typeof self)return self;if("undefined"!=typeof window)return window;if("undefined"!=typeof global)return global;throw new Error("unable to locate global object")}();"function"!=typeof oa.Promise?oa.Promise=qi:(oa.Promise.prototype.finally||(oa.Promise.prototype.finally=Yi),oa.Promise.allSettled||(oa.Promise.allSettled=Ji)),function(e){function t(){}function n(e,t){if(e=void 0===e?"utf-8":e,t=void 0===t?{fatal:!1}:t,-1===o.indexOf(e.toLowerCase()))throw new RangeError("Failed to construct 'TextDecoder': The encoding label provided ('"+e+"') is invalid.");if(t.fatal)throw Error("Failed to construct 'TextDecoder': the 'fatal' option is unsupported.")}function r(e){for(var t=0,n=Math.min(65536,e.length+1),r=new Uint16Array(n),o=[],i=0;;){var a=t<e.length;if(!a||i>=n-1){if(o.push(String.fromCharCode.apply(null,r.subarray(0,i))),!a)return o.join("");e=e.subarray(t),i=t=0;}if(0==(128&(a=e[t++])))r[i++]=a;else if(192==(224&a)){var c=63&e[t++];r[i++]=(31&a)<<6|c;}else if(224==(240&a)){c=63&e[t++];var s=63&e[t++];r[i++]=(31&a)<<12|c<<6|s;}else if(240==(248&a)){65535<(a=(7&a)<<18|(c=63&e[t++])<<12|(s=63&e[t++])<<6|63&e[t++])&&(a-=65536,r[i++]=a>>>10&1023|55296,a=56320|1023&a),r[i++]=a;}}}if(e.TextEncoder&&e.TextDecoder)return !1;var o=["utf-8","utf8","unicode-1-1-utf-8"];Object.defineProperty(t.prototype,"encoding",{value:"utf-8"}),t.prototype.encode=function(e,t){if((t=void 0===t?{stream:!1}:t).stream)throw Error("Failed to encode: the 'stream' option is unsupported.");t=0;for(var n=e.length,r=0,o=Math.max(32,n+(n>>>1)+7),i=new Uint8Array(o>>>3<<3);t<n;){var a=e.charCodeAt(t++);if(55296<=a&&56319>=a){if(t<n){var c=e.charCodeAt(t);56320==(64512&c)&&(++t,a=((1023&a)<<10)+(1023&c)+65536);}if(55296<=a&&56319>=a)continue}if(r+4>i.length&&(o+=8,o=(o*=1+t/e.length*2)>>>3<<3,(c=new Uint8Array(o)).set(i),i=c),0==(4294967168&a))i[r++]=a;else {if(0==(4294965248&a))i[r++]=a>>>6&31|192;else if(0==(4294901760&a))i[r++]=a>>>12&15|224,i[r++]=a>>>6&63|128;else {if(0!=(4292870144&a))continue;i[r++]=a>>>18&7|240,i[r++]=a>>>12&63|128,i[r++]=a>>>6&63|128;}i[r++]=63&a|128;}}return i.slice?i.slice(0,r):i.subarray(0,r)},Object.defineProperty(n.prototype,"encoding",{value:"utf-8"}),Object.defineProperty(n.prototype,"fatal",{value:!1}),Object.defineProperty(n.prototype,"ignoreBOM",{value:!1});var i=r;"function"==typeof Buffer&&Buffer.from?i=function(e){return Buffer.from(e.buffer,e.byteOffset,e.byteLength).toString("utf-8")}:"function"==typeof Blob&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&(i=function(e){var t=URL.createObjectURL(new Blob([e],{type:"text/plain;charset=UTF-8"}));try{var n=new XMLHttpRequest;return n.open("GET",t,!1),n.send(),n.responseText}catch(t){return r(e)}finally{URL.revokeObjectURL(t);}}),n.prototype.decode=function(e,t){if((t=void 0===t?{stream:!1}:t).stream)throw Error("Failed to decode: the 'stream' option is unsupported.");return e=e instanceof Uint8Array?e:e.buffer instanceof ArrayBuffer?new Uint8Array(e.buffer):new Uint8Array(e),i(e)},e.TextEncoder=t,e.TextDecoder=n;}("undefined"!=typeof window?window:s),function(){function e(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function t(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r);}}function n(e,n,r){return n&&t(e.prototype,n),r&&t(e,r),e}function r(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&i(e,t);}function o(e){return (o=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function i(e,t){return (i=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function a(){if("undefined"==typeof Reflect||!Reflect.construct)return !1;if(Reflect.construct.sham)return !1;if("function"==typeof Proxy)return !0;try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return !1}}function c(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function u(e,t){return !t||"object"!=typeof t&&"function"!=typeof t?c(e):t}function l(e){var t=a();return function(){var n,r=o(e);if(t){var i=o(this).constructor;n=Reflect.construct(r,arguments,i);}else n=r.apply(this,arguments);return u(this,n)}}function f(e,t){for(;!Object.prototype.hasOwnProperty.call(e,t)&&null!==(e=o(e)););return e}function d(e,t,n){return (d="undefined"!=typeof Reflect&&Reflect.get?Reflect.get:function(e,t,n){var r=f(e,t);if(r){var o=Object.getOwnPropertyDescriptor(r,t);return o.get?o.get.call(n):o.value}})(e,t,n||e)}var h=function(){function t(){e(this,t),Object.defineProperty(this,"listeners",{value:{},writable:!0,configurable:!0});}return n(t,[{key:"addEventListener",value:function(e,t,n){e in this.listeners||(this.listeners[e]=[]),this.listeners[e].push({callback:t,options:n});}},{key:"removeEventListener",value:function(e,t){if(e in this.listeners)for(var n=this.listeners[e],r=0,o=n.length;r<o;r++)if(n[r].callback===t)return void n.splice(r,1)}},{key:"dispatchEvent",value:function(e){if(e.type in this.listeners){for(var t=this.listeners[e.type].slice(),n=0,r=t.length;n<r;n++){var o=t[n];try{o.callback.call(this,e);}catch(e){Promise.resolve().then((function(){throw e}));}o.options&&o.options.once&&this.removeEventListener(e.type,o.callback);}return !e.defaultPrevented}}}]),t}(),p=function(t){r(a,t);var i=l(a);function a(){var t;return e(this,a),(t=i.call(this)).listeners||h.call(c(t)),Object.defineProperty(c(t),"aborted",{value:!1,writable:!0,configurable:!0}),Object.defineProperty(c(t),"onabort",{value:null,writable:!0,configurable:!0}),t}return n(a,[{key:"toString",value:function(){return "[object AbortSignal]"}},{key:"dispatchEvent",value:function(e){"abort"===e.type&&(this.aborted=!0,"function"==typeof this.onabort&&this.onabort.call(this,e)),d(o(a.prototype),"dispatchEvent",this).call(this,e);}}]),a}(h),y=function(){function t(){e(this,t),Object.defineProperty(this,"signal",{value:new p,writable:!0,configurable:!0});}return n(t,[{key:"abort",value:function(){var e;try{e=new Event("abort");}catch(t){"undefined"!=typeof document?document.createEvent?(e=document.createEvent("Event")).initEvent("abort",!1,!1):(e=document.createEventObject()).type="abort":e={type:"abort",bubbles:!1,cancelable:!1};}this.signal.dispatchEvent(e);}},{key:"toString",value:function(){return "[object AbortController]"}}]),t}();function v(e){return e.__FORCE_INSTALL_ABORTCONTROLLER_POLYFILL?(console.log("__FORCE_INSTALL_ABORTCONTROLLER_POLYFILL=true is set, will force install polyfill"),!0):"function"==typeof e.Request&&!e.Request.prototype.hasOwnProperty("signal")||!e.AbortController}"undefined"!=typeof Symbol&&Symbol.toStringTag&&(y.prototype[Symbol.toStringTag]="AbortController",p.prototype[Symbol.toStringTag]="AbortSignal"),function(e){v(e)&&(e.AbortController=y,e.AbortSignal=p);}("undefined"!=typeof self?self:s);}();var ia=l((function(e,t){Object.defineProperty(t,"__esModule",{value:!0});var n=function(){function e(){var e=this;this.locked=new Map,this.addToLocked=function(t,n){var r=e.locked.get(t);void 0===r?void 0===n?e.locked.set(t,[]):e.locked.set(t,[n]):void 0!==n&&(r.unshift(n),e.locked.set(t,r));},this.isLocked=function(t){return e.locked.has(t)},this.lock=function(t){return new Promise((function(n,r){e.isLocked(t)?e.addToLocked(t,n):(e.addToLocked(t),n());}))},this.unlock=function(t){var n=e.locked.get(t);if(void 0!==n&&0!==n.length){var r=n.pop();e.locked.set(t,n),void 0!==r&&setTimeout(r,0);}else e.locked.delete(t);};}return e.getInstance=function(){return void 0===e.instance&&(e.instance=new e),e.instance},e}();t.default=function(){return n.getInstance()};}));u(ia);var aa=u(l((function(e,t){var n=s&&s.__awaiter||function(e,t,n,r){return new(n||(n=Promise))((function(o,i){function a(e){try{s(r.next(e));}catch(e){i(e);}}function c(e){try{s(r.throw(e));}catch(e){i(e);}}function s(e){e.done?o(e.value):new n((function(t){t(e.value);})).then(a,c);}s((r=r.apply(e,t||[])).next());}))},r=s&&s.__generator||function(e,t){var n,r,o,i,a={label:0,sent:function(){if(1&o[0])throw o[1];return o[1]},trys:[],ops:[]};return i={next:c(0),throw:c(1),return:c(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function c(i){return function(c){return function(i){if(n)throw new TypeError("Generator is already executing.");for(;a;)try{if(n=1,r&&(o=2&i[0]?r.return:i[0]?r.throw||((o=r.return)&&o.call(r),0):r.next)&&!(o=o.call(r,i[1])).done)return o;switch(r=0,o&&(i=[2&i[0],o.value]),i[0]){case 0:case 1:o=i;break;case 4:return a.label++,{value:i[1],done:!1};case 5:a.label++,r=i[1],i=[0];continue;case 7:i=a.ops.pop(),a.trys.pop();continue;default:if(!(o=a.trys,(o=o.length>0&&o[o.length-1])||6!==i[0]&&2!==i[0])){a=0;continue}if(3===i[0]&&(!o||i[1]>o[0]&&i[1]<o[3])){a.label=i[1];break}if(6===i[0]&&a.label<o[1]){a.label=o[1],o=i;break}if(o&&a.label<o[2]){a.label=o[2],a.ops.push(i);break}o[2]&&a.ops.pop(),a.trys.pop();continue}i=t.call(e,a);}catch(e){i=[6,e],r=0;}finally{n=o=0;}if(5&i[0])throw i[1];return {value:i[0]?i[1]:void 0,done:!0}}([i,c])}}};Object.defineProperty(t,"__esModule",{value:!0});var o="browser-tabs-lock-key";function i(e){return new Promise((function(t){return setTimeout(t,e)}))}function a(e){for(var t="0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz",n="",r=0;r<e;r++){n+=t[Math.floor(Math.random()*t.length)];}return n}var c=function(){function e(){this.acquiredIatSet=new Set,this.id=Date.now().toString()+a(15),this.acquireLock=this.acquireLock.bind(this),this.releaseLock=this.releaseLock.bind(this),this.releaseLock__private__=this.releaseLock__private__.bind(this),this.waitForSomethingToChange=this.waitForSomethingToChange.bind(this),this.refreshLockWhileAcquired=this.refreshLockWhileAcquired.bind(this),void 0===e.waiters&&(e.waiters=[]);}return e.prototype.acquireLock=function(t,c){return void 0===c&&(c=5e3),n(this,void 0,void 0,(function(){var n,s,u,l,f,d;return r(this,(function(r){switch(r.label){case 0:n=Date.now()+a(4),s=Date.now()+c,u=o+"-"+t,l=window.localStorage,r.label=1;case 1:return Date.now()<s?[4,i(30)]:[3,8];case 2:return r.sent(),null!==l.getItem(u)?[3,5]:(f=this.id+"-"+t+"-"+n,[4,i(Math.floor(25*Math.random()))]);case 3:return r.sent(),l.setItem(u,JSON.stringify({id:this.id,iat:n,timeoutKey:f,timeAcquired:Date.now(),timeRefreshed:Date.now()})),[4,i(30)];case 4:return r.sent(),null!==(d=l.getItem(u))&&(d=JSON.parse(d)).id===this.id&&d.iat===n?(this.acquiredIatSet.add(n),this.refreshLockWhileAcquired(u,n),[2,!0]):[3,7];case 5:return e.lockCorrector(),[4,this.waitForSomethingToChange(s)];case 6:r.sent(),r.label=7;case 7:return n=Date.now()+a(4),[3,1];case 8:return [2,!1]}}))}))},e.prototype.refreshLockWhileAcquired=function(e,t){return n(this,void 0,void 0,(function(){var o=this;return r(this,(function(i){return setTimeout((function(){return n(o,void 0,void 0,(function(){var n,o;return r(this,(function(r){switch(r.label){case 0:return [4,ia.default().lock(t)];case 1:return r.sent(),this.acquiredIatSet.has(t)?(n=window.localStorage,null===(o=n.getItem(e))?(ia.default().unlock(t),[2]):((o=JSON.parse(o)).timeRefreshed=Date.now(),n.setItem(e,JSON.stringify(o)),ia.default().unlock(t),this.refreshLockWhileAcquired(e,t),[2])):(ia.default().unlock(t),[2])}}))}))}),1e3),[2]}))}))},e.prototype.waitForSomethingToChange=function(t){return n(this,void 0,void 0,(function(){return r(this,(function(n){switch(n.label){case 0:return [4,new Promise((function(n){var r=!1,o=Date.now(),i=!1;function a(){if(i||(window.removeEventListener("storage",a),e.removeFromWaiting(a),clearTimeout(c),i=!0),!r){r=!0;var t=50-(Date.now()-o);t>0?setTimeout(n,t):n();}}window.addEventListener("storage",a),e.addToWaiting(a);var c=setTimeout(a,Math.max(0,t-Date.now()));}))];case 1:return n.sent(),[2]}}))}))},e.addToWaiting=function(t){this.removeFromWaiting(t),void 0!==e.waiters&&e.waiters.push(t);},e.removeFromWaiting=function(t){void 0!==e.waiters&&(e.waiters=e.waiters.filter((function(e){return e!==t})));},e.notifyWaiters=function(){void 0!==e.waiters&&e.waiters.slice().forEach((function(e){return e()}));},e.prototype.releaseLock=function(e){return n(this,void 0,void 0,(function(){return r(this,(function(t){switch(t.label){case 0:return [4,this.releaseLock__private__(e)];case 1:return [2,t.sent()]}}))}))},e.prototype.releaseLock__private__=function(t){return n(this,void 0,void 0,(function(){var n,i,a;return r(this,(function(r){switch(r.label){case 0:return n=window.localStorage,i=o+"-"+t,null===(a=n.getItem(i))?[2]:(a=JSON.parse(a)).id!==this.id?[3,2]:[4,ia.default().lock(a.iat)];case 1:r.sent(),this.acquiredIatSet.delete(a.iat),n.removeItem(i),ia.default().unlock(a.iat),e.notifyWaiters(),r.label=2;case 2:return [2]}}))}))},e.lockCorrector=function(){for(var t=Date.now()-5e3,n=window.localStorage,r=Object.keys(n),i=!1,a=0;a<r.length;a++){var c=r[a];if(c.includes(o)){var s=n.getItem(c);null!==s&&(void 0===(s=JSON.parse(s)).timeRefreshed&&s.timeAcquired<t||void 0!==s.timeRefreshed&&s.timeRefreshed<t)&&(n.removeItem(c),i=!0);}}i&&e.notifyWaiters();},e.waiters=void 0,e}();t.default=c;}))),ca={timeoutInSeconds:60},sa=["login_required","consent_required","interaction_required","account_selection_required","access_denied"],ua={name:"auth0-spa-js",version:"1.19.4"},la=function(){return Date.now()},fa=function(e){function n(t,r){var o=e.call(this,r)||this;return o.error=t,o.error_description=r,Object.setPrototypeOf(o,n.prototype),o}return t(n,e),n.fromPayload=function(e){return new n(e.error,e.error_description)},n}(Error),da=function(e){function n(t,r,o,i){void 0===i&&(i=null);var a=e.call(this,t,r)||this;return a.state=o,a.appState=i,Object.setPrototypeOf(a,n.prototype),a}return t(n,e),n}(fa),ha=function(e){function n(){var t=e.call(this,"timeout","Timeout")||this;return Object.setPrototypeOf(t,n.prototype),t}return t(n,e),n}(fa),pa=function(e){function n(t){var r=e.call(this)||this;return r.popup=t,Object.setPrototypeOf(r,n.prototype),r}return t(n,e),n}(ha),ya=function(e){function n(t){var r=e.call(this,"cancelled","Popup closed")||this;return r.popup=t,Object.setPrototypeOf(r,n.prototype),r}return t(n,e),n}(fa),va=function(e){function n(t,r,o){var i=e.call(this,t,r)||this;return i.mfa_token=o,Object.setPrototypeOf(i,n.prototype),i}return t(n,e),n}(fa),ma=function(e){return new Promise((function(t,n){var r,o=setInterval((function(){e.popup&&e.popup.closed&&(clearInterval(o),clearTimeout(i),window.removeEventListener("message",r,!1),n(new ya(e.popup)));}),1e3),i=setTimeout((function(){clearInterval(o),n(new pa(e.popup)),window.removeEventListener("message",r,!1);}),1e3*(e.timeoutInSeconds||60));r=function(a){if(a.data&&"authorization_response"===a.data.type){if(clearTimeout(i),clearInterval(o),window.removeEventListener("message",r,!1),e.popup.close(),a.data.response.error)return n(fa.fromPayload(a.data.response));t(a.data.response);}},window.addEventListener("message",r);}))},ga=function(){return window.crypto||window.msCrypto},ba=function(){var e=ga();return e.subtle||e.webkitSubtle},wa=function(){var e="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_~.",t="";return Array.from(ga().getRandomValues(new Uint8Array(43))).forEach((function(n){return t+=e[n%e.length]})),t},Sa=function(e){return btoa(e)},_a=function(e){return Object.keys(e).filter((function(t){return void 0!==e[t]})).map((function(t){return encodeURIComponent(t)+"="+encodeURIComponent(e[t])})).join("&")},ka=function(e){return o(void 0,void 0,void 0,(function(){var t;return i$1(this,(function(n){switch(n.label){case 0:return t=ba().digest({name:"SHA-256"},(new TextEncoder).encode(e)),window.msCrypto?[2,new Promise((function(e,n){t.oncomplete=function(t){e(t.target.result);},t.onerror=function(e){n(e.error);},t.onabort=function(){n("The digest operation was aborted");};}))]:[4,t];case 1:return [2,n.sent()]}}))}))},Ia=function(e){return function(e){return decodeURIComponent(atob(e).split("").map((function(e){return "%"+("00"+e.charCodeAt(0).toString(16)).slice(-2)})).join(""))}(e.replace(/_/g,"/").replace(/-/g,"+"))},Ta=function(e){var t=new Uint8Array(e);return function(e){var t={"+":"-","/":"_","=":""};return e.replace(/[+/=]/g,(function(e){return t[e]}))}(window.btoa(String.fromCharCode.apply(String,c([],a(Array.from(t)),!1))))};var Oa=function(e,t){return o(void 0,void 0,void 0,(function(){var n,r;return i$1(this,(function(o){switch(o.label){case 0:return [4,(i=e,a=t,a=a||{},new Promise((function(e,t){var n=new XMLHttpRequest,r=[],o=[],c={},s=function(){return {ok:2==(n.status/100|0),statusText:n.statusText,status:n.status,url:n.responseURL,text:function(){return Promise.resolve(n.responseText)},json:function(){return Promise.resolve(n.responseText).then(JSON.parse)},blob:function(){return Promise.resolve(new Blob([n.response]))},clone:s,headers:{keys:function(){return r},entries:function(){return o},get:function(e){return c[e.toLowerCase()]},has:function(e){return e.toLowerCase()in c}}}};for(var u in n.open(a.method||"get",i,!0),n.onload=function(){n.getAllResponseHeaders().replace(/^(.*?):[^\S\n]*([\s\S]*?)$/gm,(function(e,t,n){r.push(t=t.toLowerCase()),o.push([t,n]),c[t]=c[t]?c[t]+","+n:n;})),e(s());},n.onerror=t,n.withCredentials="include"==a.credentials,a.headers)n.setRequestHeader(u,a.headers[u]);n.send(a.body||null);})))];case 1:return n=o.sent(),r={ok:n.ok},[4,n.json()];case 2:return [2,(r.json=o.sent(),r)]}var i,a;}))}))},Ea=function(e,t,n){return o(void 0,void 0,void 0,(function(){var r,o;return i$1(this,(function(i){return r=new AbortController,t.signal=r.signal,[2,Promise.race([Oa(e,t),new Promise((function(e,t){o=setTimeout((function(){r.abort(),t(new Error("Timeout when executing 'fetch'"));}),n);}))]).finally((function(){clearTimeout(o);}))]}))}))},xa=function(e,t,n,r,a,c,s){return o(void 0,void 0,void 0,(function(){return i$1(this,(function(o){return [2,(i={auth:{audience:t,scope:n},timeout:a,fetchUrl:e,fetchOptions:r,useFormData:s},u=c,new Promise((function(e,t){var n=new MessageChannel;n.port1.onmessage=function(n){n.data.error?t(new Error(n.data.error)):e(n.data);},u.postMessage(i,[n.port2]);})))];var i,u;}))}))},Ca=function(e,t,n,r,a,c,s){return void 0===s&&(s=1e4),o(void 0,void 0,void 0,(function(){return i$1(this,(function(o){return a?[2,xa(e,t,n,r,s,a,c)]:[2,Ea(e,r,s)]}))}))};function Ra(e,t,n,a,c,s,u){return o(this,void 0,void 0,(function(){var o,l,f,d,h,p,y,v,m;return i$1(this,(function(i){switch(i.label){case 0:o=null,f=0,i.label=1;case 1:if(!(f<3))return [3,6];i.label=2;case 2:return i.trys.push([2,4,,5]),[4,Ca(e,n,a,c,s,u,t)];case 3:return l=i.sent(),o=null,[3,6];case 4:return d=i.sent(),o=d,[3,5];case 5:return f++,[3,1];case 6:if(o)throw o.message=o.message||"Failed to fetch",o;if(h=l.json,p=h.error,y=h.error_description,v=r(h,["error","error_description"]),!l.ok){if(m=y||"HTTP error. Unable to fetch "+e,"mfa_required"===p)throw new va(p,m,v.mfa_token);throw new fa(p||"request_error",m)}return [2,v]}}))}))}function Fa(e,t){var n=e.baseUrl,a=e.timeout,c=e.audience,s=e.scope,u=e.auth0Client,l=e.useFormData,f=r(e,["baseUrl","timeout","audience","scope","auth0Client","useFormData"]);return o(this,void 0,void 0,(function(){var e;return i$1(this,(function(r){switch(r.label){case 0:return e=l?_a(f):JSON.stringify(f),[4,Ra(n+"/oauth/token",a,c||"default",s,{method:"POST",body:e,headers:{"Content-Type":l?"application/x-www-form-urlencoded":"application/json","Auth0-Client":btoa(JSON.stringify(u||ua))}},t,l)];case 1:return [2,r.sent()]}}))}))}var Aa=function(e){return Array.from(new Set(e))},ja=function(){for(var e=[],t=0;t<arguments.length;t++)e[t]=arguments[t];return Aa(e.join(" ").trim().split(/\s+/)).join(" ")},Ua=function(){function e(e,t){void 0===t&&(t="@@auth0spajs@@"),this.prefix=t,this.client_id=e.client_id,this.scope=e.scope,this.audience=e.audience;}return e.prototype.toKey=function(){return this.prefix+"::"+this.client_id+"::"+this.audience+"::"+this.scope},e.fromKey=function(t){var n=a(t.split("::"),4),r=n[0],o=n[1],i=n[2];return new e({client_id:o,scope:n[3],audience:i},r)},e.fromCacheEntry=function(t){return new e({scope:t.scope,audience:t.audience,client_id:t.client_id})},e}(),Ka=function(){function e(){}return e.prototype.set=function(e,t){localStorage.setItem(e,JSON.stringify(t));},e.prototype.get=function(e){var t=window.localStorage.getItem(e);if(t)try{return JSON.parse(t)}catch(e){return}},e.prototype.remove=function(e){localStorage.removeItem(e);},e.prototype.allKeys=function(){return Object.keys(window.localStorage).filter((function(e){return e.startsWith("@@auth0spajs@@")}))},e}(),Pa=function(){var e;this.enclosedCache=(e={},{set:function(t,n){e[t]=n;},get:function(t){var n=e[t];if(n)return n},remove:function(t){delete e[t];},allKeys:function(){return Object.keys(e)}});},La=function(){function e(e,t,n){this.cache=e,this.keyManifest=t,this.nowProvider=n,this.nowProvider=this.nowProvider||la;}return e.prototype.get=function(e,t){var n;return void 0===t&&(t=0),o(this,void 0,void 0,(function(){var r,o,a,c,s;return i$1(this,(function(i){switch(i.label){case 0:return [4,this.cache.get(e.toKey())];case 1:return (r=i.sent())?[3,4]:[4,this.getCacheKeys()];case 2:return (o=i.sent())?(a=this.matchExistingCacheKey(e,o),[4,this.cache.get(a)]):[2];case 3:r=i.sent(),i.label=4;case 4:return r?[4,this.nowProvider()]:[2];case 5:return c=i.sent(),s=Math.floor(c/1e3),r.expiresAt-t<s?r.body.refresh_token?(r.body={refresh_token:r.body.refresh_token},[4,this.cache.set(e.toKey(),r)]):[3,7]:[3,10];case 6:return i.sent(),[2,r.body];case 7:return [4,this.cache.remove(e.toKey())];case 8:return i.sent(),[4,null===(n=this.keyManifest)||void 0===n?void 0:n.remove(e.toKey())];case 9:return i.sent(),[2];case 10:return [2,r.body]}}))}))},e.prototype.set=function(e){var t;return o(this,void 0,void 0,(function(){var n,r;return i$1(this,(function(o){switch(o.label){case 0:return n=new Ua({client_id:e.client_id,scope:e.scope,audience:e.audience}),[4,this.wrapCacheEntry(e)];case 1:return r=o.sent(),[4,this.cache.set(n.toKey(),r)];case 2:return o.sent(),[4,null===(t=this.keyManifest)||void 0===t?void 0:t.add(n.toKey())];case 3:return o.sent(),[2]}}))}))},e.prototype.clear=function(e){var t;return o(this,void 0,void 0,(function(){var n,r=this;return i$1(this,(function(a){switch(a.label){case 0:return [4,this.getCacheKeys()];case 1:return (n=a.sent())?[4,n.filter((function(t){return !e||t.includes(e)})).reduce((function(e,t){return o(r,void 0,void 0,(function(){return i$1(this,(function(n){switch(n.label){case 0:return [4,e];case 1:return n.sent(),[4,this.cache.remove(t)];case 2:return n.sent(),[2]}}))}))}),Promise.resolve())]:[2];case 2:return a.sent(),[4,null===(t=this.keyManifest)||void 0===t?void 0:t.clear()];case 3:return a.sent(),[2]}}))}))},e.prototype.clearSync=function(e){var t=this,n=this.cache.allKeys();n&&n.filter((function(t){return !e||t.includes(e)})).forEach((function(e){t.cache.remove(e);}));},e.prototype.wrapCacheEntry=function(e){return o(this,void 0,void 0,(function(){var t,n,r;return i$1(this,(function(o){switch(o.label){case 0:return [4,this.nowProvider()];case 1:return t=o.sent(),n=Math.floor(t/1e3)+e.expires_in,r=Math.min(n,e.decodedToken.claims.exp),[2,{body:e,expiresAt:r}]}}))}))},e.prototype.getCacheKeys=function(){var e;return o(this,void 0,void 0,(function(){var t;return i$1(this,(function(n){switch(n.label){case 0:return this.keyManifest?[4,this.keyManifest.get()]:[3,2];case 1:return t=null===(e=n.sent())||void 0===e?void 0:e.keys,[3,4];case 2:return [4,this.cache.allKeys()];case 3:t=n.sent(),n.label=4;case 4:return [2,t]}}))}))},e.prototype.matchExistingCacheKey=function(e,t){return t.filter((function(t){var n=Ua.fromKey(t),r=new Set(n.scope&&n.scope.split(" ")),o=e.scope.split(" "),i=n.scope&&o.reduce((function(e,t){return e&&r.has(t)}),!0);return "@@auth0spajs@@"===n.prefix&&n.client_id===e.client_id&&n.audience===e.audience&&i}))[0]},e}(),Wa=function(){function e(e,t){this.storage=e,this.clientId=t,this.storageKey="a0.spajs.txs."+this.clientId,this.transaction=this.storage.get(this.storageKey);}return e.prototype.create=function(e){this.transaction=e,this.storage.save(this.storageKey,e,{daysUntilExpire:1});},e.prototype.get=function(){return this.transaction},e.prototype.remove=function(){delete this.transaction,this.storage.remove(this.storageKey);},e}(),Za=function(e){return "number"==typeof e},Va=["iss","aud","exp","nbf","iat","jti","azp","nonce","auth_time","at_hash","c_hash","acr","amr","sub_jwk","cnf","sip_from_tag","sip_date","sip_callid","sip_cseq_num","sip_via_branch","orig","dest","mky","events","toe","txn","rph","sid","vot","vtm"],Na=function(e){if(!e.id_token)throw new Error("ID token is required but missing");var t=function(e){var t=e.split("."),n=a(t,3),r=n[0],o=n[1],i=n[2];if(3!==t.length||!r||!o||!i)throw new Error("ID token could not be decoded");var c=JSON.parse(Ia(o)),s={__raw:e},u={};return Object.keys(c).forEach((function(e){s[e]=c[e],Va.includes(e)||(u[e]=c[e]);})),{encoded:{header:r,payload:o,signature:i},header:JSON.parse(Ia(r)),claims:s,user:u}}(e.id_token);if(!t.claims.iss)throw new Error("Issuer (iss) claim must be a string present in the ID token");if(t.claims.iss!==e.iss)throw new Error('Issuer (iss) claim mismatch in the ID token; expected "'+e.iss+'", found "'+t.claims.iss+'"');if(!t.user.sub)throw new Error("Subject (sub) claim must be a string present in the ID token");if("RS256"!==t.header.alg)throw new Error('Signature algorithm of "'+t.header.alg+'" is not supported. Expected the ID token to be signed with "RS256".');if(!t.claims.aud||"string"!=typeof t.claims.aud&&!Array.isArray(t.claims.aud))throw new Error("Audience (aud) claim must be a string or array of strings present in the ID token");if(Array.isArray(t.claims.aud)){if(!t.claims.aud.includes(e.aud))throw new Error('Audience (aud) claim mismatch in the ID token; expected "'+e.aud+'" but was not one of "'+t.claims.aud.join(", ")+'"');if(t.claims.aud.length>1){if(!t.claims.azp)throw new Error("Authorized Party (azp) claim must be a string present in the ID token when Audience (aud) claim has multiple values");if(t.claims.azp!==e.aud)throw new Error('Authorized Party (azp) claim mismatch in the ID token; expected "'+e.aud+'", found "'+t.claims.azp+'"')}}else if(t.claims.aud!==e.aud)throw new Error('Audience (aud) claim mismatch in the ID token; expected "'+e.aud+'" but found "'+t.claims.aud+'"');if(e.nonce){if(!t.claims.nonce)throw new Error("Nonce (nonce) claim must be a string present in the ID token");if(t.claims.nonce!==e.nonce)throw new Error('Nonce (nonce) claim mismatch in the ID token; expected "'+e.nonce+'", found "'+t.claims.nonce+'"')}if(e.max_age&&!Za(t.claims.auth_time))throw new Error("Authentication Time (auth_time) claim must be a number present in the ID token when Max Age (max_age) is specified");if(!Za(t.claims.exp))throw new Error("Expiration Time (exp) claim must be a number present in the ID token");if(!Za(t.claims.iat))throw new Error("Issued At (iat) claim must be a number present in the ID token");var n=e.leeway||60,r=new Date(e.now||Date.now()),o=new Date(0),i=new Date(0),c=new Date(0);if(c.setUTCSeconds(parseInt(t.claims.auth_time)+e.max_age+n),o.setUTCSeconds(t.claims.exp+n),i.setUTCSeconds(t.claims.nbf-n),r>o)throw new Error("Expiration Time (exp) claim error in the ID token; current time ("+r+") is after expiration time ("+o+")");if(Za(t.claims.nbf)&&r<i)throw new Error("Not Before time (nbf) claim in the ID token indicates that this token can't be used just yet. Currrent time ("+r+") is before "+i);if(Za(t.claims.auth_time)&&r>c)throw new Error("Authentication Time (auth_time) claim in the ID token indicates that too much time has passed since the last end-user authentication. Currrent time ("+r+") is after last auth at "+c);if(e.organizationId){if(!t.claims.org_id)throw new Error("Organization ID (org_id) claim must be a string present in the ID token");if(e.organizationId!==t.claims.org_id)throw new Error('Organization ID (org_id) claim mismatch in the ID token; expected "'+e.organizationId+'", found "'+t.claims.org_id+'"')}return t},Xa=l((function(e,t){var n=s&&s.__assign||function(){return (n=Object.assign||function(e){for(var t,n=1,r=arguments.length;n<r;n++)for(var o in t=arguments[n])Object.prototype.hasOwnProperty.call(t,o)&&(e[o]=t[o]);return e}).apply(this,arguments)};function r(e,t){if(!t)return "";var n="; "+e;return !0===t?n:n+"="+t}function o(e,t,n){return encodeURIComponent(e).replace(/%(23|24|26|2B|5E|60|7C)/g,decodeURIComponent).replace(/\(/g,"%28").replace(/\)/g,"%29")+"="+encodeURIComponent(t).replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g,decodeURIComponent)+function(e){if("number"==typeof e.expires){var t=new Date;t.setMilliseconds(t.getMilliseconds()+864e5*e.expires),e.expires=t;}return r("Expires",e.expires?e.expires.toUTCString():"")+r("Domain",e.domain)+r("Path",e.path)+r("Secure",e.secure)+r("SameSite",e.sameSite)}(n)}function i(e){for(var t={},n=e?e.split("; "):[],r=/(%[\dA-F]{2})+/gi,o=0;o<n.length;o++){var i=n[o].split("="),a=i.slice(1).join("=");'"'===a.charAt(0)&&(a=a.slice(1,-1));try{t[i[0].replace(r,decodeURIComponent)]=a.replace(r,decodeURIComponent);}catch(e){}}return t}function a(){return i(document.cookie)}function c(e,t,r){document.cookie=o(e,t,n({path:"/"},r));}t.__esModule=!0,t.encode=o,t.parse=i,t.getAll=a,t.get=function(e){return a()[e]},t.set=c,t.remove=function(e,t){c(e,"",n(n({},t),{expires:-1}));};}));u(Xa),Xa.encode,Xa.parse,Xa.getAll;var Da=Xa.get,za=Xa.set,Ya=Xa.remove,Ja={get:function(e){var t=Da(e);if(void 0!==t)return JSON.parse(t)},save:function(e,t,n){var r={};"https:"===window.location.protocol&&(r={secure:!0,sameSite:"none"}),(null==n?void 0:n.daysUntilExpire)&&(r.expires=n.daysUntilExpire),za(e,JSON.stringify(t),r);},remove:function(e){Ya(e);}},Ba={get:function(e){var t=Ja.get(e);return t||Ja.get("_legacy_"+e)},save:function(e,t,n){var r={};"https:"===window.location.protocol&&(r={secure:!0}),(null==n?void 0:n.daysUntilExpire)&&(r.expires=n.daysUntilExpire),za("_legacy_"+e,JSON.stringify(t),r),Ja.save(e,t,n);},remove:function(e){Ja.remove(e),Ja.remove("_legacy_"+e);}},Ga={get:function(e){if("undefined"!=typeof sessionStorage){var t=sessionStorage.getItem(e);if(void 0!==t)return JSON.parse(t)}},save:function(e,t){sessionStorage.setItem(e,JSON.stringify(t));},remove:function(e){sessionStorage.removeItem(e);}};function Ma(e,t,n){var r=void 0===t?null:t,o=function(e,t){var n=atob(e);if(t){for(var r=new Uint8Array(n.length),o=0,i=n.length;o<i;++o)r[o]=n.charCodeAt(o);return String.fromCharCode.apply(null,new Uint16Array(r.buffer))}return n}(e,void 0!==n&&n),i=o.indexOf("\n",10)+1,a=o.substring(i)+(r?"//# sourceMappingURL="+r:""),c=new Blob([a],{type:"application/javascript"});return URL.createObjectURL(c)}var Ha,qa,Qa,$a,ec=(Ha="Lyogcm9sbHVwLXBsdWdpbi13ZWItd29ya2VyLWxvYWRlciAqLwohZnVuY3Rpb24oKXsidXNlIHN0cmljdCI7Ci8qISAqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKgogICAgQ29weXJpZ2h0IChjKSBNaWNyb3NvZnQgQ29ycG9yYXRpb24uCgogICAgUGVybWlzc2lvbiB0byB1c2UsIGNvcHksIG1vZGlmeSwgYW5kL29yIGRpc3RyaWJ1dGUgdGhpcyBzb2Z0d2FyZSBmb3IgYW55CiAgICBwdXJwb3NlIHdpdGggb3Igd2l0aG91dCBmZWUgaXMgaGVyZWJ5IGdyYW50ZWQuCgogICAgVEhFIFNPRlRXQVJFIElTIFBST1ZJREVEICJBUyBJUyIgQU5EIFRIRSBBVVRIT1IgRElTQ0xBSU1TIEFMTCBXQVJSQU5USUVTIFdJVEgKICAgIFJFR0FSRCBUTyBUSElTIFNPRlRXQVJFIElOQ0xVRElORyBBTEwgSU1QTElFRCBXQVJSQU5USUVTIE9GIE1FUkNIQU5UQUJJTElUWQogICAgQU5EIEZJVE5FU1MuIElOIE5PIEVWRU5UIFNIQUxMIFRIRSBBVVRIT1IgQkUgTElBQkxFIEZPUiBBTlkgU1BFQ0lBTCwgRElSRUNULAogICAgSU5ESVJFQ1QsIE9SIENPTlNFUVVFTlRJQUwgREFNQUdFUyBPUiBBTlkgREFNQUdFUyBXSEFUU09FVkVSIFJFU1VMVElORyBGUk9NCiAgICBMT1NTIE9GIFVTRSwgREFUQSBPUiBQUk9GSVRTLCBXSEVUSEVSIElOIEFOIEFDVElPTiBPRiBDT05UUkFDVCwgTkVHTElHRU5DRSBPUgogICAgT1RIRVIgVE9SVElPVVMgQUNUSU9OLCBBUklTSU5HIE9VVCBPRiBPUiBJTiBDT05ORUNUSU9OIFdJVEggVEhFIFVTRSBPUgogICAgUEVSRk9STUFOQ0UgT0YgVEhJUyBTT0ZUV0FSRS4KICAgICoqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqICovdmFyIGU9ZnVuY3Rpb24oKXtyZXR1cm4oZT1PYmplY3QuYXNzaWdufHxmdW5jdGlvbihlKXtmb3IodmFyIHIsdD0xLG49YXJndW1lbnRzLmxlbmd0aDt0PG47dCsrKWZvcih2YXIgbyBpbiByPWFyZ3VtZW50c1t0XSlPYmplY3QucHJvdG90eXBlLmhhc093blByb3BlcnR5LmNhbGwocixvKSYmKGVbb109cltvXSk7cmV0dXJuIGV9KS5hcHBseSh0aGlzLGFyZ3VtZW50cyl9O2Z1bmN0aW9uIHIoZSxyLHQsbil7cmV0dXJuIG5ldyh0fHwodD1Qcm9taXNlKSkoKGZ1bmN0aW9uKG8sYSl7ZnVuY3Rpb24gcyhlKXt0cnl7dShuLm5leHQoZSkpfWNhdGNoKGUpe2EoZSl9fWZ1bmN0aW9uIGkoZSl7dHJ5e3Uobi50aHJvdyhlKSl9Y2F0Y2goZSl7YShlKX19ZnVuY3Rpb24gdShlKXt2YXIgcjtlLmRvbmU/byhlLnZhbHVlKToocj1lLnZhbHVlLHIgaW5zdGFuY2VvZiB0P3I6bmV3IHQoKGZ1bmN0aW9uKGUpe2Uocil9KSkpLnRoZW4ocyxpKX11KChuPW4uYXBwbHkoZSxyfHxbXSkpLm5leHQoKSl9KSl9ZnVuY3Rpb24gdChlLHIpe3ZhciB0LG4sbyxhLHM9e2xhYmVsOjAsc2VudDpmdW5jdGlvbigpe2lmKDEmb1swXSl0aHJvdyBvWzFdO3JldHVybiBvWzFdfSx0cnlzOltdLG9wczpbXX07cmV0dXJuIGE9e25leHQ6aSgwKSx0aHJvdzppKDEpLHJldHVybjppKDIpfSwiZnVuY3Rpb24iPT10eXBlb2YgU3ltYm9sJiYoYVtTeW1ib2wuaXRlcmF0b3JdPWZ1bmN0aW9uKCl7cmV0dXJuIHRoaXN9KSxhO2Z1bmN0aW9uIGkoYSl7cmV0dXJuIGZ1bmN0aW9uKGkpe3JldHVybiBmdW5jdGlvbihhKXtpZih0KXRocm93IG5ldyBUeXBlRXJyb3IoIkdlbmVyYXRvciBpcyBhbHJlYWR5IGV4ZWN1dGluZy4iKTtmb3IoO3M7KXRyeXtpZih0PTEsbiYmKG89MiZhWzBdP24ucmV0dXJuOmFbMF0/bi50aHJvd3x8KChvPW4ucmV0dXJuKSYmby5jYWxsKG4pLDApOm4ubmV4dCkmJiEobz1vLmNhbGwobixhWzFdKSkuZG9uZSlyZXR1cm4gbztzd2l0Y2gobj0wLG8mJihhPVsyJmFbMF0sby52YWx1ZV0pLGFbMF0pe2Nhc2UgMDpjYXNlIDE6bz1hO2JyZWFrO2Nhc2UgNDpyZXR1cm4gcy5sYWJlbCsrLHt2YWx1ZTphWzFdLGRvbmU6ITF9O2Nhc2UgNTpzLmxhYmVsKyssbj1hWzFdLGE9WzBdO2NvbnRpbnVlO2Nhc2UgNzphPXMub3BzLnBvcCgpLHMudHJ5cy5wb3AoKTtjb250aW51ZTtkZWZhdWx0OmlmKCEobz1zLnRyeXMsKG89by5sZW5ndGg+MCYmb1tvLmxlbmd0aC0xXSl8fDYhPT1hWzBdJiYyIT09YVswXSkpe3M9MDtjb250aW51ZX1pZigzPT09YVswXSYmKCFvfHxhWzFdPm9bMF0mJmFbMV08b1szXSkpe3MubGFiZWw9YVsxXTticmVha31pZig2PT09YVswXSYmcy5sYWJlbDxvWzFdKXtzLmxhYmVsPW9bMV0sbz1hO2JyZWFrfWlmKG8mJnMubGFiZWw8b1syXSl7cy5sYWJlbD1vWzJdLHMub3BzLnB1c2goYSk7YnJlYWt9b1syXSYmcy5vcHMucG9wKCkscy50cnlzLnBvcCgpO2NvbnRpbnVlfWE9ci5jYWxsKGUscyl9Y2F0Y2goZSl7YT1bNixlXSxuPTB9ZmluYWxseXt0PW89MH1pZig1JmFbMF0pdGhyb3cgYVsxXTtyZXR1cm57dmFsdWU6YVswXT9hWzFdOnZvaWQgMCxkb25lOiEwfX0oW2EsaV0pfX19dmFyIG49e30sbz1mdW5jdGlvbihlLHIpe3JldHVybiBlKyJ8IityfTthZGRFdmVudExpc3RlbmVyKCJtZXNzYWdlIiwoZnVuY3Rpb24oYSl7dmFyIHM9YS5kYXRhLGk9cy50aW1lb3V0LHU9cy5hdXRoLGM9cy5mZXRjaFVybCxmPXMuZmV0Y2hPcHRpb25zLGw9cy51c2VGb3JtRGF0YSxoPWZ1bmN0aW9uKGUscil7dmFyIHQ9ImZ1bmN0aW9uIj09dHlwZW9mIFN5bWJvbCYmZVtTeW1ib2wuaXRlcmF0b3JdO2lmKCF0KXJldHVybiBlO3ZhciBuLG8sYT10LmNhbGwoZSkscz1bXTt0cnl7Zm9yKDsodm9pZCAwPT09cnx8ci0tID4wKSYmIShuPWEubmV4dCgpKS5kb25lOylzLnB1c2gobi52YWx1ZSl9Y2F0Y2goZSl7bz17ZXJyb3I6ZX19ZmluYWxseXt0cnl7biYmIW4uZG9uZSYmKHQ9YS5yZXR1cm4pJiZ0LmNhbGwoYSl9ZmluYWxseXtpZihvKXRocm93IG8uZXJyb3J9fXJldHVybiBzfShhLnBvcnRzLDEpWzBdO3JldHVybiByKHZvaWQgMCx2b2lkIDAsdm9pZCAwLChmdW5jdGlvbigpe3ZhciByLGEscyxwLHksYixkLHYsdyxnO3JldHVybiB0KHRoaXMsKGZ1bmN0aW9uKHQpe3N3aXRjaCh0LmxhYmVsKXtjYXNlIDA6cz0oYT11fHx7fSkuYXVkaWVuY2UscD1hLnNjb3BlLHQubGFiZWw9MTtjYXNlIDE6aWYodC50cnlzLnB1c2goWzEsNywsOF0pLCEoeT1sPyhrPWYuYm9keSxTPW5ldyBVUkxTZWFyY2hQYXJhbXMoayksXz17fSxTLmZvckVhY2goKGZ1bmN0aW9uKGUscil7X1tyXT1lfSkpLF8pOkpTT04ucGFyc2UoZi5ib2R5KSkucmVmcmVzaF90b2tlbiYmInJlZnJlc2hfdG9rZW4iPT09eS5ncmFudF90eXBlKXtpZighKGI9ZnVuY3Rpb24oZSxyKXtyZXR1cm4gbltvKGUscildfShzLHApKSl0aHJvdyBuZXcgRXJyb3IoIlRoZSB3ZWIgd29ya2VyIGlzIG1pc3NpbmcgdGhlIHJlZnJlc2ggdG9rZW4iKTtmLmJvZHk9bD9uZXcgVVJMU2VhcmNoUGFyYW1zKGUoZSh7fSx5KSx7cmVmcmVzaF90b2tlbjpifSkpLnRvU3RyaW5nKCk6SlNPTi5zdHJpbmdpZnkoZShlKHt9LHkpLHtyZWZyZXNoX3Rva2VuOmJ9KSl9ZD12b2lkIDAsImZ1bmN0aW9uIj09dHlwZW9mIEFib3J0Q29udHJvbGxlciYmKGQ9bmV3IEFib3J0Q29udHJvbGxlcixmLnNpZ25hbD1kLnNpZ25hbCksdj12b2lkIDAsdC5sYWJlbD0yO2Nhc2UgMjpyZXR1cm4gdC50cnlzLnB1c2goWzIsNCwsNV0pLFs0LFByb21pc2UucmFjZShbKG09aSxuZXcgUHJvbWlzZSgoZnVuY3Rpb24oZSl7cmV0dXJuIHNldFRpbWVvdXQoZSxtKX0pKSksZmV0Y2goYyxlKHt9LGYpKV0pXTtjYXNlIDM6cmV0dXJuIHY9dC5zZW50KCksWzMsNV07Y2FzZSA0OnJldHVybiB3PXQuc2VudCgpLGgucG9zdE1lc3NhZ2Uoe2Vycm9yOncubWVzc2FnZX0pLFsyXTtjYXNlIDU6cmV0dXJuIHY/WzQsdi5qc29uKCldOihkJiZkLmFib3J0KCksaC5wb3N0TWVzc2FnZSh7ZXJyb3I6IlRpbWVvdXQgd2hlbiBleGVjdXRpbmcgJ2ZldGNoJyJ9KSxbMl0pO2Nhc2UgNjpyZXR1cm4ocj10LnNlbnQoKSkucmVmcmVzaF90b2tlbj8oZnVuY3Rpb24oZSxyLHQpe25bbyhyLHQpXT1lfShyLnJlZnJlc2hfdG9rZW4scyxwKSxkZWxldGUgci5yZWZyZXNoX3Rva2VuKTpmdW5jdGlvbihlLHIpe2RlbGV0ZSBuW28oZSxyKV19KHMscCksaC5wb3N0TWVzc2FnZSh7b2s6di5vayxqc29uOnJ9KSxbMyw4XTtjYXNlIDc6cmV0dXJuIGc9dC5zZW50KCksaC5wb3N0TWVzc2FnZSh7b2s6ITEsanNvbjp7ZXJyb3JfZGVzY3JpcHRpb246Zy5tZXNzYWdlfX0pLFszLDhdO2Nhc2UgODpyZXR1cm5bMl19dmFyIG0sayxTLF99KSl9KSl9KSl9KCk7Cgo=",qa=null,Qa=!1,function(e){return $a=$a||Ma(Ha,qa,Qa),new Worker($a,e)}),tc={},nc=function(){function e(e,t){this.cache=e,this.clientId=t,this.manifestKey=this.createManifestKeyFrom(this.clientId);}return e.prototype.add=function(e){var t;return o(this,void 0,void 0,(function(){var n,r;return i$1(this,(function(o){switch(o.label){case 0:return r=Set.bind,[4,this.cache.get(this.manifestKey)];case 1:return (n=new(r.apply(Set,[void 0,(null===(t=o.sent())||void 0===t?void 0:t.keys)||[]]))).add(e),[4,this.cache.set(this.manifestKey,{keys:c([],a(n),!1)})];case 2:return o.sent(),[2]}}))}))},e.prototype.remove=function(e){return o(this,void 0,void 0,(function(){var t,n;return i$1(this,(function(r){switch(r.label){case 0:return [4,this.cache.get(this.manifestKey)];case 1:return (t=r.sent())?((n=new Set(t.keys)).delete(e),n.size>0?[4,this.cache.set(this.manifestKey,{keys:c([],a(n),!1)})]:[3,3]):[3,5];case 2:return [2,r.sent()];case 3:return [4,this.cache.remove(this.manifestKey)];case 4:return [2,r.sent()];case 5:return [2]}}))}))},e.prototype.get=function(){return this.cache.get(this.manifestKey)},e.prototype.clear=function(){return this.cache.remove(this.manifestKey)},e.prototype.createManifestKeyFrom=function(e){return "@@auth0spajs@@::"+e},e}(),rc=new aa,oc={memory:function(){return (new Pa).enclosedCache},localstorage:function(){return new Ka}},ic=function(e){return oc[e]},ac=function(){return !/Trident.*rv:11\.0/.test(navigator.userAgent)},cc=function(){function e(e){var t,n,o;if(this.options=e,"undefined"!=typeof window&&function(){if(!ga())throw new Error("For security reasons, `window.crypto` is required to run `auth0-spa-js`.");if(void 0===ba())throw new Error("\n      auth0-spa-js must run on a secure origin. See https://github.com/auth0/auth0-spa-js/blob/master/FAQ.md#why-do-i-get-auth0-spa-js-must-run-on-a-secure-origin for more information.\n    ")}(),e.cache&&e.cacheLocation&&console.warn("Both `cache` and `cacheLocation` options have been specified in the Auth0Client configuration; ignoring `cacheLocation` and using `cache`."),e.cache)o=e.cache;else {if(this.cacheLocation=e.cacheLocation||"memory",!ic(this.cacheLocation))throw new Error('Invalid cache location "'+this.cacheLocation+'"');o=ic(this.cacheLocation)();}this.cookieStorage=!1===e.legacySameSiteCookie?Ja:Ba,this.orgHintCookieName="auth0."+this.options.client_id+".organization_hint",this.isAuthenticatedCookieName=function(e){return "auth0."+e+".is.authenticated"}(this.options.client_id),this.sessionCheckExpiryDays=e.sessionCheckExpiryDays||1;var i,a=e.useCookiesForTransactions?this.cookieStorage:Ga;this.scope=this.options.scope,this.transactionManager=new Wa(a,this.options.client_id),this.nowProvider=this.options.nowProvider||la,this.cacheManager=new La(o,o.allKeys?null:new nc(o,this.options.client_id),this.nowProvider),this.domainUrl=(i=this.options.domain,/^https?:\/\//.test(i)?i:"https://"+i),this.tokenIssuer=function(e,t){return e?e.startsWith("https://")?e:"https://"+e+"/":t+"/"}(this.options.issuer,this.domainUrl),this.defaultScope=ja("openid",void 0!==(null===(n=null===(t=this.options)||void 0===t?void 0:t.advancedOptions)||void 0===n?void 0:n.defaultScope)?this.options.advancedOptions.defaultScope:"openid profile email"),this.options.useRefreshTokens&&(this.scope=ja(this.scope,"offline_access")),"undefined"!=typeof window&&window.Worker&&this.options.useRefreshTokens&&"memory"===this.cacheLocation&&ac()&&(this.worker=new ec),this.customOptions=function(e){return e.advancedOptions,e.audience,e.auth0Client,e.authorizeTimeoutInSeconds,e.cacheLocation,e.client_id,e.domain,e.issuer,e.leeway,e.max_age,e.redirect_uri,e.scope,e.useRefreshTokens,e.useCookiesForTransactions,e.useFormData,r(e,["advancedOptions","audience","auth0Client","authorizeTimeoutInSeconds","cacheLocation","client_id","domain","issuer","leeway","max_age","redirect_uri","scope","useRefreshTokens","useCookiesForTransactions","useFormData"])}(e);}return e.prototype._url=function(e){var t=encodeURIComponent(btoa(JSON.stringify(this.options.auth0Client||ua)));return ""+this.domainUrl+e+"&auth0Client="+t},e.prototype._getParams=function(e,t,o,i,a){var c=this.options;c.useRefreshTokens,c.useCookiesForTransactions,c.useFormData,c.auth0Client,c.cacheLocation,c.advancedOptions,c.detailedResponse,c.nowProvider,c.authorizeTimeoutInSeconds,c.legacySameSiteCookie,c.sessionCheckExpiryDays,c.domain,c.leeway;var s=r(c,["useRefreshTokens","useCookiesForTransactions","useFormData","auth0Client","cacheLocation","advancedOptions","detailedResponse","nowProvider","authorizeTimeoutInSeconds","legacySameSiteCookie","sessionCheckExpiryDays","domain","leeway"]);return n(n(n({},s),e),{scope:ja(this.defaultScope,this.scope,e.scope),response_type:"code",response_mode:"query",state:t,nonce:o,redirect_uri:a||this.options.redirect_uri,code_challenge:i,code_challenge_method:"S256"})},e.prototype._authorizeUrl=function(e){return this._url("/authorize?"+_a(e))},e.prototype._verifyIdToken=function(e,t,n){return o(this,void 0,void 0,(function(){var r;return i$1(this,(function(o){switch(o.label){case 0:return [4,this.nowProvider()];case 1:return r=o.sent(),[2,Na({iss:this.tokenIssuer,aud:this.options.client_id,id_token:e,nonce:t,organizationId:n,leeway:this.options.leeway,max_age:this._parseNumber(this.options.max_age),now:r})]}}))}))},e.prototype._parseNumber=function(e){return "string"!=typeof e?e:parseInt(e,10)||void 0},e.prototype._processOrgIdHint=function(e){e?this.cookieStorage.save(this.orgHintCookieName,e,{daysUntilExpire:this.sessionCheckExpiryDays}):this.cookieStorage.remove(this.orgHintCookieName);},e.prototype.buildAuthorizeUrl=function(e){return void 0===e&&(e={}),o(this,void 0,void 0,(function(){var t,o,a,c,s,u,l,f,d,h,p,y;return i$1(this,(function(i){switch(i.label){case 0:return t=e.redirect_uri,o=e.appState,a=r(e,["redirect_uri","appState"]),c=Sa(wa()),s=Sa(wa()),u=wa(),[4,ka(u)];case 1:return l=i.sent(),f=Ta(l),d=e.fragment?"#"+e.fragment:"",h=this._getParams(a,c,s,f,t),p=this._authorizeUrl(h),y=e.organization||this.options.organization,this.transactionManager.create(n({nonce:s,code_verifier:u,appState:o,scope:h.scope,audience:h.audience||"default",redirect_uri:h.redirect_uri,state:c},y&&{organizationId:y})),[2,p+d]}}))}))},e.prototype.loginWithPopup=function(e,t){return o(this,void 0,void 0,(function(){var o,a,c,s,u,l,f,d,h,p,y,v,m;return i$1(this,(function(i){switch(i.label){case 0:return e=e||{},(t=t||{}).popup||(t.popup=function(e){var t=window.screenX+(window.innerWidth-400)/2,n=window.screenY+(window.innerHeight-600)/2;return window.open(e,"auth0:authorize:popup","left="+t+",top="+n+",width=400,height=600,resizable,scrollbars=yes,status=1")}("")),o=r(e,[]),a=Sa(wa()),c=Sa(wa()),s=wa(),[4,ka(s)];case 1:return u=i.sent(),l=Ta(u),f=this._getParams(o,a,c,l,this.options.redirect_uri||window.location.origin),d=this._authorizeUrl(n(n({},f),{response_mode:"web_message"})),t.popup.location.href=d,[4,ma(n(n({},t),{timeoutInSeconds:t.timeoutInSeconds||this.options.authorizeTimeoutInSeconds||60}))];case 2:if(h=i.sent(),a!==h.state)throw new Error("Invalid state");return [4,Fa({audience:f.audience,scope:f.scope,baseUrl:this.domainUrl,client_id:this.options.client_id,code_verifier:s,code:h.code,grant_type:"authorization_code",redirect_uri:f.redirect_uri,auth0Client:this.options.auth0Client,useFormData:this.options.useFormData},this.worker)];case 3:return p=i.sent(),y=e.organization||this.options.organization,[4,this._verifyIdToken(p.id_token,c,y)];case 4:return v=i.sent(),m=n(n({},p),{decodedToken:v,scope:f.scope,audience:f.audience||"default",client_id:this.options.client_id}),[4,this.cacheManager.set(m)];case 5:return i.sent(),this.cookieStorage.save(this.isAuthenticatedCookieName,!0,{daysUntilExpire:this.sessionCheckExpiryDays}),this._processOrgIdHint(v.claims.org_id),[2]}}))}))},e.prototype.getUser=function(e){return void 0===e&&(e={}),o(this,void 0,void 0,(function(){var t,n,r;return i$1(this,(function(o){switch(o.label){case 0:return t=e.audience||this.options.audience||"default",n=ja(this.defaultScope,this.scope,e.scope),[4,this.cacheManager.get(new Ua({client_id:this.options.client_id,audience:t,scope:n}))];case 1:return [2,(r=o.sent())&&r.decodedToken&&r.decodedToken.user]}}))}))},e.prototype.getIdTokenClaims=function(e){return void 0===e&&(e={}),o(this,void 0,void 0,(function(){var t,n,r;return i$1(this,(function(o){switch(o.label){case 0:return t=e.audience||this.options.audience||"default",n=ja(this.defaultScope,this.scope,e.scope),[4,this.cacheManager.get(new Ua({client_id:this.options.client_id,audience:t,scope:n}))];case 1:return [2,(r=o.sent())&&r.decodedToken&&r.decodedToken.claims]}}))}))},e.prototype.loginWithRedirect=function(e){return void 0===e&&(e={}),o(this,void 0,void 0,(function(){var t,n,o;return i$1(this,(function(i){switch(i.label){case 0:return t=e.redirectMethod,n=r(e,["redirectMethod"]),[4,this.buildAuthorizeUrl(n)];case 1:return o=i.sent(),window.location[t||"assign"](o),[2]}}))}))},e.prototype.handleRedirectCallback=function(e){return void 0===e&&(e=window.location.href),o(this,void 0,void 0,(function(){var t,r,o,c,s,u,l,f,d,h;return i$1(this,(function(i){switch(i.label){case 0:if(0===(t=e.split("?").slice(1)).length)throw new Error("There are no query params available for parsing.");if(r=function(e){e.indexOf("#")>-1&&(e=e.substr(0,e.indexOf("#")));var t=e.split("&"),n={};return t.forEach((function(e){var t=a(e.split("="),2),r=t[0],o=t[1];n[r]=decodeURIComponent(o);})),n.expires_in&&(n.expires_in=parseInt(n.expires_in)),n}(t.join("")),o=r.state,c=r.code,s=r.error,u=r.error_description,!(l=this.transactionManager.get()))throw new Error("Invalid state");if(this.transactionManager.remove(),s)throw new da(s,u,o,l.appState);if(!l.code_verifier||l.state&&l.state!==o)throw new Error("Invalid state");return f={audience:l.audience,scope:l.scope,baseUrl:this.domainUrl,client_id:this.options.client_id,code_verifier:l.code_verifier,grant_type:"authorization_code",code:c,auth0Client:this.options.auth0Client,useFormData:this.options.useFormData},void 0!==l.redirect_uri&&(f.redirect_uri=l.redirect_uri),[4,Fa(f,this.worker)];case 1:return d=i.sent(),[4,this._verifyIdToken(d.id_token,l.nonce,l.organizationId)];case 2:return h=i.sent(),[4,this.cacheManager.set(n(n(n(n({},d),{decodedToken:h,audience:l.audience,scope:l.scope}),d.scope?{oauthTokenScope:d.scope}:null),{client_id:this.options.client_id}))];case 3:return i.sent(),this.cookieStorage.save(this.isAuthenticatedCookieName,!0,{daysUntilExpire:this.sessionCheckExpiryDays}),this._processOrgIdHint(h.claims.org_id),[2,{appState:l.appState}]}}))}))},e.prototype.checkSession=function(e){return o(this,void 0,void 0,(function(){var t;return i$1(this,(function(n){switch(n.label){case 0:if(!this.cookieStorage.get(this.isAuthenticatedCookieName)){if(!this.cookieStorage.get("auth0.is.authenticated"))return [2];this.cookieStorage.save(this.isAuthenticatedCookieName,!0,{daysUntilExpire:this.sessionCheckExpiryDays}),this.cookieStorage.remove("auth0.is.authenticated");}n.label=1;case 1:return n.trys.push([1,3,,4]),[4,this.getTokenSilently(e)];case 2:return n.sent(),[3,4];case 3:if(t=n.sent(),!sa.includes(t.error))throw t;return [3,4];case 4:return [2]}}))}))},e.prototype.getTokenSilently=function(e){return void 0===e&&(e={}),o(this,void 0,void 0,(function(){var t,o,a,c=this;return i$1(this,(function(i){return t=n(n({audience:this.options.audience,ignoreCache:!1},e),{scope:ja(this.defaultScope,this.scope,e.scope)}),o=t.ignoreCache,a=r(t,["ignoreCache"]),[2,(s=function(){return c._getTokenSilently(n({ignoreCache:o},a))},u=this.options.client_id+"::"+a.audience+"::"+a.scope,l=tc[u],l||(l=s().finally((function(){delete tc[u],l=null;})),tc[u]=l),l)];var s,u,l;}))}))},e.prototype._getTokenSilently=function(e){return void 0===e&&(e={}),o(this,void 0,void 0,(function(){var t,a,c,s,u,l,f,d,h;return i$1(this,(function(p){switch(p.label){case 0:return t=e.ignoreCache,a=r(e,["ignoreCache"]),t?[3,2]:[4,this._getEntryFromCache({scope:a.scope,audience:a.audience||"default",client_id:this.options.client_id,getDetailedEntry:e.detailedResponse})];case 1:if(c=p.sent())return [2,c];p.label=2;case 2:return [4,(y=function(){return rc.acquireLock("auth0.lock.getTokenSilently",5e3)},v=10,void 0===v&&(v=3),o(void 0,void 0,void 0,(function(){var e;return i$1(this,(function(t){switch(t.label){case 0:e=0,t.label=1;case 1:return e<v?[4,y()]:[3,4];case 2:if(t.sent())return [2,!0];t.label=3;case 3:return e++,[3,1];case 4:return [2,!1]}}))})))];case 3:if(!p.sent())return [3,15];p.label=4;case 4:return p.trys.push([4,,12,14]),t?[3,6]:[4,this._getEntryFromCache({scope:a.scope,audience:a.audience||"default",client_id:this.options.client_id,getDetailedEntry:e.detailedResponse})];case 5:if(c=p.sent())return [2,c];p.label=6;case 6:return this.options.useRefreshTokens?[4,this._getTokenUsingRefreshToken(a)]:[3,8];case 7:return u=p.sent(),[3,10];case 8:return [4,this._getTokenFromIFrame(a)];case 9:u=p.sent(),p.label=10;case 10:return s=u,[4,this.cacheManager.set(n({client_id:this.options.client_id},s))];case 11:return p.sent(),this.cookieStorage.save(this.isAuthenticatedCookieName,!0,{daysUntilExpire:this.sessionCheckExpiryDays}),e.detailedResponse?(l=s.id_token,f=s.access_token,d=s.oauthTokenScope,h=s.expires_in,[2,n(n({id_token:l,access_token:f},d?{scope:d}:null),{expires_in:h})]):[2,s.access_token];case 12:return [4,rc.releaseLock("auth0.lock.getTokenSilently")];case 13:return p.sent(),[7];case 14:return [3,16];case 15:throw new ha;case 16:return [2]}var y,v;}))}))},e.prototype.getTokenWithPopup=function(e,t){return void 0===e&&(e={}),void 0===t&&(t={}),o(this,void 0,void 0,(function(){return i$1(this,(function(r){switch(r.label){case 0:return e.audience=e.audience||this.options.audience,e.scope=ja(this.defaultScope,this.scope,e.scope),t=n(n({},ca),t),[4,this.loginWithPopup(e,t)];case 1:return r.sent(),[4,this.cacheManager.get(new Ua({scope:e.scope,audience:e.audience||"default",client_id:this.options.client_id}))];case 2:return [2,r.sent().access_token]}}))}))},e.prototype.isAuthenticated=function(){return o(this,void 0,void 0,(function(){return i$1(this,(function(e){switch(e.label){case 0:return [4,this.getUser()];case 1:return [2,!!e.sent()]}}))}))},e.prototype.buildLogoutUrl=function(e){void 0===e&&(e={}),null!==e.client_id?e.client_id=e.client_id||this.options.client_id:delete e.client_id;var t=e.federated,n=r(e,["federated"]),o=t?"&federated":"";return this._url("/v2/logout?"+_a(n))+o},e.prototype.logout=function(e){var t=this;void 0===e&&(e={});var n=e.localOnly,o=r(e,["localOnly"]);if(n&&o.federated)throw new Error("It is invalid to set both the `federated` and `localOnly` options to `true`");var i=function(){if(t.cookieStorage.remove(t.orgHintCookieName),t.cookieStorage.remove(t.isAuthenticatedCookieName),!n){var e=t.buildLogoutUrl(o);window.location.assign(e);}};if(this.options.cache)return this.cacheManager.clear().then((function(){return i()}));this.cacheManager.clearSync(),i();},e.prototype._getTokenFromIFrame=function(e){return o(this,void 0,void 0,(function(){var t,o,a,c,s,u,l,f,d,h,p,y,v,m,g,b,w;return i$1(this,(function(i){switch(i.label){case 0:return t=Sa(wa()),o=Sa(wa()),a=wa(),[4,ka(a)];case 1:c=i.sent(),s=Ta(c),u=r(e,["detailedResponse"]),l=this._getParams(u,t,o,s,e.redirect_uri||this.options.redirect_uri||window.location.origin),(f=this.cookieStorage.get(this.orgHintCookieName))&&!l.organization&&(l.organization=f),d=this._authorizeUrl(n(n({},l),{prompt:"none",response_mode:"web_message"})),h=e.timeoutInSeconds||this.options.authorizeTimeoutInSeconds,i.label=2;case 2:if(i.trys.push([2,6,,7]),window.crossOriginIsolated)throw new fa("login_required","The application is running in a Cross-Origin Isolated context, silently retrieving a token without refresh token is not possible.");return [4,(S=d,_=this.domainUrl,k=h,void 0===k&&(k=60),new Promise((function(e,t){var n=window.document.createElement("iframe");n.setAttribute("width","0"),n.setAttribute("height","0"),n.style.display="none";var r,o=function(){window.document.body.contains(n)&&(window.document.body.removeChild(n),window.removeEventListener("message",r,!1));},i=setTimeout((function(){t(new ha),o();}),1e3*k);r=function(n){if(n.origin==_&&n.data&&"authorization_response"===n.data.type){var a=n.source;a&&a.close(),n.data.response.error?t(fa.fromPayload(n.data.response)):e(n.data.response),clearTimeout(i),window.removeEventListener("message",r,!1),setTimeout(o,2e3);}},window.addEventListener("message",r,!1),window.document.body.appendChild(n),n.setAttribute("src",S);})))];case 3:if(p=i.sent(),t!==p.state)throw new Error("Invalid state");return y=e.scope,v=e.audience,m=r(e,["scope","audience","redirect_uri","ignoreCache","timeoutInSeconds","detailedResponse"]),[4,Fa(n(n(n({},this.customOptions),m),{scope:y,audience:v,baseUrl:this.domainUrl,client_id:this.options.client_id,code_verifier:a,code:p.code,grant_type:"authorization_code",redirect_uri:l.redirect_uri,auth0Client:this.options.auth0Client,useFormData:this.options.useFormData}),this.worker)];case 4:return g=i.sent(),[4,this._verifyIdToken(g.id_token,o)];case 5:return b=i.sent(),this._processOrgIdHint(b.claims.org_id),[2,n(n({},g),{decodedToken:b,scope:l.scope,oauthTokenScope:g.scope,audience:l.audience||"default"})];case 6:throw "login_required"===(w=i.sent()).error&&this.logout({localOnly:!0}),w;case 7:return [2]}var S,_,k;}))}))},e.prototype._getTokenUsingRefreshToken=function(e){return o(this,void 0,void 0,(function(){var t,o,a,c,s,u,l,f,d;return i$1(this,(function(i){switch(i.label){case 0:return e.scope=ja(this.defaultScope,this.options.scope,e.scope),[4,this.cacheManager.get(new Ua({scope:e.scope,audience:e.audience||"default",client_id:this.options.client_id}))];case 1:return (t=i.sent())&&t.refresh_token||this.worker?[3,3]:[4,this._getTokenFromIFrame(e)];case 2:return [2,i.sent()];case 3:o=e.redirect_uri||this.options.redirect_uri||window.location.origin,c=e.scope,s=e.audience,u=r(e,["scope","audience","ignoreCache","timeoutInSeconds","detailedResponse"]),l="number"==typeof e.timeoutInSeconds?1e3*e.timeoutInSeconds:null,i.label=4;case 4:return i.trys.push([4,6,,9]),[4,Fa(n(n(n(n(n({},this.customOptions),u),{audience:s,scope:c,baseUrl:this.domainUrl,client_id:this.options.client_id,grant_type:"refresh_token",refresh_token:t&&t.refresh_token,redirect_uri:o}),l&&{timeout:l}),{auth0Client:this.options.auth0Client,useFormData:this.options.useFormData}),this.worker)];case 5:return a=i.sent(),[3,9];case 6:return "The web worker is missing the refresh token"===(f=i.sent()).message||f.message&&f.message.indexOf("invalid refresh token")>-1?[4,this._getTokenFromIFrame(e)]:[3,8];case 7:return [2,i.sent()];case 8:throw f;case 9:return [4,this._verifyIdToken(a.id_token)];case 10:return d=i.sent(),[2,n(n({},a),{decodedToken:d,scope:e.scope,oauthTokenScope:a.scope,audience:e.audience||"default"})]}}))}))},e.prototype._getEntryFromCache=function(e){var t=e.scope,r=e.audience,a=e.client_id,c=e.getDetailedEntry,s=void 0!==c&&c;return o(this,void 0,void 0,(function(){var e,o,c,u,l;return i$1(this,(function(i){switch(i.label){case 0:return [4,this.cacheManager.get(new Ua({scope:t,audience:r,client_id:a}),60)];case 1:return (e=i.sent())&&e.access_token?s?(o=e.id_token,c=e.access_token,u=e.oauthTokenScope,l=e.expires_in,[2,n(n({id_token:o,access_token:c},u?{scope:u}:null),{expires_in:l})]):[2,e.access_token]:[2]}}))}))},e}();function uc(e){return o(this,void 0,void 0,(function(){var t;return i$1(this,(function(n){switch(n.label){case 0:return [4,(t=new cc(e)).checkSession()];case 1:return n.sent(),[2,t]}}))}))}//# sourceMappingURL=auth0-spa-js.production.esm.js.map
 
-    function addToGroceryList(ingredient) {
+    function addToGroceryList(ingredient, claims) {
         fetch('https://graphql-jeffrecipes.herokuapp.com/v1/graphql', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+               Authorization: `Bearer ${claims} `
+             },
             body: JSON.stringify({ query: `mutation {
             insert_grocerylist_one(object:{
-              GroceryListID: 1,
-              Item: "${ingredient}",
-              Done: "No"
+                GroceryListID: 1,
+                Item: "${ingredient}",
+                Done: "No"                
             }) {
               Item
             }
@@ -1324,11 +1328,15 @@ var app = (function () {
           });       
       }
 
-      function markDone(ingredient, html_element) {
+      function markDone(ingredient, html_element, claims) {
         html_element.className = 'table-success';
         fetch('https://graphql-jeffrecipes.herokuapp.com/v1/graphql', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+              Accept: 'application/json',
+              'Content-Type': 'application/json' ,
+              Authorization: `Bearer ${claims}`
+            },
             body: JSON.stringify({ query: `mutation {
             update_grocerylist(where: {Item: { _eq: "${ingredient}"}},
             _set: {
@@ -4410,11 +4418,12 @@ var app = (function () {
     function create_if_block_7(ctx) {
     	let ul;
     	let li0;
-    	let a;
+    	let a0;
     	let link_action;
     	let t1;
     	let li1;
-    	let button;
+    	let a1;
+    	let link_action_1;
     	let mounted;
     	let dispose;
 
@@ -4422,19 +4431,20 @@ var app = (function () {
     		c: function create() {
     			ul = element("ul");
     			li0 = element("li");
-    			a = element("a");
-    			a.textContent = "Cook Food";
+    			a0 = element("a");
+    			a0.textContent = "Cook Food";
     			t1 = space();
     			li1 = element("li");
-    			button = element("button");
-    			button.textContent = "Update Inventory";
-    			attr_dev(a, "href", "/food");
-    			attr_dev(a, "class", "btn btn-lg btn-outline-primary");
-    			add_location(a, file$2, 532, 4, 17805);
-    			attr_dev(li0, "class", "nav-item col-sm-6");
+    			a1 = element("a");
+    			a1.textContent = "Open Grocery List";
+    			attr_dev(a0, "href", "/food");
+    			attr_dev(a0, "class", "btn btn-lg btn-outline-success");
+    			add_location(a0, file$2, 532, 4, 17805);
+    			attr_dev(li0, "class", "nav-item col-md-6");
     			add_location(li0, file$2, 531, 2, 17770);
-    			attr_dev(button, "class", "btn btn-lg btn-outline-primary disabled");
-    			add_location(button, file$2, 535, 4, 17928);
+    			attr_dev(a1, "href", "/grocerylist");
+    			attr_dev(a1, "class", "btn btn-lg btn-light");
+    			add_location(a1, file$2, 535, 4, 17928);
     			attr_dev(li1, "class", "nav-item col-sm-6");
     			add_location(li1, file$2, 534, 2, 17893);
     			attr_dev(ul, "class", "nav nav-pills nav-fill");
@@ -4443,20 +4453,24 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, ul, anchor);
     			append_dev(ul, li0);
-    			append_dev(li0, a);
+    			append_dev(li0, a0);
     			append_dev(ul, t1);
     			append_dev(ul, li1);
-    			append_dev(li1, button);
+    			append_dev(li1, a1);
 
     			if (!mounted) {
-    				dispose = action_destroyer(link_action = link.call(null, a));
+    				dispose = [
+    					action_destroyer(link_action = link.call(null, a0)),
+    					action_destroyer(link_action_1 = link.call(null, a1))
+    				];
+
     				mounted = true;
     			}
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(ul);
     			mounted = false;
-    			dispose();
+    			run_all(dispose);
     		}
     	};
 
@@ -4494,7 +4508,7 @@ var app = (function () {
     			if (if_block3) if_block3.c();
     			t3 = space();
     			hr = element("hr");
-    			add_location(hr, file$2, 673, 0, 23125);
+    			add_location(hr, file$2, 673, 0, 23126);
     		},
     		m: function mount(target, anchor) {
     			if (if_block0) if_block0.m(target, anchor);
@@ -4666,13 +4680,13 @@ var app = (function () {
     			img = element("img");
     			t1 = text(" Back");
     			attr_dev(ul, "class", "list-group");
-    			add_location(ul, file$2, 590, 0, 19865);
+    			add_location(ul, file$2, 590, 0, 19866);
     			attr_dev(img, "class", "icon");
     			attr_dev(img, "alt", "back");
     			if (!src_url_equal(img.src, img_src_value = "/open-iconic-master/svg/chevron-left.svg")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file$2, 598, 81, 20465);
+    			add_location(img, file$2, 598, 81, 20466);
     			attr_dev(button, "class", "btn btn-md btn-secondary");
-    			add_location(button, file$2, 598, 0, 20384);
+    			add_location(button, file$2, 598, 0, 20385);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, ul, anchor);
@@ -4778,9 +4792,9 @@ var app = (function () {
     			t2 = text(t2_value);
     			t3 = space();
     			attr_dev(span, "class", "badge badge-primary badge-pill");
-    			add_location(span, file$2, 594, 6, 20218);
+    			add_location(span, file$2, 594, 6, 20219);
     			attr_dev(li, "class", "list-group-item d-flex justify-content-between align-items-center");
-    			add_location(li, file$2, 592, 4, 19948);
+    			add_location(li, file$2, 592, 4, 19949);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -4855,15 +4869,15 @@ var app = (function () {
     			button = element("button");
     			img = element("img");
     			t3 = text(" Back");
-    			add_location(h2, file$2, 604, 2, 20601);
+    			add_location(h2, file$2, 604, 2, 20602);
     			attr_dev(ul, "class", "list-group");
-    			add_location(ul, file$2, 605, 2, 20637);
+    			add_location(ul, file$2, 605, 2, 20638);
     			attr_dev(img, "class", "icon");
     			attr_dev(img, "alt", "back");
     			if (!src_url_equal(img.src, img_src_value = "/open-iconic-master/svg/chevron-left.svg")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file$2, 610, 81, 20858);
+    			add_location(img, file$2, 610, 81, 20859);
     			attr_dev(button, "class", "btn btn-md btn-secondary");
-    			add_location(button, file$2, 610, 0, 20777);
+    			add_location(button, file$2, 610, 0, 20778);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h2, anchor);
@@ -4946,7 +4960,7 @@ var app = (function () {
     			li = element("li");
     			t = text(t_value);
     			attr_dev(li, "class", "list-group-item");
-    			add_location(li, file$2, 607, 4, 20720);
+    			add_location(li, file$2, 607, 4, 20721);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -5067,32 +5081,32 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "Add";
     			attr_dev(button0, "class", "btn btn-md btn-primary");
-    			add_location(button0, file$2, 615, 4, 20985);
+    			add_location(button0, file$2, 615, 4, 20986);
     			attr_dev(span, "class", "badge badge-danger");
-    			add_location(span, file$2, 615, 108, 21089);
-    			add_location(p, file$2, 615, 0, 20981);
-    			add_location(legend, file$2, 619, 4, 21271);
+    			add_location(span, file$2, 615, 108, 21090);
+    			add_location(p, file$2, 615, 0, 20982);
+    			add_location(legend, file$2, 619, 4, 21272);
     			if (/*selected*/ ctx[2] === void 0) add_render_callback(() => /*select0_change_handler*/ ctx[54].call(select0));
-    			add_location(select0, file$2, 622, 16, 21352);
-    			add_location(td0, file$2, 621, 12, 21331);
+    			add_location(select0, file$2, 622, 16, 21353);
+    			add_location(td0, file$2, 621, 12, 21332);
     			attr_dev(select1, "id", "Ingredient");
     			attr_dev(select1, "onchange", select1_onchange_value = /*updateQM*/ ctx[21](/*ingredient*/ ctx[1]));
     			if (/*ingredient*/ ctx[1] === void 0) add_render_callback(() => /*select1_change_handler*/ ctx[55].call(select1));
-    			add_location(select1, file$2, 630, 16, 21688);
-    			add_location(td1, file$2, 629, 12, 21655);
+    			add_location(select1, file$2, 630, 16, 21689);
+    			add_location(td1, file$2, 629, 12, 21656);
     			attr_dev(input, "id", "Quantity");
     			attr_dev(input, "type", "text");
-    			add_location(input, file$2, 636, 26, 22013);
-    			add_location(td2, file$2, 636, 12, 21999);
-    			add_location(strong, file$2, 637, 17, 22093);
-    			add_location(td3, file$2, 637, 12, 22088);
+    			add_location(input, file$2, 636, 26, 22014);
+    			add_location(td2, file$2, 636, 12, 22000);
+    			add_location(strong, file$2, 637, 17, 22094);
+    			add_location(td3, file$2, 637, 12, 22089);
     			attr_dev(button1, "class", "btn btn-lg btn-primary");
-    			add_location(button1, file$2, 638, 16, 22155);
-    			add_location(td4, file$2, 638, 12, 22151);
-    			add_location(tr, file$2, 620, 4, 21314);
+    			add_location(button1, file$2, 638, 16, 22156);
+    			add_location(td4, file$2, 638, 12, 22152);
+    			add_location(tr, file$2, 620, 4, 21315);
     			attr_dev(table, "class", "table-responsive");
-    			add_location(table, file$2, 618, 0, 21234);
-    			add_location(form, file$2, 617, 0, 21201);
+    			add_location(table, file$2, 618, 0, 21235);
+    			add_location(form, file$2, 617, 0, 21202);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -5253,7 +5267,7 @@ var app = (function () {
     			t = text(t_value);
     			option.__value = option_value_value = /*loc*/ ctx[79];
     			option.value = option.__value;
-    			add_location(option, file$2, 624, 24, 21452);
+    			add_location(option, file$2, 624, 24, 21453);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -5303,7 +5317,7 @@ var app = (function () {
     			t3 = text(")");
     			option.__value = option_value_value = /*ing*/ ctx[76].id;
     			option.value = option.__value;
-    			add_location(option, file$2, 632, 24, 21849);
+    			add_location(option, file$2, 632, 24, 21850);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -5381,19 +5395,19 @@ var app = (function () {
     			p = element("p");
     			button = element("button");
     			button.textContent = "Add ingredients";
-    			add_location(h1, file$2, 647, 0, 22370);
+    			add_location(h1, file$2, 647, 0, 22371);
     			attr_dev(th, "scope", "col");
-    			add_location(th, file$2, 652, 6, 22484);
+    			add_location(th, file$2, 652, 6, 22485);
     			attr_dev(thead, "class", "thead-light");
-    			add_location(thead, file$2, 651, 4, 22450);
-    			add_location(tbody, file$2, 654, 4, 22533);
+    			add_location(thead, file$2, 651, 4, 22451);
+    			add_location(tbody, file$2, 654, 4, 22534);
     			attr_dev(table, "class", "table");
-    			add_location(table, file$2, 650, 2, 22424);
+    			add_location(table, file$2, 650, 2, 22425);
     			attr_dev(div, "id", "ingredientsList");
-    			add_location(div, file$2, 649, 0, 22395);
+    			add_location(div, file$2, 649, 0, 22396);
     			attr_dev(button, "class", "btn btn-md btn-secondary");
-    			add_location(button, file$2, 670, 3, 23015);
-    			add_location(p, file$2, 670, 0, 23012);
+    			add_location(button, file$2, 670, 3, 23016);
+    			add_location(p, file$2, 670, 0, 23013);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h1, anchor);
@@ -5480,8 +5494,8 @@ var app = (function () {
     			td = element("td");
     			t0 = text(t0_value);
     			t1 = space();
-    			add_location(td, file$2, 657, 10, 22606);
-    			add_location(tr, file$2, 656, 8, 22591);
+    			add_location(td, file$2, 657, 10, 22607);
+    			add_location(tr, file$2, 656, 8, 22592);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -7027,7 +7041,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (346:0) {#if viewingMyRecipes}
+    // (348:0) {#if viewingMyRecipes}
     function create_if_block_11(ctx) {
     	let if_block_anchor;
 
@@ -7072,14 +7086,14 @@ var app = (function () {
     		block,
     		id: create_if_block_11.name,
     		type: "if",
-    		source: "(346:0) {#if viewingMyRecipes}",
+    		source: "(348:0) {#if viewingMyRecipes}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (359:8) {:else}
+    // (361:8) {:else}
     function create_else_block_5(ctx) {
     	let p0;
     	let t1;
@@ -7104,14 +7118,14 @@ var app = (function () {
     			p2 = element("p");
     			button = element("button");
     			button.textContent = "View the Community Recipes";
-    			add_location(p0, file$3, 359, 12, 13780);
+    			add_location(p0, file$3, 361, 12, 13765);
     			attr_dev(a, "href", "/food/recipes/new");
     			attr_dev(a, "class", "btn btn-lg btn-outline-success");
-    			add_location(a, file$3, 360, 15, 13842);
-    			add_location(p1, file$3, 360, 12, 13839);
+    			add_location(a, file$3, 362, 15, 13827);
+    			add_location(p1, file$3, 362, 12, 13824);
     			attr_dev(button, "class", "btn btn-lg btn-outline-info");
-    			add_location(button, file$3, 361, 15, 13961);
-    			add_location(p2, file$3, 361, 12, 13958);
+    			add_location(button, file$3, 363, 15, 13946);
+    			add_location(p2, file$3, 363, 12, 13943);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p0, anchor);
@@ -7147,14 +7161,14 @@ var app = (function () {
     		block,
     		id: create_else_block_5.name,
     		type: "else",
-    		source: "(359:8) {:else}",
+    		source: "(361:8) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (357:8) {#if loadingRecipes}
+    // (359:8) {#if loadingRecipes}
     function create_if_block_13(ctx) {
     	let p;
     	let t;
@@ -7169,8 +7183,9 @@ var app = (function () {
     			if (!src_url_equal(img.src, img_src_value = "/open-iconic-master/svg/clock.svg")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "class", "svg");
     			attr_dev(img, "alt", "loading");
-    			add_location(img, file$3, 357, 26, 13676);
-    			add_location(p, file$3, 357, 12, 13662);
+    			add_location(img, file$3, 359, 42, 13661);
+    			attr_dev(p, "class", "loading");
+    			add_location(p, file$3, 359, 12, 13631);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -7187,14 +7202,14 @@ var app = (function () {
     		block,
     		id: create_if_block_13.name,
     		type: "if",
-    		source: "(357:8) {#if loadingRecipes}",
+    		source: "(359:8) {#if loadingRecipes}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (347:4) {#if unique_meal_types_counts.length > 0}
+    // (349:4) {#if unique_meal_types_counts.length > 0}
     function create_if_block_12(ctx) {
     	let ul;
     	let each_value_5 = /*unique_meal_types_counts*/ ctx[9];
@@ -7214,7 +7229,7 @@ var app = (function () {
     			}
 
     			attr_dev(ul, "class", "list-group");
-    			add_location(ul, file$3, 347, 4, 13167);
+    			add_location(ul, file$3, 349, 4, 13136);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, ul, anchor);
@@ -7258,14 +7273,14 @@ var app = (function () {
     		block,
     		id: create_if_block_12.name,
     		type: "if",
-    		source: "(347:4) {#if unique_meal_types_counts.length > 0}",
+    		source: "(349:4) {#if unique_meal_types_counts.length > 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (349:8) {#each unique_meal_types_counts as umt}
+    // (351:8) {#each unique_meal_types_counts as umt}
     function create_each_block_5(ctx) {
     	let li;
     	let label;
@@ -7293,11 +7308,11 @@ var app = (function () {
     			t2 = text(t2_value);
     			t3 = space();
     			attr_dev(label, "class", "recipesNav");
-    			add_location(label, file$3, 350, 16, 13412);
+    			add_location(label, file$3, 352, 16, 13381);
     			attr_dev(span, "class", "badge badge-primary badge-pill");
-    			add_location(span, file$3, 351, 16, 13484);
+    			add_location(span, file$3, 353, 16, 13453);
     			attr_dev(li, "class", "list-group-item d-flex justify-content-between align-items-center");
-    			add_location(li, file$3, 349, 12, 13251);
+    			add_location(li, file$3, 351, 12, 13220);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -7329,14 +7344,14 @@ var app = (function () {
     		block,
     		id: create_each_block_5.name,
     		type: "each",
-    		source: "(349:8) {#each unique_meal_types_counts as umt}",
+    		source: "(351:8) {#each unique_meal_types_counts as umt}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (367:0) {#if viewingMyFilteredRecipes}
+    // (369:0) {#if viewingMyFilteredRecipes}
     function create_if_block_9(ctx) {
     	let t0;
     	let p;
@@ -7366,10 +7381,10 @@ var app = (function () {
     			attr_dev(img, "class", "icon");
     			attr_dev(img, "alt", "back");
     			if (!src_url_equal(img.src, img_src_value = "/open-iconic-master/svg/chevron-left.svg")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file$3, 380, 78, 14777);
+    			add_location(img, file$3, 382, 78, 14778);
     			attr_dev(button, "class", "btn btn-md btn-secondary");
-    			add_location(button, file$3, 380, 4, 14703);
-    			add_location(p, file$3, 379, 0, 14695);
+    			add_location(button, file$3, 382, 4, 14704);
+    			add_location(p, file$3, 381, 0, 14696);
     		},
     		m: function mount(target, anchor) {
     			if_block.m(target, anchor);
@@ -7410,14 +7425,14 @@ var app = (function () {
     		block,
     		id: create_if_block_9.name,
     		type: "if",
-    		source: "(367:0) {#if viewingMyFilteredRecipes}",
+    		source: "(369:0) {#if viewingMyFilteredRecipes}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (377:0) {:else}
+    // (379:0) {:else}
     function create_else_block_4(ctx) {
     	let p;
     	let t;
@@ -7432,8 +7447,9 @@ var app = (function () {
     			if (!src_url_equal(img.src, img_src_value = "/open-iconic-master/svg/clock.svg")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "class", "svg");
     			attr_dev(img, "alt", "loading");
-    			add_location(img, file$3, 377, 18, 14613);
-    			add_location(p, file$3, 377, 4, 14599);
+    			add_location(img, file$3, 379, 34, 14614);
+    			attr_dev(p, "class", "loading");
+    			add_location(p, file$3, 379, 4, 14584);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -7450,14 +7466,14 @@ var app = (function () {
     		block,
     		id: create_else_block_4.name,
     		type: "else",
-    		source: "(377:0) {:else}",
+    		source: "(379:0) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (368:0) {#if unique_category_counts.length > 0}
+    // (370:0) {#if unique_category_counts.length > 0}
     function create_if_block_10(ctx) {
     	let ul;
     	let each_value_4 = /*unique_category_counts*/ ctx[10];
@@ -7477,7 +7493,7 @@ var app = (function () {
     			}
 
     			attr_dev(ul, "class", "list-group");
-    			add_location(ul, file$3, 368, 0, 14187);
+    			add_location(ul, file$3, 370, 0, 14172);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, ul, anchor);
@@ -7521,14 +7537,14 @@ var app = (function () {
     		block,
     		id: create_if_block_10.name,
     		type: "if",
-    		source: "(368:0) {#if unique_category_counts.length > 0}",
+    		source: "(370:0) {#if unique_category_counts.length > 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (370:2) {#each unique_category_counts as ucc}
+    // (372:2) {#each unique_category_counts as ucc}
     function create_each_block_4$1(ctx) {
     	let li;
     	let label;
@@ -7556,11 +7572,11 @@ var app = (function () {
     			t2 = text(t2_value);
     			t3 = space();
     			attr_dev(label, "class", "recipesNav");
-    			add_location(label, file$3, 371, 6, 14420);
+    			add_location(label, file$3, 373, 6, 14405);
     			attr_dev(span, "class", "badge badge-primary badge-pill");
-    			add_location(span, file$3, 372, 6, 14482);
+    			add_location(span, file$3, 374, 6, 14467);
     			attr_dev(li, "class", "list-group-item d-flex justify-content-between align-items-center");
-    			add_location(li, file$3, 370, 4, 14255);
+    			add_location(li, file$3, 372, 4, 14240);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -7592,14 +7608,14 @@ var app = (function () {
     		block,
     		id: create_each_block_4$1.name,
     		type: "each",
-    		source: "(370:2) {#each unique_category_counts as ucc}",
+    		source: "(372:2) {#each unique_category_counts as ucc}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (385:0) {#if viewingMyCategoryFilteredRecipes}
+    // (387:0) {#if viewingMyCategoryFilteredRecipes}
     function create_if_block_7$1(ctx) {
     	let t0;
     	let p;
@@ -7629,10 +7645,10 @@ var app = (function () {
     			attr_dev(img, "class", "icon");
     			attr_dev(img, "alt", "back");
     			if (!src_url_equal(img.src, img_src_value = "/open-iconic-master/svg/chevron-left.svg")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file$3, 397, 109, 15456);
+    			add_location(img, file$3, 399, 109, 15473);
     			attr_dev(button, "class", "btn btn-md btn-secondary");
-    			add_location(button, file$3, 397, 4, 15351);
-    			add_location(p, file$3, 396, 0, 15343);
+    			add_location(button, file$3, 399, 4, 15368);
+    			add_location(p, file$3, 398, 0, 15360);
     		},
     		m: function mount(target, anchor) {
     			if_block.m(target, anchor);
@@ -7673,14 +7689,14 @@ var app = (function () {
     		block,
     		id: create_if_block_7$1.name,
     		type: "if",
-    		source: "(385:0) {#if viewingMyCategoryFilteredRecipes}",
+    		source: "(387:0) {#if viewingMyCategoryFilteredRecipes}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (394:0) {:else}
+    // (396:0) {:else}
     function create_else_block_3(ctx) {
     	let p;
     	let t;
@@ -7695,8 +7711,9 @@ var app = (function () {
     			if (!src_url_equal(img.src, img_src_value = "/open-iconic-master/svg/clock.svg")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "class", "svg");
     			attr_dev(img, "alt", "loading");
-    			add_location(img, file$3, 394, 18, 15261);
-    			add_location(p, file$3, 394, 4, 15247);
+    			add_location(img, file$3, 396, 34, 15278);
+    			attr_dev(p, "class", "loading");
+    			add_location(p, file$3, 396, 4, 15248);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -7713,14 +7730,14 @@ var app = (function () {
     		block,
     		id: create_else_block_3.name,
     		type: "else",
-    		source: "(394:0) {:else}",
+    		source: "(396:0) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (386:0) {#if recipes_ids.length > 0}
+    // (388:0) {#if recipes_ids.length > 0}
     function create_if_block_8(ctx) {
     	let ul;
     	let each_value_3 = /*recipes_ids*/ ctx[1];
@@ -7740,7 +7757,7 @@ var app = (function () {
     			}
 
     			attr_dev(ul, "class", "list-group");
-    			add_location(ul, file$3, 386, 0, 14948);
+    			add_location(ul, file$3, 388, 0, 14949);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, ul, anchor);
@@ -7784,14 +7801,14 @@ var app = (function () {
     		block,
     		id: create_if_block_8.name,
     		type: "if",
-    		source: "(386:0) {#if recipes_ids.length > 0}",
+    		source: "(388:0) {#if recipes_ids.length > 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (388:2) {#each recipes_ids as rn}
+    // (390:2) {#each recipes_ids as rn}
     function create_each_block_3$1(ctx) {
     	let li;
     	let a;
@@ -7812,11 +7829,11 @@ var app = (function () {
     			t0 = text(t0_value);
     			t1 = space();
     			attr_dev(label, "class", "recipesNav");
-    			add_location(label, file$3, 389, 67, 15150);
+    			add_location(label, file$3, 391, 67, 15151);
     			attr_dev(a, "href", a_href_value = "/food/recipes/" + /*rn*/ ctx[46][Object.keys(/*rn*/ ctx[46])[0]]);
-    			add_location(a, file$3, 389, 6, 15089);
+    			add_location(a, file$3, 391, 6, 15090);
     			attr_dev(li, "class", "list-group-item d-flex justify-content-between align-items-center");
-    			add_location(li, file$3, 388, 4, 15004);
+    			add_location(li, file$3, 390, 4, 15005);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -7848,14 +7865,14 @@ var app = (function () {
     		block,
     		id: create_each_block_3$1.name,
     		type: "each",
-    		source: "(388:2) {#each recipes_ids as rn}",
+    		source: "(390:2) {#each recipes_ids as rn}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (404:0) {#if viewingCommunityRecipes}
+    // (406:0) {#if viewingCommunityRecipes}
     function create_if_block_4$2(ctx) {
     	let if_block_anchor;
     	let if_block = !/*viewingMyRecipes*/ ctx[4] && create_if_block_5$2(ctx);
@@ -7893,14 +7910,14 @@ var app = (function () {
     		block,
     		id: create_if_block_4$2.name,
     		type: "if",
-    		source: "(404:0) {#if viewingCommunityRecipes}",
+    		source: "(406:0) {#if viewingCommunityRecipes}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (405:0) {#if !viewingMyRecipes}
+    // (407:0) {#if !viewingMyRecipes}
     function create_if_block_5$2(ctx) {
     	let if_block_anchor;
 
@@ -7944,14 +7961,14 @@ var app = (function () {
     		block,
     		id: create_if_block_5$2.name,
     		type: "if",
-    		source: "(405:0) {#if !viewingMyRecipes}",
+    		source: "(407:0) {#if !viewingMyRecipes}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (415:4) {:else}
+    // (417:4) {:else}
     function create_else_block_2(ctx) {
     	let p;
     	let t;
@@ -7966,8 +7983,9 @@ var app = (function () {
     			if (!src_url_equal(img.src, img_src_value = "/open-iconic-master/svg/clock.svg")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "class", "svg");
     			attr_dev(img, "alt", "loading");
-    			add_location(img, file$3, 415, 22, 16148);
-    			add_location(p, file$3, 415, 8, 16134);
+    			add_location(img, file$3, 417, 38, 16181);
+    			attr_dev(p, "class", "loading");
+    			add_location(p, file$3, 417, 8, 16151);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -7984,14 +8002,14 @@ var app = (function () {
     		block,
     		id: create_else_block_2.name,
     		type: "else",
-    		source: "(415:4) {:else}",
+    		source: "(417:4) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (406:4) {#if unique_meal_types_counts.length > 0}
+    // (408:4) {#if unique_meal_types_counts.length > 0}
     function create_if_block_6$2(ctx) {
     	let ul;
     	let each_value_2 = /*unique_meal_types_counts*/ ctx[9];
@@ -8011,7 +8029,7 @@ var app = (function () {
     			}
 
     			attr_dev(ul, "class", "list-group");
-    			add_location(ul, file$3, 406, 4, 15665);
+    			add_location(ul, file$3, 408, 4, 15682);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, ul, anchor);
@@ -8055,14 +8073,14 @@ var app = (function () {
     		block,
     		id: create_if_block_6$2.name,
     		type: "if",
-    		source: "(406:4) {#if unique_meal_types_counts.length > 0}",
+    		source: "(408:4) {#if unique_meal_types_counts.length > 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (408:8) {#each unique_meal_types_counts as umt}
+    // (410:8) {#each unique_meal_types_counts as umt}
     function create_each_block_2$1(ctx) {
     	let li;
     	let label;
@@ -8090,11 +8108,11 @@ var app = (function () {
     			t2 = text(t2_value);
     			t3 = space();
     			attr_dev(label, "class", "recipesNav");
-    			add_location(label, file$3, 409, 16, 15917);
+    			add_location(label, file$3, 411, 16, 15934);
     			attr_dev(span, "class", "badge badge-primary badge-pill");
-    			add_location(span, file$3, 410, 16, 15989);
+    			add_location(span, file$3, 412, 16, 16006);
     			attr_dev(li, "class", "list-group-item d-flex justify-content-between align-items-center");
-    			add_location(li, file$3, 408, 12, 15749);
+    			add_location(li, file$3, 410, 12, 15766);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -8126,14 +8144,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2$1.name,
     		type: "each",
-    		source: "(408:8) {#each unique_meal_types_counts as umt}",
+    		source: "(410:8) {#each unique_meal_types_counts as umt}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (421:0) {#if viewingFilteredCommunityRecipes}
+    // (423:0) {#if viewingFilteredCommunityRecipes}
     function create_if_block_2$2(ctx) {
     	let t0;
     	let p;
@@ -8163,10 +8181,10 @@ var app = (function () {
     			attr_dev(img, "class", "icon");
     			attr_dev(img, "alt", "back");
     			if (!src_url_equal(img.src, img_src_value = "/open-iconic-master/svg/chevron-left.svg")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file$3, 434, 89, 16977);
+    			add_location(img, file$3, 436, 89, 17026);
     			attr_dev(button, "class", "btn btn-md btn-secondary");
-    			add_location(button, file$3, 434, 8, 16896);
-    			add_location(p, file$3, 433, 4, 16884);
+    			add_location(button, file$3, 436, 8, 16945);
+    			add_location(p, file$3, 435, 4, 16933);
     		},
     		m: function mount(target, anchor) {
     			if_block.m(target, anchor);
@@ -8207,14 +8225,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2$2.name,
     		type: "if",
-    		source: "(421:0) {#if viewingFilteredCommunityRecipes}",
+    		source: "(423:0) {#if viewingFilteredCommunityRecipes}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (431:4) {:else}
+    // (433:4) {:else}
     function create_else_block_1$1(ctx) {
     	let p;
     	let t;
@@ -8229,8 +8247,9 @@ var app = (function () {
     			if (!src_url_equal(img.src, img_src_value = "/open-iconic-master/svg/clock.svg")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "class", "svg");
     			attr_dev(img, "alt", "loading");
-    			add_location(img, file$3, 431, 22, 16794);
-    			add_location(p, file$3, 431, 8, 16780);
+    			add_location(img, file$3, 433, 38, 16843);
+    			attr_dev(p, "class", "loading");
+    			add_location(p, file$3, 433, 8, 16813);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -8247,14 +8266,14 @@ var app = (function () {
     		block,
     		id: create_else_block_1$1.name,
     		type: "else",
-    		source: "(431:4) {:else}",
+    		source: "(433:4) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (422:4) {#if unique_category_counts.length > 0}
+    // (424:4) {#if unique_category_counts.length > 0}
     function create_if_block_3$2(ctx) {
     	let ul;
     	let each_value_1 = /*unique_category_counts*/ ctx[10];
@@ -8274,7 +8293,7 @@ var app = (function () {
     			}
 
     			attr_dev(ul, "class", "list-group");
-    			add_location(ul, file$3, 422, 4, 16333);
+    			add_location(ul, file$3, 424, 4, 16366);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, ul, anchor);
@@ -8318,14 +8337,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3$2.name,
     		type: "if",
-    		source: "(422:4) {#if unique_category_counts.length > 0}",
+    		source: "(424:4) {#if unique_category_counts.length > 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (424:4) {#each unique_category_counts as ucc}
+    // (426:4) {#each unique_category_counts as ucc}
     function create_each_block_1$1(ctx) {
     	let li;
     	let label;
@@ -8353,11 +8372,11 @@ var app = (function () {
     			t2 = text(t2_value);
     			t3 = space();
     			attr_dev(label, "class", "recipesNav");
-    			add_location(label, file$3, 425, 8, 16581);
+    			add_location(label, file$3, 427, 8, 16614);
     			attr_dev(span, "class", "badge badge-primary badge-pill");
-    			add_location(span, file$3, 426, 8, 16645);
+    			add_location(span, file$3, 428, 8, 16678);
     			attr_dev(li, "class", "list-group-item d-flex justify-content-between align-items-center");
-    			add_location(li, file$3, 424, 8, 16407);
+    			add_location(li, file$3, 426, 8, 16440);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -8389,14 +8408,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1$1.name,
     		type: "each",
-    		source: "(424:4) {#each unique_category_counts as ucc}",
+    		source: "(426:4) {#each unique_category_counts as ucc}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (439:0) {#if viewingCommunityCategoryFilteredRecipes}
+    // (441:0) {#if viewingCommunityCategoryFilteredRecipes}
     function create_if_block$3(ctx) {
     	let t0;
     	let p;
@@ -8426,10 +8445,10 @@ var app = (function () {
     			attr_dev(img, "class", "icon");
     			attr_dev(img, "alt", "back");
     			if (!src_url_equal(img.src, img_src_value = "/open-iconic-master/svg/chevron-left.svg")) attr_dev(img, "src", img_src_value);
-    			add_location(img, file$3, 451, 116, 17675);
+    			add_location(img, file$3, 453, 116, 17740);
     			attr_dev(button, "class", "btn btn-md btn-secondary");
-    			add_location(button, file$3, 451, 4, 17563);
-    			add_location(p, file$3, 450, 0, 17555);
+    			add_location(button, file$3, 453, 4, 17628);
+    			add_location(p, file$3, 452, 0, 17620);
     		},
     		m: function mount(target, anchor) {
     			if_block.m(target, anchor);
@@ -8470,14 +8489,14 @@ var app = (function () {
     		block,
     		id: create_if_block$3.name,
     		type: "if",
-    		source: "(439:0) {#if viewingCommunityCategoryFilteredRecipes}",
+    		source: "(441:0) {#if viewingCommunityCategoryFilteredRecipes}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (448:0) {:else}
+    // (450:0) {:else}
     function create_else_block$3(ctx) {
     	let p;
     	let t;
@@ -8492,8 +8511,9 @@ var app = (function () {
     			if (!src_url_equal(img.src, img_src_value = "/open-iconic-master/svg/clock.svg")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "class", "svg");
     			attr_dev(img, "alt", "loading");
-    			add_location(img, file$3, 448, 18, 17473);
-    			add_location(p, file$3, 448, 4, 17459);
+    			add_location(img, file$3, 450, 34, 17538);
+    			attr_dev(p, "class", "loading");
+    			add_location(p, file$3, 450, 4, 17508);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -8510,14 +8530,14 @@ var app = (function () {
     		block,
     		id: create_else_block$3.name,
     		type: "else",
-    		source: "(448:0) {:else}",
+    		source: "(450:0) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (440:0) {#if recipes_ids.length > 0}
+    // (442:0) {#if recipes_ids.length > 0}
     function create_if_block_1$2(ctx) {
     	let ul;
     	let each_value = /*recipes_ids*/ ctx[1];
@@ -8537,7 +8557,7 @@ var app = (function () {
     			}
 
     			attr_dev(ul, "class", "list-group");
-    			add_location(ul, file$3, 440, 0, 17160);
+    			add_location(ul, file$3, 442, 0, 17209);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, ul, anchor);
@@ -8581,14 +8601,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$2.name,
     		type: "if",
-    		source: "(440:0) {#if recipes_ids.length > 0}",
+    		source: "(442:0) {#if recipes_ids.length > 0}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (442:2) {#each recipes_ids as rn}
+    // (444:2) {#each recipes_ids as rn}
     function create_each_block$2(ctx) {
     	let li;
     	let a;
@@ -8609,11 +8629,11 @@ var app = (function () {
     			t0 = text(t0_value);
     			t1 = space();
     			attr_dev(label, "class", "recipesNav");
-    			add_location(label, file$3, 443, 67, 17362);
+    			add_location(label, file$3, 445, 67, 17411);
     			attr_dev(a, "href", a_href_value = "/food/recipes/" + /*rn*/ ctx[46][Object.keys(/*rn*/ ctx[46])[0]]);
-    			add_location(a, file$3, 443, 6, 17301);
+    			add_location(a, file$3, 445, 6, 17350);
     			attr_dev(li, "class", "list-group-item d-flex justify-content-between align-items-center");
-    			add_location(li, file$3, 442, 4, 17216);
+    			add_location(li, file$3, 444, 4, 17265);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -8645,7 +8665,7 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(442:2) {#each recipes_ids as rn}",
+    		source: "(444:2) {#each recipes_ids as rn}",
     		ctx
     	});
 
@@ -8658,8 +8678,6 @@ var app = (function () {
     	let button0;
     	let t1;
     	let div1;
-    	let a;
-    	let link_action;
     	let t3;
     	let div2;
     	let button1;
@@ -8687,8 +8705,7 @@ var app = (function () {
     			button0.textContent = "View My Recipes";
     			t1 = space();
     			div1 = element("div");
-    			a = element("a");
-    			a.textContent = "Add New Recipe";
+    			div1.textContent = " ";
     			t3 = space();
     			div2 = element("div");
     			button1 = element("button");
@@ -8707,20 +8724,17 @@ var app = (function () {
     			if (if_block5) if_block5.c();
     			if_block5_anchor = empty();
     			attr_dev(button0, "class", "btn btn-md btn-outline-success");
-    			add_location(button0, file$3, 334, 4, 12693);
-    			attr_dev(div0, "class", "col-sm-4");
-    			add_location(div0, file$3, 333, 2, 12666);
-    			attr_dev(a, "href", "/food/recipes/new");
-    			attr_dev(a, "class", "btn btn-md btn-info");
-    			add_location(a, file$3, 337, 4, 12836);
-    			attr_dev(div1, "class", "col-sm-4");
-    			add_location(div1, file$3, 336, 2, 12809);
+    			add_location(button0, file$3, 336, 4, 12745);
+    			attr_dev(div0, "class", "col-md-5");
+    			add_location(div0, file$3, 335, 2, 12718);
+    			attr_dev(div1, "class", "col-md-1");
+    			add_location(div1, file$3, 339, 2, 12862);
     			attr_dev(button1, "class", "btn btn-md btn-outline-info");
-    			add_location(button1, file$3, 340, 4, 12958);
-    			attr_dev(div2, "class", "col-sm-4");
-    			add_location(div2, file$3, 339, 2, 12931);
+    			add_location(button1, file$3, 342, 4, 12927);
+    			attr_dev(div2, "class", "col-sm-5");
+    			add_location(div2, file$3, 341, 2, 12900);
     			attr_dev(div3, "class", "row text-center");
-    			add_location(div3, file$3, 332, 0, 12634);
+    			add_location(div3, file$3, 334, 0, 12686);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -8731,7 +8745,6 @@ var app = (function () {
     			append_dev(div0, button0);
     			append_dev(div3, t1);
     			append_dev(div3, div1);
-    			append_dev(div1, a);
     			append_dev(div3, t3);
     			append_dev(div3, div2);
     			append_dev(div2, button1);
@@ -8752,7 +8765,6 @@ var app = (function () {
     			if (!mounted) {
     				dispose = [
     					listen_dev(button0, "click", /*click_handler*/ ctx[32], false, false, false),
-    					action_destroyer(link_action = link.call(null, a)),
     					listen_dev(button1, "click", /*click_handler_1*/ ctx[33], false, false, false)
     				];
 
@@ -9314,6 +9326,7 @@ var app = (function () {
     		link,
     		executeGraphql,
     		claims,
+    		authToken,
     		hasura_userID,
     		loadingRecipes,
     		recipes,
@@ -12434,30 +12447,30 @@ var app = (function () {
     			attr_dev(h1, "id", "recipeTitle");
     			add_location(h1, file$6, 50, 2, 1213);
     			add_location(br0, file$6, 51, 2, 1277);
-    			add_location(br1, file$6, 71, 2, 2249);
+    			add_location(br1, file$6, 71, 2, 2258);
     			attr_dev(h2, "class", "text-center");
     			attr_dev(h2, "id", "directionsTitle");
-    			add_location(h2, file$6, 72, 2, 2258);
-    			add_location(p0, file$6, 82, 2, 2558);
+    			add_location(h2, file$6, 72, 2, 2267);
+    			add_location(p0, file$6, 82, 2, 2567);
     			attr_dev(img0, "class", "svg");
     			if (!src_url_equal(img0.src, img0_src_value = "/open-iconic-master/svg/task.svg")) attr_dev(img0, "src", img0_src_value);
     			attr_dev(img0, "alt", "task");
-    			add_location(img0, file$6, 85, 97, 2698);
+    			add_location(img0, file$6, 85, 97, 2707);
     			set_style(button, "margin-top", "1.5%");
     			attr_dev(button, "class", "btn btn-lg btn-outline-success");
-    			add_location(button, file$6, 85, 4, 2605);
+    			add_location(button, file$6, 85, 4, 2614);
     			attr_dev(div0, "class", "text-center");
-    			add_location(div0, file$6, 84, 2, 2575);
+    			add_location(div0, file$6, 84, 2, 2584);
     			attr_dev(div1, "id", "recipeBackground");
     			add_location(div1, file$6, 49, 0, 1183);
-    			add_location(p1, file$6, 89, 2, 2794);
+    			add_location(p1, file$6, 89, 2, 2803);
     			if (!src_url_equal(img1.src, img1_src_value = "/open-iconic-master/svg/chevron-left.svg")) attr_dev(img1, "src", img1_src_value);
     			attr_dev(img1, "class", "icon");
     			attr_dev(img1, "alt", "back");
-    			add_location(img1, file$6, 90, 63, 2871);
+    			add_location(img1, file$6, 90, 63, 2880);
     			attr_dev(a, "href", "/food");
     			attr_dev(a, "class", "btn btn-lg btn-outline-dark");
-    			add_location(a, file$6, 90, 2, 2810);
+    			add_location(a, file$6, 90, 2, 2819);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -12614,7 +12627,7 @@ var app = (function () {
     			}
 
     			if (!mounted) {
-    				dispose = listen_dev(button, "click", /*click_handler*/ ctx[4], false, false, false);
+    				dispose = listen_dev(button, "click", /*click_handler*/ ctx[5], false, false, false);
     				mounted = true;
     			}
     		},
@@ -12623,7 +12636,7 @@ var app = (function () {
     				prop_dev(button, "disabled", /*disabled*/ ctx[2]);
     			}
 
-    			if (dirty & /*addToGroceryList, ingredients*/ 2) {
+    			if (dirty & /*addToGroceryList, ingredients, $claims*/ 10) {
     				each_value_1 = /*ingredients*/ ctx[1];
     				validate_each_argument(each_value_1);
     				let i;
@@ -12697,7 +12710,7 @@ var app = (function () {
     	let dispose;
 
     	function click_handler_1() {
-    		return /*click_handler_1*/ ctx[5](/*ing*/ ctx[11]);
+    		return /*click_handler_1*/ ctx[6](/*ing*/ ctx[11]);
     	}
 
     	const block = {
@@ -12724,7 +12737,7 @@ var app = (function () {
     			attr_dev(img, "class", "svg");
     			if (!src_url_equal(img.src, img_src_value = "/open-iconic-master/svg/cart.svg")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "cart");
-    			add_location(img, file$6, 64, 132, 2091);
+    			add_location(img, file$6, 64, 141, 2100);
     			attr_dev(button, "class", "btn btn-sm btn-success addToGroceryList");
     			add_location(button, file$6, 64, 14, 1973);
     			add_location(span1, file$6, 64, 8, 1967);
@@ -12806,7 +12819,7 @@ var app = (function () {
     			}
 
     			attr_dev(ul, "class", "list-group");
-    			add_location(ul, file$6, 75, 2, 2337);
+    			add_location(ul, file$6, 75, 2, 2346);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, ul, anchor);
@@ -12869,7 +12882,7 @@ var app = (function () {
     			t = text(t_value);
     			attr_dev(li, "class", "list-group-item list-group-item-action list-group-item-dark");
     			attr_dev(li, "id", "recipeDirections");
-    			add_location(li, file$6, 77, 8, 2420);
+    			add_location(li, file$6, 77, 8, 2429);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
@@ -12946,7 +12959,7 @@ var app = (function () {
     function instance$8($$self, $$props, $$invalidate) {
     	let $claims;
     	validate_store(claims, 'claims');
-    	component_subscribe($$self, claims, $$value => $$invalidate(6, $claims = $$value));
+    	component_subscribe($$self, claims, $$value => $$invalidate(3, $claims = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('RecipeDetailComponent', slots, []);
     	let { params } = $$props;
@@ -12998,10 +13011,10 @@ var app = (function () {
     	});
 
     	const click_handler = () => $$invalidate(2, disabled = addAllItemsToGroceryList(ingredients, disabled));
-    	const click_handler_1 = ing => addToGroceryList(ing.ingredients.Ingredient);
+    	const click_handler_1 = ing => addToGroceryList(ing.ingredients.Ingredient, $claims);
 
     	$$self.$$set = $$props => {
-    		if ('params' in $$props) $$invalidate(3, params = $$props.params);
+    		if ('params' in $$props) $$invalidate(4, params = $$props.params);
     		if ('recipe' in $$props) $$invalidate(0, recipe = $$props.recipe);
     		if ('ingredients' in $$props) $$invalidate(1, ingredients = $$props.ingredients);
     		if ('disabled' in $$props) $$invalidate(2, disabled = $$props.disabled);
@@ -13023,7 +13036,7 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ('params' in $$props) $$invalidate(3, params = $$props.params);
+    		if ('params' in $$props) $$invalidate(4, params = $$props.params);
     		if ('recipe' in $$props) $$invalidate(0, recipe = $$props.recipe);
     		if ('ingredients' in $$props) $$invalidate(1, ingredients = $$props.ingredients);
     		if ('disabled' in $$props) $$invalidate(2, disabled = $$props.disabled);
@@ -13033,7 +13046,7 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [recipe, ingredients, disabled, params, click_handler, click_handler_1];
+    	return [recipe, ingredients, disabled, $claims, params, click_handler, click_handler_1];
     }
 
     class RecipeDetailComponent extends SvelteComponentDev {
@@ -13041,7 +13054,7 @@ var app = (function () {
     		super(options);
 
     		init(this, options, instance$8, create_fragment$8, safe_not_equal, {
-    			params: 3,
+    			params: 4,
     			recipe: 0,
     			ingredients: 1,
     			disabled: 2
@@ -13057,7 +13070,7 @@ var app = (function () {
     		const { ctx } = this.$$;
     		const props = options.props || {};
 
-    		if (/*params*/ ctx[3] === undefined && !('params' in props)) {
+    		if (/*params*/ ctx[4] === undefined && !('params' in props)) {
     			console.warn("<RecipeDetailComponent> was created without expected prop 'params'");
     		}
 
@@ -13362,22 +13375,25 @@ var app = (function () {
 
     function get_each_context$7(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[3] = list[i];
+    	child_ctx[4] = list[i];
     	return child_ctx;
     }
 
-    // (38:4) {#each items as ite }
+    // (37:4) {#each items as ite }
     function create_each_block$7(ctx) {
     	let tr;
     	let td;
-    	let t0_value = /*ite*/ ctx[3].Item + "";
+    	let t0_value = /*ite*/ ctx[4].Item + "";
     	let t0;
     	let t1;
     	let button;
     	let t2;
-    	let img;
-    	let img_src_value;
+    	let img0;
+    	let img0_src_value;
     	let t3;
+    	let img1;
+    	let img1_src_value;
+    	let t4;
     	let mounted;
     	let dispose;
 
@@ -13388,19 +13404,26 @@ var app = (function () {
     			t0 = text(t0_value);
     			t1 = space();
     			button = element("button");
-    			t2 = text("Mark Done   ");
-    			img = element("img");
+    			t2 = text("  ");
+    			img0 = element("img");
     			t3 = space();
-    			attr_dev(img, "class", "svg");
-    			if (!src_url_equal(img.src, img_src_value = "/open-iconic-master/svg/circle-check.svg")) attr_dev(img, "src", img_src_value);
-    			attr_dev(img, "alt", "circle-check");
-    			add_location(img, file$8, 43, 135, 1147);
+    			img1 = element("img");
+    			t4 = space();
+    			attr_dev(img0, "class", "svg");
+    			if (!src_url_equal(img0.src, img0_src_value = "/open-iconic-master/svg/cart.svg")) attr_dev(img0, "src", img0_src_value);
+    			attr_dev(img0, "alt", "cart");
+    			add_location(img0, file$8, 42, 134, 1047);
+    			attr_dev(img1, "class", "svg");
+    			if (!src_url_equal(img1.src, img1_src_value = "/open-iconic-master/svg/circle-check.svg")) attr_dev(img1, "src", img1_src_value);
+    			attr_dev(img1, "alt", "circle-check");
+    			attr_dev(img1, "id", "markDone");
+    			add_location(img1, file$8, 42, 202, 1115);
     			attr_dev(button, "class", "btn btn-lg btn-light markDone");
-    			add_location(button, file$8, 43, 8, 1020);
+    			add_location(button, file$8, 42, 8, 921);
     			attr_dev(td, "class", "groceryListItem");
-    			add_location(td, file$8, 39, 6, 827);
-    			attr_dev(tr, "class", "table-danger");
-    			add_location(tr, file$8, 38, 4, 790);
+    			add_location(td, file$8, 38, 6, 728);
+    			attr_dev(tr, "class", "row-danger");
+    			add_location(tr, file$8, 37, 4, 693);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -13409,15 +13432,17 @@ var app = (function () {
     			append_dev(td, t1);
     			append_dev(td, button);
     			append_dev(button, t2);
-    			append_dev(button, img);
-    			append_dev(tr, t3);
+    			append_dev(button, img0);
+    			append_dev(button, t3);
+    			append_dev(button, img1);
+    			append_dev(tr, t4);
 
     			if (!mounted) {
     				dispose = listen_dev(
     					button,
     					"click",
     					function () {
-    						if (is_function(markDone(/*ite*/ ctx[3].Item, this.parentElement.parentElement))) markDone(/*ite*/ ctx[3].Item, this.parentElement.parentElement).apply(this, arguments);
+    						if (is_function(markDone(/*ite*/ ctx[4].Item, this.parentElement.parentElement, /*$claims*/ ctx[1]))) markDone(/*ite*/ ctx[4].Item, this.parentElement.parentElement, /*$claims*/ ctx[1]).apply(this, arguments);
     					},
     					false,
     					false,
@@ -13429,7 +13454,7 @@ var app = (function () {
     		},
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
-    			if (dirty & /*items*/ 1 && t0_value !== (t0_value = /*ite*/ ctx[3].Item + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*items*/ 1 && t0_value !== (t0_value = /*ite*/ ctx[4].Item + "")) set_data_dev(t0, t0_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(tr);
@@ -13442,7 +13467,7 @@ var app = (function () {
     		block,
     		id: create_each_block$7.name,
     		type: "each",
-    		source: "(38:4) {#each items as ite }",
+    		source: "(37:4) {#each items as ite }",
     		ctx
     	});
 
@@ -13450,6 +13475,7 @@ var app = (function () {
     }
 
     function create_fragment$a(ctx) {
+    	let div;
     	let table;
     	let legend;
     	let t1;
@@ -13472,6 +13498,7 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
+    			div = element("div");
     			table = element("table");
     			legend = element("legend");
     			legend.textContent = "Grocery List";
@@ -13489,20 +13516,24 @@ var app = (function () {
     			t4 = space();
     			button = element("button");
     			button.textContent = "Refresh";
-    			add_location(legend, file$8, 31, 2, 663);
-    			add_location(thead, file$8, 32, 2, 695);
-    			add_location(tbody, file$8, 36, 2, 752);
+    			add_location(legend, file$8, 30, 2, 566);
+    			add_location(thead, file$8, 31, 2, 598);
+    			add_location(tbody, file$8, 35, 2, 655);
     			attr_dev(table, "class", "table table-responsive table-light");
-    			add_location(table, file$8, 30, 0, 610);
-    			add_location(br, file$8, 56, 0, 1474);
+    			attr_dev(table, "id", "groceryList");
+    			add_location(table, file$8, 29, 0, 496);
+    			attr_dev(div, "class", "container-fluid");
+    			add_location(div, file$8, 28, 0, 466);
+    			add_location(br, file$8, 56, 0, 1463);
     			attr_dev(button, "class", "btn btn-lg btn-primary float-right");
-    			add_location(button, file$8, 58, 0, 1482);
+    			add_location(button, file$8, 58, 0, 1471);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, table, anchor);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, table);
     			append_dev(table, legend);
     			append_dev(table, t1);
     			append_dev(table, thead);
@@ -13519,12 +13550,12 @@ var app = (function () {
     			insert_dev(target, button, anchor);
 
     			if (!mounted) {
-    				dispose = listen_dev(button, "click", /*click_handler*/ ctx[2], false, false, false);
+    				dispose = listen_dev(button, "click", /*click_handler*/ ctx[3], false, false, false);
     				mounted = true;
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*markDone, items*/ 1) {
+    			if (dirty & /*markDone, items, $claims*/ 3) {
     				each_value = /*items*/ ctx[0];
     				validate_each_argument(each_value);
     				let i;
@@ -13551,7 +13582,7 @@ var app = (function () {
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(table);
+    			if (detaching) detach_dev(div);
     			destroy_each(each_blocks, detaching);
     			if (detaching) detach_dev(t3);
     			if (detaching) detach_dev(br);
@@ -13574,27 +13605,25 @@ var app = (function () {
     }
 
     function instance$a($$self, $$props, $$invalidate) {
+    	let $claims;
+    	validate_store(claims, 'claims');
+    	component_subscribe($$self, claims, $$value => $$invalidate(1, $claims = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('GroceryListComponent', slots, []);
     	let { items = [] } = $$props;
     	let { remainingItems = [] } = $$props;
 
     	onMount(async () => {
-    		fetch('https://graphql-jeffrecipes.herokuapp.com/v1/graphql', {
-    			method: 'POST',
-    			headers: { 'Content-Type': 'application/json' },
-    			body: JSON.stringify({
-    				query: `query {
+    		let q = `
+  {
     grocerylist(where: {Done: {_eq: "No"}}) {
         Item
     }
-}`
-    			})
-    		}).then(res => res.json()).then(res => {
-    			$$invalidate(0, items = res.data.grocerylist);
-    		});
+  }
+  `;
 
-    		$$invalidate(0, items);
+    		let temp = await executeGraphql(q, $claims);
+    		$$invalidate(0, items = temp.data.grocerylist);
     	});
 
     	const writable_props = ['items', 'remainingItems'];
@@ -13607,33 +13636,36 @@ var app = (function () {
 
     	$$self.$$set = $$props => {
     		if ('items' in $$props) $$invalidate(0, items = $$props.items);
-    		if ('remainingItems' in $$props) $$invalidate(1, remainingItems = $$props.remainingItems);
+    		if ('remainingItems' in $$props) $$invalidate(2, remainingItems = $$props.remainingItems);
     	};
 
     	$$self.$capture_state = () => ({
     		onMount,
     		markDone,
+    		executeGraphql,
     		link,
+    		claims,
     		items,
-    		remainingItems
+    		remainingItems,
+    		$claims
     	});
 
     	$$self.$inject_state = $$props => {
     		if ('items' in $$props) $$invalidate(0, items = $$props.items);
-    		if ('remainingItems' in $$props) $$invalidate(1, remainingItems = $$props.remainingItems);
+    		if ('remainingItems' in $$props) $$invalidate(2, remainingItems = $$props.remainingItems);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [items, remainingItems, click_handler];
+    	return [items, $claims, remainingItems, click_handler];
     }
 
     class GroceryListComponent extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$a, create_fragment$a, safe_not_equal, { items: 0, remainingItems: 1 });
+    		init(this, options, instance$a, create_fragment$a, safe_not_equal, { items: 0, remainingItems: 2 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -17687,7 +17719,7 @@ var app = (function () {
     const { console: console_1$d } = globals;
     const file$f = "src/App.svelte";
 
-    // (115:1) {:else}
+    // (130:1) {:else}
     function create_else_block$5(ctx) {
     	let div;
     	let a;
@@ -17736,20 +17768,20 @@ var app = (function () {
     			attr_dev(img0, "class", "menuIcon");
     			if (!src_url_equal(img0.src, img0_src_value = "/open-iconic-master/svg/bell.svg")) attr_dev(img0, "src", img0_src_value);
     			attr_dev(img0, "alt", "notifications");
-    			add_location(img0, file$f, 116, 90, 3510);
+    			add_location(img0, file$f, 131, 90, 5330);
     			attr_dev(span, "class", "menuIconNotificiation badge badge-light");
-    			add_location(span, file$f, 116, 171, 3591);
+    			add_location(span, file$f, 131, 171, 5411);
     			attr_dev(img1, "class", "menuIcon");
     			if (!src_url_equal(img1.src, img1_src_value = "/open-iconic-master/svg/cog.svg")) attr_dev(img1, "src", img1_src_value);
     			attr_dev(img1, "alt", "settings");
-    			add_location(img1, file$f, 116, 234, 3654);
+    			add_location(img1, file$f, 131, 234, 5474);
     			attr_dev(h1, "class", "text-center welcome");
-    			add_location(h1, file$f, 116, 24, 3444);
+    			add_location(h1, file$f, 131, 24, 5264);
     			attr_dev(a, "href", "/");
-    			add_location(a, file$f, 116, 3, 3423);
-    			add_location(hr, file$f, 117, 2, 3741);
+    			add_location(a, file$f, 131, 3, 5243);
+    			add_location(hr, file$f, 132, 2, 5561);
     			attr_dev(div, "class", "container-fluid");
-    			add_location(div, file$f, 115, 2, 3390);
+    			add_location(div, file$f, 130, 2, 5210);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -17797,30 +17829,30 @@ var app = (function () {
     		block,
     		id: create_else_block$5.name,
     		type: "else",
-    		source: "(115:1) {:else}",
+    		source: "(130:1) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (102:1) {#if !$authToken }
+    // (111:1) {#if !$authToken }
     function create_if_block$b(ctx) {
-    	let div1;
-    	let h1;
-    	let t1;
+    	let div3;
     	let h2;
-    	let t3;
-    	let p;
-    	let t5;
-    	let h4;
-    	let t7;
-    	let h6;
-    	let em;
-    	let t9;
+    	let t1;
     	let div0;
     	let auth0context;
+    	let t2;
+    	let div1;
+    	let t4;
+    	let div2;
+    	let a;
+    	let button;
+    	let link_action;
     	let current;
+    	let mounted;
+    	let dispose;
 
     	auth0context = new Auth0Context({
     			props: {
@@ -17836,62 +17868,63 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div1 = element("div");
-    			h1 = element("h1");
-    			h1.textContent = "Welcome to Jeff Cairns' recipe book & more!";
-    			t1 = space();
+    			div3 = element("div");
     			h2 = element("h2");
-    			h2.textContent = "Grimp! saves all of your home recipes and allows you to easily share them with friends. Easily manage your grocery list and track your inventory, too.";
-    			t3 = space();
-    			p = element("p");
-    			p.textContent = " ";
-    			t5 = space();
-    			h4 = element("h4");
-    			h4.textContent = "Sign up or login with Google, Facebook or your personal email.";
-    			t7 = space();
-    			h6 = element("h6");
-    			em = element("em");
-    			em.textContent = "Jeff Cairns will receive your name, email and profile picture if you sign up with Google or Facebook";
-    			t9 = space();
+    			h2.textContent = "Groceries, Recipes And Meal Prep";
+    			t1 = space();
     			div0 = element("div");
     			create_component(auth0context.$$.fragment);
-    			attr_dev(h1, "class", "text-center welcome");
-    			add_location(h1, file$f, 103, 3, 2584);
+    			t2 = space();
+    			div1 = element("div");
+    			div1.textContent = " ";
+    			t4 = space();
+    			div2 = element("div");
+    			a = element("a");
+    			button = element("button");
+    			button.textContent = "Continue as Guest";
     			attr_dev(h2, "class", "text-center");
-    			add_location(h2, file$f, 104, 3, 2668);
-    			add_location(p, file$f, 105, 3, 2851);
-    			attr_dev(h4, "class", "text-center");
-    			add_location(h4, file$f, 106, 3, 2868);
-    			add_location(em, file$f, 107, 27, 2987);
-    			attr_dev(h6, "class", "text-center");
-    			add_location(h6, file$f, 107, 3, 2963);
+    			attr_dev(h2, "id", "title");
+    			add_location(h2, file$f, 112, 3, 4124);
     			attr_dev(div0, "class", "text-center");
-    			add_location(div0, file$f, 108, 3, 3105);
-    			attr_dev(div1, "class", "text-left container-fluid");
-    			add_location(div1, file$f, 102, 2, 2541);
+    			add_location(div0, file$f, 119, 4, 4732);
+    			add_location(div1, file$f, 124, 3, 5007);
+    			attr_dev(button, "class", "btn btn-lg btn-primary");
+    			add_location(button, file$f, 126, 26, 5081);
+    			attr_dev(a, "href", "/");
+    			add_location(a, file$f, 126, 5, 5060);
+    			attr_dev(div2, "class", "text-center");
+    			add_location(div2, file$f, 125, 4, 5029);
+    			attr_dev(div3, "class", "text-left container-fluid");
+    			add_location(div3, file$f, 111, 2, 4081);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div1, anchor);
-    			append_dev(div1, h1);
-    			append_dev(div1, t1);
-    			append_dev(div1, h2);
-    			append_dev(div1, t3);
-    			append_dev(div1, p);
-    			append_dev(div1, t5);
-    			append_dev(div1, h4);
-    			append_dev(div1, t7);
-    			append_dev(div1, h6);
-    			append_dev(h6, em);
-    			append_dev(div1, t9);
-    			append_dev(div1, div0);
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, h2);
+    			append_dev(div3, t1);
+    			append_dev(div3, div0);
     			mount_component(auth0context, div0, null);
+    			append_dev(div3, t2);
+    			append_dev(div3, div1);
+    			append_dev(div3, t4);
+    			append_dev(div3, div2);
+    			append_dev(div2, a);
+    			append_dev(a, button);
     			current = true;
+
+    			if (!mounted) {
+    				dispose = [
+    					listen_dev(button, "click", /*loginAsGuest*/ ctx[4], { once: true }, false, false),
+    					action_destroyer(link_action = link.call(null, a))
+    				];
+
+    				mounted = true;
+    			}
     		},
     		p: function update(ctx, dirty) {
     			const auth0context_changes = {};
     			if (dirty & /*env*/ 1) auth0context_changes.callback_url = /*env*/ ctx[0];
 
-    			if (dirty & /*$$scope*/ 64) {
+    			if (dirty & /*$$scope*/ 128) {
     				auth0context_changes.$$scope = { dirty, ctx };
     			}
 
@@ -17907,8 +17940,10 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div1);
+    			if (detaching) detach_dev(div3);
     			destroy_component(auth0context);
+    			mounted = false;
+    			run_all(dispose);
     		}
     	};
 
@@ -17916,14 +17951,14 @@ var app = (function () {
     		block,
     		id: create_if_block$b.name,
     		type: "if",
-    		source: "(102:1) {#if !$authToken }",
+    		source: "(111:1) {#if !$authToken }",
     		ctx
     	});
 
     	return block;
     }
 
-    // (111:5) <Auth0LoginButton class="btn">
+    // (122:5) <Auth0LoginButton class="btn btn-lg">
     function create_default_slot_1(ctx) {
     	let t;
 
@@ -17943,21 +17978,21 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(111:5) <Auth0LoginButton class=\\\"btn\\\">",
+    		source: "(122:5) <Auth0LoginButton class=\\\"btn btn-lg\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (110:4) <Auth0Context domain="jeffca.auth0.com" client_id="URjctPE9nuCr4V9rFYWXbfEx04gZ9Faa" callback_url="{env }" logout_url="http://localhost:5000">
+    // (121:4) <Auth0Context domain="jeffca.auth0.com" client_id="URjctPE9nuCr4V9rFYWXbfEx04gZ9Faa" callback_url="{env }" logout_url="http://localhost:5000">
     function create_default_slot(ctx) {
     	let auth0loginbutton;
     	let current;
 
     	auth0loginbutton = new Auth0LoginButton({
     			props: {
-    				class: "btn",
+    				class: "btn btn-lg",
     				$$slots: { default: [create_default_slot_1] },
     				$$scope: { ctx }
     			},
@@ -17975,7 +18010,7 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const auth0loginbutton_changes = {};
 
-    			if (dirty & /*$$scope*/ 64) {
+    			if (dirty & /*$$scope*/ 128) {
     				auth0loginbutton_changes.$$scope = { dirty, ctx };
     			}
 
@@ -17999,7 +18034,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(110:4) <Auth0Context domain=\\\"jeffca.auth0.com\\\" client_id=\\\"URjctPE9nuCr4V9rFYWXbfEx04gZ9Faa\\\" callback_url=\\\"{env }\\\" logout_url=\\\"http://localhost:5000\\\">",
+    		source: "(121:4) <Auth0Context domain=\\\"jeffca.auth0.com\\\" client_id=\\\"URjctPE9nuCr4V9rFYWXbfEx04gZ9Faa\\\" callback_url=\\\"{env }\\\" logout_url=\\\"http://localhost:5000\\\">",
     		ctx
     	});
 
@@ -18094,9 +18129,9 @@ var app = (function () {
     	let $authToken;
     	let $userInfo;
     	validate_store(idToken, 'idToken');
-    	component_subscribe($$self, idToken, $$value => $$invalidate(4, $idToken = $$value));
+    	component_subscribe($$self, idToken, $$value => $$invalidate(5, $idToken = $$value));
     	validate_store(claims, 'claims');
-    	component_subscribe($$self, claims, $$value => $$invalidate(5, $claims = $$value));
+    	component_subscribe($$self, claims, $$value => $$invalidate(6, $claims = $$value));
     	validate_store(authToken, 'authToken');
     	component_subscribe($$self, authToken, $$value => $$invalidate(1, $authToken = $$value));
     	validate_store(userInfo, 'userInfo');
@@ -18113,8 +18148,8 @@ var app = (function () {
     	});
 
     	var env;
-    	console.log(window.location.href);
 
+    	// console.log(window.location.href);
     	if (window.location.href == 'http://localhost:5000/') {
     		env = 'http://localhost:5000/';
     	} else {
@@ -18141,6 +18176,14 @@ var app = (function () {
     		//API 
     		'/callback': LoginSuccessfulComponent
     	};
+
+    	function loginAsGuest() {
+    		console.log("guest trying to login");
+    		set_store_value(authToken, $authToken = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlJUVXpRMEZFTWpOQ016VkdSVEE1TVRSR05EVkVRVUZDUlVWQk1qSTVNekl5UlVaQlJFSXlOUSJ9.eyJodHRwczovL2hhc3VyYS5pby9qd3QvY2xhaW1zIjp7IngtaGFzdXJhLWRlZmF1bHQtcm9sZSI6InVzZXIiLCJ4LWhhc3VyYS1hbGxvd2VkLXJvbGVzIjpbInVzZXIiXSwieC1oYXN1cmEtdXNlci1pZCI6Imdvb2dsZS1vYXV0aDJ8MTAzNjE0MzY4Nzg1MDc0MzUwNzU5In0sImdpdmVuX25hbWUiOiJHZW9mZnJleSIsImZhbWlseV9uYW1lIjoiQ2Fpcm5zIiwibmlja25hbWUiOiJnZW9mZnJleWNhaXJuczAiLCJuYW1lIjoiR2VvZmZyZXkgQ2Fpcm5zIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FBVFhBSnlxUlNESlFMQXBvd2YwdnNTc21ISWtEdTI0TmJoTGI4Q1owZTRkPXM5Ni1jIiwibG9jYWxlIjoiZW4iLCJ1cGRhdGVkX2F0IjoiMjAyMi0wMi0wNlQwMDo1MDoxOS40MjFaIiwiZW1haWwiOiJnZW9mZnJleWNhaXJuczBAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOi8vamVmZmNhLmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwMzYxNDM2ODc4NTA3NDM1MDc1OSIsImF1ZCI6IlVSamN0UEU5bnVDcjRWOXJGWVdYYmZFeDA0Z1o5RmFhIiwiaWF0IjoxNjQ0MTA4NjIxLCJleHAiOjE2NDQxNDQ2MjEsIm5vbmNlIjoiUVVqaWRUV1VZeU5faHlGLmZGeTBZMFppQUx1ZGlibloxWnNEX01hV1BiOSJ9.gQscuRUduj6XnFIetaA-E6ViVzlrGHQWxwfpFFKIlw9fCboutytngxbwuaxJW5-AX1znR2_iwuw1zbBpB9ZsDwVyY19CmEgn4zzpfPTUK6yR2MdbPsTOlm7w2Pjl4yYKNjBvAE1VvQtU3i9aI-WeBZnT8xaSYRg0OYMveSCaTOG0GNYprJAZ6n1k42KZWQO9O0uDEjFt4s5H6sISqWqC_vYyK2Vx6CAHUEgo2c6IDv04qY5Ay7c_1EfYNrxBI460GUxMiY_pk41PcbU_dnFD3T_bDbbADXzO2EB4tlhn-b0yUBIFIUSRPii3vUNWxGW4a6pcu2eurP7PGvG3PjUzSg', $authToken);
+    		set_store_value(userInfo, $userInfo['nickname'] = 'Guest', $userInfo);
+    		set_store_value(idToken, $idToken = $authToken, $idToken);
+    		set_store_value(claims, $claims = $idToken, $claims);
+    	}
 
     	const writable_props = [];
 
@@ -18178,6 +18221,7 @@ var app = (function () {
     		Router,
     		link,
     		routes,
+    		loginAsGuest,
     		$idToken,
     		$claims,
     		$authToken,
@@ -18192,7 +18236,7 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [env, $authToken, $userInfo, routes];
+    	return [env, $authToken, $userInfo, routes, loginAsGuest];
     }
 
     class App extends SvelteComponentDev {

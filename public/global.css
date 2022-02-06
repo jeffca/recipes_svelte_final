@@ -48,22 +48,23 @@
 	margin-bottom: 1%;
 }
 
-:global(.welcome) {
-	font-family: "Scope One", serif;
-}
-
 
 
 .welcome {
 	font-family: "Scope One", serif;
+	font-size:  32pt;
 }
 
 .recipesNav {
-	color: royalblue;
-	font-family: "Rancho", cursive;
+	color: cadetblue;
+	font-family: "Rasa";
 	font-size: 24pt;
-	font-weight: bolder;
+	font-weight: bold;
 	letter-spacing: 1.5px;
+}
+
+.loading {
+	font-size:  26pt;
 }
 
 .menuIcon {
@@ -142,12 +143,6 @@
 	color: black;
 }
 
-.ingredientsBtn {
-	font-family: "Rasa", serif;
-	font-size: 20pt;
-	color: gray;
-}
-
 :global(.recipe) {
 	font-size: 20pt;
 	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana';
@@ -181,17 +176,27 @@
 	text-align: center;
 }
 
-:global(.markDone) {
+.markDone {
+	font-size: 8pt;
 	float: right;
-	margin-right: 2.5em;
-	width: 9em;
+	margin-left: .5em;
+	width: 7em;
 }
 
-:global(.groceryListItem) {
+@font-face {
+	font-family: "Cookie";
+	src:  url('./fonts/Cookie-Regular.ttf') format('truetype');
+} 
+
+@font-face {
+	font-family: "Self Deception";
+	src:  url('./fonts/SelfDeceptionRegular-ALLWA.ttf') format('truetype');
+}
+
+.groceryListItem {
+	text-align: left;
+	font-family: "Self Deception";
 	font-size: 24pt;
-	font-family: Helvetica;
-	font-weight: 400;
-	text-align: center;
 }
 
 :global(legend) {
@@ -216,7 +221,11 @@ body {
 	margin: 0;
 	padding: 8px;
 	box-sizing: border-box;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-family: "Rasa", "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+#title {
+	font-family:  "Courier New";
 }
 
 a {
@@ -225,8 +234,8 @@ a {
 }
 
 a:hover {
-	text-decoration: underline;
-	color: #888;
+	opacity: 88%;
+	color: #999;
 }
 
 label {
@@ -257,6 +266,20 @@ button {
 	outline: none;
 }
 
+.btn-primary {
+	background-color:  cornflowerblue;
+	color:  #226;
+}
+
+.btn-outline-primary {
+	border-color:  lightsteelblue;
+	color: seagreen;
+}
+
+.btn-outline-info, .btn-outline-success {
+	font-size: 17pt;
+}
+
 button:disabled {
 	color: #999;
 }
@@ -267,4 +290,9 @@ button:not(:disabled):active {
 
 button:focus {
 	border-color: #666;
+	color: #121;
+}
+
+.row-danger {
+	background-color: peachpuff;
 }

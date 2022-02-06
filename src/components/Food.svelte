@@ -4,6 +4,7 @@
   import {link} from 'svelte-spa-router'
   import { executeGraphql } from "../helpers.js";
   import { claims } from '../stores.js';
+  import { authToken } from '@dopry/svelte-auth0';
 
     export let hasura_userID;
 
@@ -293,9 +294,11 @@
 
       `
       let temp = await executeGraphql(q, $claims); 
+
       recipes = temp.data.users_recipes;
 
       let recipeNames = [];
+
       for (var i = 0; i < recipes.length; i++) {
           if (!unique_meal_types.includes(recipes[i]["recipes"]["Meal_Type"])) {
               unique_meal_types.push(recipes[i]["recipes"]["Meal_Type"])
@@ -321,7 +324,6 @@
       unique_meal_types_counts = unique_meal_types_counts;
       loadingRecipes = false;
       console.log(unique_meal_types_counts);
-
   }
 
   onMount(async () => {
@@ -331,13 +333,13 @@
 
 
 <div class="row text-center">
-  <div class="col-sm-4">
+  <div class="col-md-5">
     <button on:click={() => viewMyRecipes()} class="btn btn-md btn-outline-success">View My Recipes</button>
   </div>
-  <div class="col-sm-4">
-    <a href="/food/recipes/new" use:link class="btn btn-md btn-info">Add New Recipe</a>
-  </div>
-  <div class="col-sm-4">
+
+  <div class="col-md-1">&nbsp;</div>
+
+  <div class="col-sm-5">
     <button on:click={() => viewCommunityRecipes()} class="btn btn-md btn-outline-info">Learn a Community Recipe</button>
   </div>
 </div>
@@ -355,7 +357,7 @@
     </ul>
     {:else}
         {#if loadingRecipes}
-            <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="svg" alt="loading"></p>
+            <p class='loading'>Loading... <img src="/open-iconic-master/svg/clock.svg" class="svg" alt="loading"></p>
         {:else}
             <p>Welcome to your first time using Grimp!</p>
             <p><a href="/food/recipes/new" use:link class="btn btn-lg btn-outline-success">Create a new recipe</a></p>
@@ -375,7 +377,7 @@
   {/each}
 </ul>
 {:else}
-    <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="svg" alt="loading"></p>
+    <p class='loading'>Loading... <img src="/open-iconic-master/svg/clock.svg" class="svg" alt="loading"></p>
 {/if}
 <p>
     <button class="btn btn-md btn-secondary" on:click={() => viewMyRecipes()}><img class="icon" alt="back" src="/open-iconic-master/svg/chevron-left.svg"> Back</button>
@@ -392,7 +394,7 @@
   {/each}
 </ul>
 {:else}
-    <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="svg" alt="loading"></p>
+    <p class='loading'>Loading... <img src="/open-iconic-master/svg/clock.svg" class="svg" alt="loading"></p>
 {/if}
 <p>
     <button class="btn btn-md btn-secondary" on:click={() => filterMyRecipes(current_meal_type, null, null)}><img class="icon" alt="back" src="/open-iconic-master/svg/chevron-left.svg"> Back</button>
@@ -413,7 +415,7 @@
         {/each}  
     </ul>
     {:else}
-        <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="svg" alt="loading"></p>
+        <p class='loading'>Loading... <img src="/open-iconic-master/svg/clock.svg" class="svg" alt="loading"></p>
     {/if}
 {/if}
 {/if}
@@ -429,7 +431,7 @@
     {/each}
     </ul>
     {:else}
-        <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="svg" alt="loading"></p>
+        <p class='loading'>Loading... <img src="/open-iconic-master/svg/clock.svg" class="svg" alt="loading"></p>
     {/if}
     <p>
         <button class="btn btn-md btn-secondary" on:click={() => viewCommunityRecipes()}><img class="icon" alt="back" src="/open-iconic-master/svg/chevron-left.svg"> Back</button>
@@ -446,7 +448,7 @@
   {/each}
 </ul>
 {:else}
-    <p>Loading... <img src="/open-iconic-master/svg/clock.svg" class="svg" alt="loading"></p>
+    <p class='loading'>Loading... <img src="/open-iconic-master/svg/clock.svg" class="svg" alt="loading"></p>
 {/if}
 <p>
     <button class="btn btn-md btn-secondary" on:click={() => filterCommunityRecipes(current_meal_type, null, null)}><img class="icon" alt="back" src="/open-iconic-master/svg/chevron-left.svg"> Back</button>

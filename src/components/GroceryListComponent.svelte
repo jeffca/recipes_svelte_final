@@ -1,34 +1,33 @@
 <script>
   import { onMount } from "svelte";
-  import { markDone } from "../helpers.js";
+  import { markDone, executeGraphql } from "../helpers.js";
   import {link} from 'svelte-spa-router'
+  import { claims } from '../stores.js';
 
   export let items = [];
   export let remainingItems = [];
 
   onMount(async () => {
-  fetch('https://graphql-jeffrecipes.herokuapp.com/v1/graphql', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query: `query {
+
+
+  let q = `
+  {
     grocerylist(where: {Done: {_eq: "No"}}) {
         Item
     }
-}` 
-    })
-  })
-    .then(res => res.json())
-    .then(res => {
-      items = res.data.grocerylist;
-  });     
-  items = items;
+  }
+  `;
+  let temp = await executeGraphql(q, $claims); 
+
+  items = temp.data.grocerylist;
+
   });
 
 </script>
 
 
-
-<table class="table table-responsive table-light">
+<div class="container-fluid">
+<table class="table table-responsive table-light" id="groceryList">
   <legend>Grocery List</legend>
   <thead>
     <!-- <th>Grocery List</th> -->
@@ -36,12 +35,12 @@
 
   <tbody>
     {#each items as ite }
-    <tr class='table-danger'>     
+    <tr class='row-danger'>     
       <td class="groceryListItem">{ite.Item}
       <!-- <div class="input-group mb-3"> -->
         <!-- <div class="input-group-prepend"> -->
          <!-- <div class="input-group-text"> -->
-        <button on:click={markDone(ite.Item, this.parentElement.parentElement)} class="btn btn-lg btn-light markDone">Mark Done &nbsp; <img class="svg" src="/open-iconic-master/svg/circle-check.svg" alt='circle-check'></button>
+        <button on:click={markDone(ite.Item, this.parentElement.parentElement, $claims)} class="btn btn-lg btn-light markDone">&nbsp; <img class="svg" src="/open-iconic-master/svg/cart.svg" alt="cart"> <img class="svg" src="/open-iconic-master/svg/circle-check.svg" alt='circle-check' id="markDone"></button>
           <!-- </div> -->
         <!-- </div> -->
         <!-- </div> -->
@@ -52,8 +51,9 @@
 
 
   </tbody>
-</table>
 
+</table>
+</div>
 <br />
 
 <button on:click={() => location.reload()} class="btn btn-lg btn-primary float-right">Refresh</button>

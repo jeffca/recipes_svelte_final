@@ -62,7 +62,7 @@
       {#each ingredients as ing }
       <li class='list-group-item text-center'>     
         <span><a href="/ingredients/{ing.ingredients.id}" use:link class="ingredientsBtn">{ing.ingredients.Ingredient}</a> ({ing.Quantity} {ing.Quantity_Measurement})</span>
-        <span><button on:click={() => addToGroceryList(ing.ingredients.Ingredient)} class='btn btn-sm btn-success addToGroceryList'><img class="svg" src="/open-iconic-master/svg/cart.svg" alt='cart'> &nbsp;Add to Grocery List</button></span>
+        <span><button on:click={() => addToGroceryList(ing.ingredients.Ingredient, $claims)} class='btn btn-sm btn-success addToGroceryList'><img class="svg" src="/open-iconic-master/svg/cart.svg" alt='cart'> &nbsp;Add to Grocery List</button></span>
       </li>
       {/each}
     </ul>

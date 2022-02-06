@@ -529,11 +529,11 @@
 
 {#if $userInfo["nickname"]}
 <ul class="nav nav-pills nav-fill">
-  <li class="nav-item col-sm-6">
-    <a href="/food" use:link class="btn btn-lg btn-outline-primary">Cook Food</a>
+  <li class="nav-item col-md-6">
+    <a href="/food" use:link class="btn btn-lg btn-outline-success">Cook Food</a>
   </li>
   <li class="nav-item col-sm-6">
-    <button class="btn btn-lg btn-outline-primary disabled">Update Inventory</button>
+    <a href="/grocerylist" use:link class="btn btn-lg btn-light">Open Grocery List</a>
   </li>  
 </ul>
 {/if}
