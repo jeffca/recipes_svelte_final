@@ -27,11 +27,11 @@
     export let unique_categories = [];
     export let unique_category_counts = [];
 
-    claims.subscribe(v => {
-      if ($claims) {
-        getPossibleRecipes();
-      } 
-    })
+    // claims.subscribe(v => {
+    //   if ($claims) {
+    //     getPossibleRecipes();
+    //   } 
+    // })
 
     async function viewMyRecipes() {
       loadingRecipes = true;
@@ -151,7 +151,6 @@
         unique_meal_types = unique_meal_types;
         unique_category_counts = unique_category_counts;
         unique_meal_types_counts = unique_meal_types_counts;
-        console.log($claims);
         let q = `
                 {
                 recipes(where: {Shareable: {_eq: true}}, order_by: {Meal_Type: asc}) {

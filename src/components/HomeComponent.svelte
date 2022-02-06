@@ -16,6 +16,8 @@
 		logout,
 		userInfo
   } from '@dopry/svelte-auth0';
+
+  
      export let loading;
      export let hasura_userID;
 
@@ -34,18 +36,6 @@
     
     export let user_level, user_code;
 
-
-    claims.subscribe(v => {
-      if ($claims) {
-        console.log("claims should be ready!");
-        const c = checkUser();
-        // const res = getCategories();
-        const res2 = getPossibleIngredients();
-        const res3 = getPossibleRecipes();
-        loading = false;
-      } 
-    })
-
     async function checkUser() {
       hasura_userID = $userInfo['https://hasura.io/jwt/claims']['x-hasura-user-id'];
       let q = `
@@ -58,7 +48,6 @@
           }
       `
       let temp = await executeGraphql(q, $claims);  
-      console.log(temp.data); 
       if (temp.data.users.length == 0) {
         console.log("new user detected!")
         q = `
@@ -122,7 +111,6 @@
    async function filterCommunityRecipes(parent_category) {
       viewingFilteredCommunityRecipes = true;
       if (["Lunch or Dinner", "Breakfast", "Snacks", "Drinks"].includes(parent_category)) {
-        console.log("he wants to pick a sub category from the main categories")
         let category_subcategory = {
           "Lunch or Dinner": [
             {"American":{"category": "LD_American", "count": 1}}, 
@@ -141,12 +129,9 @@
           ]
         };
         filteredCommunityRecipes = category_subcategory[parent_category];
-        console.log(filteredCommunityRecipes);
         for (var i = 0; i < filteredCommunityRecipes.length; i++) {
-          console.log(filteredCommunityRecipes[i]);
         }
       } else if (["LD_American", "LD_Italian", "LD_Mexican", "B_Mexican", "S_American", "S_Chinese", "D_Smoothies"].includes(parent_category)) {
-        console.log("he wants to view a specific community recipe");
         let subcategory_subcategory = {
           "LD_American": [
             {"Fried Fish": {"category":6, "count":1}}
@@ -172,8 +157,6 @@
         }
         filteredCommunityRecipes = subcategory_subcategory[parent_category];
       } else {
-        console.log("users wants to view a community recipe!");
-        console.log(parent_category);
         let q = `
                 {
                   users_recipes_by_pk(id: ` + parent_category + `) {
@@ -204,9 +187,7 @@
         `
         temp = await executeGraphql(q, $claims);
         communityRecipeIngredients = temp.data.ingredients_recipes;
-        console.log(communityRecipeIngredients); 
       }
-      console.log("filtered!");
     }
 
     async function viewIngredients() {
@@ -275,7 +256,6 @@
       `
       let temp = await executeGraphql(q, c); 
       recipes = temp.data.users_recipes;
-      console.log(recipes);
   }
 
     async function addNewRecipeIngredients(n_r_i) {

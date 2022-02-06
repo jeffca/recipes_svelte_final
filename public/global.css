@@ -193,6 +193,8 @@
 	src:  url('./fonts/SelfDeceptionRegular-ALLWA.ttf') format('truetype');
 }
 
+
+
 .groceryListItem {
 	text-align: left;
 	font-family: "Self Deception";
@@ -270,6 +272,18 @@ button {
 	background-color:  cornflowerblue;
 	color:  #226;
 }
+
+.btn-outline-warning {
+	border-color: palegoldenrod;	
+	color:  mediumvioletred;
+}
+
+.btn-outline-warning:disabled {
+	border-color: palegoldenrod;	
+	color:  mediumvioletred;
+	opacity:  20%;
+}
+
 
 .btn-outline-primary {
 	border-color:  lightsteelblue;

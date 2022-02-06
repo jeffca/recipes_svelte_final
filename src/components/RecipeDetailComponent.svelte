@@ -3,11 +3,14 @@
   import { claims } from '../stores.js';
   import {link} from 'svelte-spa-router' 
   import { executeGraphql } from "../helpers.js";
-  import { addToGroceryList, addAllItemsToGroceryList } from "../helpers.js";
+  import { addToGroceryList, addAllItemsToGroceryList, addUserRecipe } from "../helpers.js";
+  import { userInfo } from '@dopry/svelte-auth0';
+
   export let params;
   export let recipe;
   export let ingredients;
   export let disabled = false;
+  export let personalRecipe = false;
 
   async function findRecipe() {
     let q = `
@@ -36,12 +39,29 @@
         `
     let temp2 = await executeGraphql(q, $claims);
     ingredients = temp2.data.ingredients_recipes;
+
+
+    q = `
+      {
+        users_recipes(where: {
+          RecipeID: {_eq: ` + params.id + `}
+        }) {
+          id
+        }
+      }
+    `
+    let temp3 = await executeGraphql(q, $claims);
+    var result = temp3.data.users_recipes;
+    console.log(result);
+    console.log(result.length);
+    if (result.length != 0) {
+      personalRecipe = true;
+    } 
+
   } 
 
-  claims.subscribe(v => {
-    if ($claims) {
-      findRecipe();
-  }});
+  findRecipe();
+
 
 </script>
 
@@ -66,6 +86,15 @@
       </li>
       {/each}
     </ul>
+
+    {#if !personalRecipe}
+
+      <div class="row">
+        <div class="mr-auto ml-4 mt-2">
+          <button class="btn btm-md btn-outline-warning" disabled={personalRecipe} on:click|once={() => addUserRecipe(recipe.id, $claims)}>Add This Recipe to My Recipebook</button>
+        </div> 
+      </div>
+    {/if}
   {/if}
 
 
