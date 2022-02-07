@@ -33,18 +33,17 @@
 
 	var env;
 
-	// console.log(window.location.href);
 	if (window.location.href == 'http://localhost:5000/') {
 		env = 'http://localhost:5000/';
 	} else {
 		env = 'https://vigilant-sinoussi-95d5cb.netlify.app/';
 	}
 
-
-	console.log(env);
-
+ async function preLoginAsGuest() {
+ 	$idToken = "ey";
+ 	loginAsGuest();
+ }
 /* END AUTH */
-
 	import Home from './components/HomeComponent.svelte';
 	import Food from './components/Food.svelte';
 	import Recipe_New from './components/RecipeNew.svelte';
@@ -117,7 +116,7 @@
 			</div>
 			<div>&nbsp;</div>
  			<div class="text-center">
-					<a href="/" use:link><button class="btn btn-lg btn-primary" on:click|once={loginAsGuest}>Continue as Guest</button></a>
+					<a href="/" use:link><button class="btn btn-lg btn-primary" on:click|once={preLoginAsGuest}>Continue as Guest</button></a>
 			</div>
 		</div>
 	{:else}

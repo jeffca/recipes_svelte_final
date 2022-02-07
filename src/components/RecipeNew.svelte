@@ -18,28 +18,28 @@
       } 
     })
 
-    async function userLevelUp() {
-      let levels_codes = {
-        1: "Apprentice",
-        2: "Prep Cook",
-        3: "Sous Chef",
-        4: "Executive Chef",
-      };
-      if (user_level < 4) {
-        let new_user_level = user_level + 1;
-        let q = `
-          mutation {
-            update_users(_set: {Onboarding_Level: ` + new_user_level + `, Onboarding_Code: "` + levels_codes[new_user_level] + `"}, where: {x_hasura_user_id: {_eq: "` + hasura_userID + `"}}) {
-              returning {
-                Onboarding_Code
-                Onboarding_Level
-              }
-            }
-          }
-          `
-        let temp = await executeGraphql(q, $claims);
-      }
-    }
+    // async function userLevelUp() {
+    //   let levels_codes = {
+    //     1: "Apprentice",
+    //     2: "Prep Cook",
+    //     3: "Sous Chef",
+    //     4: "Executive Chef",
+    //   };
+    //   if (user_level < 4) {
+    //     let new_user_level = user_level + 1;
+    //     let q = `
+    //       mutation {
+    //         update_users(_set: {Onboarding_Level: ` + new_user_level + `, Onboarding_Code: "` + levels_codes[new_user_level] + `"}, where: {x_hasura_user_id: {_eq: "` + hasura_userID + `"}}) {
+    //           returning {
+    //             Onboarding_Code
+    //             Onboarding_Level
+    //           }
+    //         }
+    //       }
+    //       `
+    //     let temp = await executeGraphql(q, $claims);
+    //   }
+    // }
 
     async function getPossibleIngredients() {
         let q = `
@@ -124,7 +124,7 @@
           `
       temp = await executeGraphql(q, $claims);
 
-      userLevelUp();
+    /* userLevelUp(); */
 
       window.location.assign("/#/food");
     }
@@ -140,13 +140,13 @@
     let temp = await executeGraphql(q, $claims);
     let newIngredientID = temp.data.insert_ingredients_one.id;
 
-    userLevelUp();
+    /* userLevelUp(); */
 
     new_ingredient_name = null;
-    document.getElementById("Ingredient").removeChild;
-    document.getElementById("Brand").removeChild;
+    document.getElementById("new_ingredient").removeChild;
+    document.getElementById("new_brand").removeChild;
     new_ingredient_brand = null;
-    document.getElementById("Quantity_Measurement").removeChild;  
+    document.getElementById("new_quantity_measurement").removeChild;  
     getPossibleIngredients();
     document.getElementById("new_ingredient").focus();
 
@@ -194,21 +194,21 @@
             <div class="form-group row">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Brand (Optional)</label>
                 <div class="col-sm-10">
-                <input type="text" bind:value={new_ingredient_brand} class="form-control" id="blah" placeholder="Dave's Famous Bread">
+                <input type="text" bind:value={new_ingredient_brand} class="form-control" id="new_brand" placeholder="Dave's Famous Bread">
                 </div>
             </div>
             <div class="form-group row">
                     <label class="col-sm-2 col-form-label">How Do You Measure the Quantity?</label>
                     <div class="col-sm-10">
-                        <select bind:value={new_ingredient_measurement} id="Quantity_Measurement">
+                        <select bind:value={new_ingredient_measurement} id="new_quantity_measurement">
                             <option>Each</option>
                             <option>Oz</option>
                             <option>Lb</option>
-                            <option>Grams</option>
-                            <option>Slices</option>
-                            <option>Cups</option>
-                            <option>Tablespoons</option>
-                            <option>Teaspoons</option>
+                            <option>Gram</option>
+                            <option>Slice</option>
+                            <option>Cup</option>
+                            <option>Tablespoon</option>
+                            <option>Teaspoon</option>
                         </select>                    
                     </div>
             </div>            
@@ -300,8 +300,14 @@
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" bind:group={new_recipe_meal_type} value="Drinks" id="xampleRadios4">
+                <input class="form-check-input" type="radio" bind:group={new_recipe_meal_type} value="Side Dish" id="xampleRadios4">
                 <label class="form-check-label" for="xampleRadios4">
+                    Side Dish
+                </label>
+            </div>            
+            <div class="form-check">
+                <input class="form-check-input" type="radio" bind:group={new_recipe_meal_type} value="Drinks" id="xampleRadios5">
+                <label class="form-check-label" for="xampleRadios5">
                     Drink
                 </label>
             </div>     

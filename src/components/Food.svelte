@@ -170,6 +170,7 @@
             recipes_ids.push(recipe_id_mapping);
             if (!unique_meal_types.includes(communityRecipes[i]["Meal_Type"])) {
                 unique_meal_types.push(communityRecipes[i]["Meal_Type"]);
+                console.log("Adding " + communityRecipes[i]["Meal_Type"] + " as a unique meal type");
             }
         }
         console.log(unique_meal_types);
@@ -338,6 +339,7 @@
 
   <div class="col-md-1">&nbsp;</div>
 
+
   <div class="col-sm-5">
     <button on:click={() => viewCommunityRecipes()} class="btn btn-md btn-outline-info">Learn a Community Recipe</button>
   </div>
@@ -363,6 +365,10 @@
             <p><button on:click={() => viewCommunityRecipes()} class="btn btn-lg btn-outline-info">View the Community Recipes</button></p>
         {/if}
     {/if}
+
+
+  <div class="col-md-3"><a href="/food/recipes/new" use:link><button class="btn btn-md btn-outline-warning">Create New Recipe</button></a></div>
+
 {/if}
 
 {#if viewingMyFilteredRecipes}
