@@ -7,6 +7,7 @@
 	/* AUTH */
 
   import { claims } from './stores.js';
+  import { loginAsGuest } from './helpers.js';
 
 	import {
 		Auth0Context,
@@ -82,13 +83,6 @@
 
 	//API 
 	'/callback': LoginSuccessfulComponent,
-	}
-
-	function loginAsGuest() {
-		console.log("guest trying to login");
-		$idToken = `eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlJUVXpRMEZFTWpOQ016VkdSVEE1TVRSR05EVkVRVUZDUlVWQk1qSTVNekl5UlVaQlJFSXlOUSJ9.eyJodHRwczovL2hhc3VyYS5pby9qd3QvY2xhaW1zIjp7IngtaGFzdXJhLWRlZmF1bHQtcm9sZSI6InVzZXIiLCJ4LWhhc3VyYS1hbGxvd2VkLXJvbGVzIjpbInVzZXIiXSwieC1oYXN1cmEtdXNlci1pZCI6Imdvb2dsZS1vYXV0aDJ8MTAzNjE0MzY4Nzg1MDc0MzUwNzU5In0sImdpdmVuX25hbWUiOiJHZW9mZnJleSIsImZhbWlseV9uYW1lIjoiQ2Fpcm5zIiwibmlja25hbWUiOiJnZW9mZnJleWNhaXJuczAiLCJuYW1lIjoiR2VvZmZyZXkgQ2Fpcm5zIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FBVFhBSnlxUlNESlFMQXBvd2YwdnNTc21ISWtEdTI0TmJoTGI4Q1owZTRkPXM5Ni1jIiwibG9jYWxlIjoiZW4iLCJ1cGRhdGVkX2F0IjoiMjAyMi0wMi0wNlQxNTo1OToxMy43OTdaIiwiZW1haWwiOiJnZW9mZnJleWNhaXJuczBAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOi8vamVmZmNhLmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwMzYxNDM2ODc4NTA3NDM1MDc1OSIsImF1ZCI6IlVSamN0UEU5bnVDcjRWOXJGWVdYYmZFeDA0Z1o5RmFhIiwiaWF0IjoxNjQ0MTYzMTU1LCJleHAiOjE2NDY3NTUxNTUsIm5vbmNlIjoiWjVnaWdRTGU3SlFzUVBnd3BCQ2swbFFhdmxHV0lQdVhzaEZKdVIxOXVISSJ9.ZcRAzpMlMxtcSvdMTCjsqC8fdbWw-TFiLnTjYgixvgCYmv3gclDymy1CkDvGqPOLJcccZuGSQMbnMk_p8Kc9x-W7picsbb6FfbO_C4uTLxCCTZ96SF-vjfiWUHWKOCDyIb_e5DtDE4FDQ3rYy9rRisTVDtciOxyczY9bFentAIQLBPcY4z6WD9mcr61hBWm3W8LpIVGR1Y_4LJ0AKD6CmkeHaLNMPU3Mc-r0rt5xMMXHPtIc00imYjtjcZ-HN7nLbM4hOmS43XrlN4KzGp0g55QJW8ygahlqYMprc-cc8iJtbeaUYa8gA693zKaBvJAj2BsynSX7cCYhxoSBPL7QvQ`;
-		$userInfo['nickname'] = 'Guest';
-		$claims = $idToken;
 	}
 
 </script>

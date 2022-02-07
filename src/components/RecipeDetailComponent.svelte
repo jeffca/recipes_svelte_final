@@ -2,9 +2,9 @@
   import { onMount } from "svelte";
   import { claims } from '../stores.js';
   import {link} from 'svelte-spa-router' 
-  import { executeGraphql } from "../helpers.js";
+  import { executeGraphql, loginAsGuest } from "../helpers.js";
   import { addToGroceryList, addAllItemsToGroceryList, addUserRecipe } from "../helpers.js";
-  import { userInfo } from '@dopry/svelte-auth0';
+  import { userInfo, idToken } from '@dopry/svelte-auth0';
 
   export let params;
   export let recipe;
@@ -52,15 +52,29 @@
     `
     let temp3 = await executeGraphql(q, $claims);
     var result = temp3.data.users_recipes;
-    console.log(result);
-    console.log(result.length);
+    // console.log(result);
+    // console.log(result.length);
     if (result.length != 0) {
       personalRecipe = true;
     } 
 
   } 
 
-  findRecipe();
+  if (!$claims) {
+    // idToken.subscribe(async token =>  {
+    // if (token) {
+    //   console.log('user is logged in!');
+    //   $claims = idToken;
+    //   console.log("claims store is set to @dopry/svelte-auth0's idToken (JWT token from Auth0)!");
+    //   findRecipe();
+    //  }
+    // });
+    $claims =  loginAsGuest();
+    findRecipe();
+  } else {
+    findRecipe();
+  }
+
 
 
 </script>
