@@ -4,46 +4,6 @@
 </style> 
 
 <script>
-	/* AUTH */
-
-  import { claims } from './stores.js';
-  import { loginAsGuest } from './helpers.js';
-
-	import {
-		Auth0Context,
-		Auth0LoginButton,
-		authError,
-		authToken,
-		isAuthenticated,
-		isLoading,
-		login,
-		logout,
-		userInfo, 
-		idToken
-	} from '@dopry/svelte-auth0';
-
-	authToken.subscribe(async token =>  {
-	if (token) {
-		console.log('user is logged in!');
-		$claims = $idToken;
-		console.log("claims store is set to @dopry/svelte-auth0's idToken (JWT token from Auth0)!");
-		console.log($userInfo);
-	}
-	});
-
-	var env;
-
-	if (window.location.href == 'http://localhost:5000/') {
-		env = 'http://localhost:5000/';
-	} else {
-		env = 'https://vigilant-sinoussi-95d5cb.netlify.app/';
-	}
-
- async function preLoginAsGuest() {
- 	$idToken = "ey";
- 	loginAsGuest();
- }
-/* END AUTH */
 	import Home from './components/HomeComponent.svelte';
 	import Food from './components/Food.svelte';
 	import Recipe_New from './components/RecipeNew.svelte';
@@ -64,6 +24,52 @@
 	import Router from 'svelte-spa-router'
 	import {link} from 'svelte-spa-router'
 
+
+	/* AUTH */
+
+  import { claims, groceryListCount } from './stores.js';
+  import { executeGraphql, loginAsGuest } from './helpers.js';
+
+	import {
+		Auth0Context,
+		Auth0LoginButton,
+		authError,
+		authToken,
+		isAuthenticated,
+		isLoading,
+		login,
+		logout,
+		userInfo, 
+		idToken
+	} from '@dopry/svelte-auth0';
+	
+
+
+	authToken.subscribe(async token =>  {
+	if (token) {
+		console.log('user is logged in!');
+		$claims = $idToken;
+		console.log("claims store is set to @dopry/svelte-auth0's idToken (JWT token from Auth0)!");
+		console.log($userInfo);
+	}
+	});
+
+	var env;
+
+	if (window.location.href == 'http://localhost:5000/') {
+		env = 'http://localhost:5000/';
+	} else {
+		env = 'https://vigilant-sinoussi-95d5cb.netlify.app/';
+	}
+
+ async function preLoginAsGuest() {
+ 	$idToken = "ey";
+ 	const a = loginAsGuest();
+ 	const b = countGroceryList();
+
+ }
+/* END AUTH */
+
 	const routes = {
     // Exact path
 	'/': Home,
@@ -82,7 +88,7 @@
 
 	//API 
 	'/callback': LoginSuccessfulComponent,
-	}
+	};
 
 </script>
 
@@ -110,18 +116,19 @@
 			<h6 class="text-center"><em>Jeff Cairns will receive your name, email and profile picture if you sign up with Google or Facebook</em></h6>
  -->
  			<div class="text-center">
-				<Auth0Context domain="jeffca.auth0.com" client_id="URjctPE9nuCr4V9rFYWXbfEx04gZ9Faa" callback_url="{env	}" logout_url="http://localhost:5000">
+				<Auth0Context domain="jeffca.auth0.com" client_id="URjctPE9nuCr4V9rFYWXbfEx04gZ9Faa" callback_url="{env	}#/food" logout_url="http://localhost:5000">
 					<Auth0LoginButton class="btn btn-lg">Login</Auth0LoginButton>
 				</Auth0Context>		
 			</div>
 			<div>&nbsp;</div>
  			<div class="text-center">
-					<a href="/" use:link><button class="btn btn-lg btn-primary" on:click|once={preLoginAsGuest}>Continue as Guest</button></a>
+					<a href="/food" use:link><button class="btn btn-lg btn-primary" on:click|once={preLoginAsGuest}>Continue as Guest</button></a>
 			</div>
 		</div>
 	{:else}
 		<div class="container-fluid">
-			<a href="/" use:link><h1 class="text-center welcome">Welcome, {$userInfo["nickname"]}! <img class="menuIcon" src="/open-iconic-master/svg/bell.svg" alt="notifications"><span class="menuIconNotificiation badge badge-light">0</span> <img class="menuIcon" src="/open-iconic-master/svg/cog.svg" alt="settings"></h1></a>
+			<h1 class="text-center welcome"><a href="/" use:link>Welcome, {$userInfo["nickname"]}!  </a><img class="menuIcon" src="/open-iconic-master/svg/bell.svg" alt="notifications"><span class="menuIconNotificiation badge badge-light">0</span><a href="/grocerylist" use:link><img class="menuIcon" src="/open-iconic-master/svg/cart.svg" alt="grocery list"><span class="menuIconNotificiation badge badge-light">{$groceryListCount}</span></a></h1>
+
 		<hr />
 		<Router {routes}/>
 		</div>

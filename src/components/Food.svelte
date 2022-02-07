@@ -3,7 +3,7 @@
   import { markDone } from "../helpers.js";
   import {link} from 'svelte-spa-router'
   import { executeGraphql } from "../helpers.js";
-  import { claims } from '../stores.js';
+  import { claims, groceryListCount } from '../stores.js';
   import { authToken } from '@dopry/svelte-auth0';
 
     export let hasura_userID;
@@ -32,6 +32,24 @@
     //     getPossibleRecipes();
     //   } 
     // })
+
+    async function countGroceryList() {
+        console.log("Logging claims from counting grocery list");
+        console.log($claims);
+        let q = `
+            {
+                grocerylist_aggregate(where: {Done: {_eq: "No"}}) {
+                    aggregate {
+                        count
+                    }
+                }
+            }
+        `
+        let temp = await executeGraphql(q, $claims); 
+
+        $groceryListCount = temp.data.grocerylist_aggregate.aggregate.count;
+
+    }    
 
     async function viewMyRecipes() {
       loadingRecipes = true;
@@ -327,9 +345,20 @@
   }
 
   onMount(async () => {
+    countGroceryList();
   });
 
 </script>
+
+
+
+
+
+
+
+<!-- END JAVA SCRIPT -->
+<!-- START HTML -->
+
 
 
 <div class="row text-center">
@@ -361,13 +390,12 @@
             <p class='loading'>Loading... <img src="/open-iconic-master/svg/clock.svg" class="svg" alt="loading"></p>
         {:else}
             <p>Welcome to your first time using Grimp!</p>
-            <p><a href="/food/recipes/new" use:link class="btn btn-lg btn-outline-success">Create a new recipe</a></p>
             <p><button on:click={() => viewCommunityRecipes()} class="btn btn-lg btn-outline-info">View the Community Recipes</button></p>
         {/if}
     {/if}
 
-
-  <div class="col-md-3"><a href="/food/recipes/new" use:link><button class="btn btn-md btn-outline-warning">Create New Recipe</button></a></div>
+    <div class="col-md-2">&nbsp;</div>
+  <div class="col-md-3"><a href="/food/recipes/new" use:link><button class="btn btn-lg btn-outline-warning">Create New Recipe</button></a></div>
 
 {/if}
 
