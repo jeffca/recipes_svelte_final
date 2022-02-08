@@ -33,23 +33,6 @@
     //   } 
     // })
 
-    async function countGroceryList() {
-        console.log("Logging claims from counting grocery list");
-        console.log($claims);
-        let q = `
-            {
-                grocerylist_aggregate(where: {Done: {_eq: "No"}}) {
-                    aggregate {
-                        count
-                    }
-                }
-            }
-        `
-        let temp = await executeGraphql(q, $claims); 
-
-        $groceryListCount = temp.data.grocerylist_aggregate.aggregate.count;
-
-    }    
 
     async function viewMyRecipes() {
       loadingRecipes = true;
@@ -345,7 +328,6 @@
   }
 
   onMount(async () => {
-    countGroceryList();
   });
 
 </script>

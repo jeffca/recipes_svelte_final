@@ -24,6 +24,7 @@
 	import Router from 'svelte-spa-router'
 	import {link} from 'svelte-spa-router'
 
+	export var userNickname;
 
 	/* AUTH */
 
@@ -44,6 +45,23 @@
 	} from '@dopry/svelte-auth0';
 	
 
+  async function countGroceryList() {
+      console.log("Logging claims from counting grocery list");
+      console.log($claims);
+      let q = `
+          {
+              grocerylist_aggregate(where: {Done: {_eq: "No"}}) {
+                  aggregate {
+                      count
+                  }
+              }
+          }
+      `
+      let temp = await executeGraphql(q, $claims); 
+
+      $groceryListCount = temp.data.grocerylist_aggregate.aggregate.count;
+
+  }    
 
 	authToken.subscribe(async token =>  {
 	if (token) {
@@ -51,6 +69,15 @@
 		$claims = $idToken;
 		console.log("claims store is set to @dopry/svelte-auth0's idToken (JWT token from Auth0)!");
 		console.log($userInfo);
+		if (Object.keys($userInfo).length != 0) {
+			console.log(Object.keys($userInfo).length);
+			userNickname = $userInfo["nickname"];
+			console.log("real person!");
+		} else {
+			userNickname = "Guest";
+			console.log("guest!");
+		}
+		countGroceryList();
 	}
 	});
 
@@ -63,10 +90,9 @@
 	}
 
  async function preLoginAsGuest() {
- 	$idToken = "ey";
- 	const a = loginAsGuest();
- 	const b = countGroceryList();
-
+ 	$idToken = loginAsGuest();
+ 	$authToken = $idToken;
+ 	$claims = $idToken;
  }
 /* END AUTH */
 
@@ -92,42 +118,29 @@
 
 </script>
 
-
-	<!-- {JSON.stringify($userInfo, null, 2)} -->
-<!-- 	{$isAuthenticated}
-	{$authToken}
-	{$idToken} -->
-
-<!-- {#if $isLoading }
-
-	<pre>Loading...</pre>
-
-{:else}
-	
-	<h1> NOT LOADING!</h1>
- -->
-	{#if !$idToken }
-		<div class="text-left container-fluid">
-			<h2 class="text-center" id="title">Groceries, Recipes And Meal Prep</h2>
 <!-- 			<h1 class="text-center welcome">Welcome to Jeff Cairns' recipe book & more!</h1>
 			<h2 class="text-center">Grimp! saves all of your home recipes and allows you to easily share them with friends. Easily manage your grocery list and track your inventory, too.</h2>
 			<p>&nbsp;</p>
 			<h4 class="text-center">Sign up or login with Google, Facebook or your personal email.</h4>
 			<h6 class="text-center"><em>Jeff Cairns will receive your name, email and profile picture if you sign up with Google or Facebook</em></h6>
  -->
+
+	{#if !$idToken }
+		<div class="text-left container-fluid">
+			<h2 class="text-center" id="title">Groceries, Recipes And Meal Prep</h2>
  			<div class="text-center">
-				<Auth0Context domain="jeffca.auth0.com" client_id="URjctPE9nuCr4V9rFYWXbfEx04gZ9Faa" callback_url="{env	}#/food" logout_url="http://localhost:5000">
-					<Auth0LoginButton class="btn btn-lg">Login</Auth0LoginButton>
+				<Auth0Context domain="jeffca.auth0.com" client_id="URjctPE9nuCr4V9rFYWXbfEx04gZ9Faa" callback_url="{env	}" logout_url="http://localhost:5000">
+					<Auth0LoginButton class="btn btn-lg" preserveRoute=true>Login</Auth0LoginButton>
 				</Auth0Context>		
 			</div>
 			<div>&nbsp;</div>
  			<div class="text-center">
-					<a href="/food" use:link><button class="btn btn-lg btn-primary" on:click|once={preLoginAsGuest}>Continue as Guest</button></a>
+					<button class="btn btn-lg btn-primary" on:click|once={preLoginAsGuest}>Continue as Guest</button>
 			</div>
 		</div>
 	{:else}
 		<div class="container-fluid">
-			<h1 class="text-center welcome"><a href="/" use:link>Welcome, {$userInfo["nickname"]}!  </a><img class="menuIcon" src="/open-iconic-master/svg/bell.svg" alt="notifications"><span class="menuIconNotificiation badge badge-light">0</span><a href="/grocerylist" use:link><img class="menuIcon" src="/open-iconic-master/svg/cart.svg" alt="grocery list"><span class="menuIconNotificiation badge badge-light">{$groceryListCount}</span></a></h1>
+			<h1 class="text-center welcome"><a href="/" use:link>Welcome, {userNickname}!  </a><img class="menuIcon" src="/open-iconic-master/svg/bell.svg" alt="notifications"><span class="menuIconNotificiation badge badge-light">0</span><a href="/grocerylist" use:link><img class="menuIcon" src="/open-iconic-master/svg/cart.svg" alt="grocery list"><span class="menuIconNotificiation badge badge-light">{$groceryListCount}</span></a></h1>
 
 		<hr />
 		<Router {routes}/>
