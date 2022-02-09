@@ -24,12 +24,12 @@
 	import Router from 'svelte-spa-router'
 	import {link} from 'svelte-spa-router'
 
-	export var userNickname;
+	export var userNickname  = undefined;
 
 	/* AUTH */
 
   import { claims, groceryListCount } from './stores.js';
-  import { executeGraphql, loginAsGuest } from './helpers.js';
+  import { executeGraphql, loginAsGuest, countGroceryList } from './helpers.js';
 
 	import {
 		Auth0Context,
@@ -43,41 +43,19 @@
 		userInfo, 
 		idToken
 	} from '@dopry/svelte-auth0';
-	
-
-  async function countGroceryList() {
-      console.log("Logging claims from counting grocery list");
-      console.log($claims);
-      let q = `
-          {
-              grocerylist_aggregate(where: {Done: {_eq: "No"}}) {
-                  aggregate {
-                      count
-                  }
-              }
-          }
-      `
-      let temp = await executeGraphql(q, $claims); 
-
-      $groceryListCount = temp.data.grocerylist_aggregate.aggregate.count;
-
-  }    
 
 	authToken.subscribe(async token =>  {
 	if (token) {
-		console.log('user is logged in!');
 		$claims = $idToken;
-		console.log("claims store is set to @dopry/svelte-auth0's idToken (JWT token from Auth0)!");
 		console.log($userInfo);
 		if (Object.keys($userInfo).length != 0) {
-			console.log(Object.keys($userInfo).length);
 			userNickname = $userInfo["nickname"];
 			console.log("real person!");
 		} else {
 			userNickname = "Guest";
 			console.log("guest!");
 		}
-		countGroceryList();
+		$groceryListCount = await countGroceryList($claims);
 	}
 	});
 

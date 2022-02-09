@@ -2,16 +2,34 @@ import { getContext } from 'svelte';
 
 import { authToken, userInfo, idToken } from '@dopry/svelte-auth0';
 
+import { groceryListCount } from './stores.js';
+
 export {
   addUserRecipe,
   addAllItemsToGroceryList, 
   addToGroceryList, 
   markDone, 
   loginAsGuest,
-  executeGraphql
+  executeGraphql,
+  countGroceryList,
 }
 
+  async function countGroceryList(claims) {
+      console.log("Counting the grocery list");
+      let q = `
+          {
+              grocerylist_aggregate(where: {Done: {_eq: "No"}}) {
+                  aggregate {
+                      count
+                  }
+              }
+          }
+      `
+      let temp = await executeGraphql(q, claims); 
+      console.log(temp.data.grocerylist_aggregate.aggregate.count);
+      return temp.data.grocerylist_aggregate.aggregate.count;
 
+  }    
 function addUserRecipe(recipeId, claims) {
   //Hasura has a column preset to set UserId = logged in user
   fetch('https://graphql-jeffrecipes.herokuapp.com/v1/graphql', {
@@ -63,9 +81,9 @@ function addToGroceryList(ingredient, claims) {
       })
         .then(res => res.json())
         .then(res => {
+            countGroceryList(claims)
             console.log(res.data);
             return res.data;
-
       });       
   }
 
