@@ -221,7 +221,7 @@
   <h3>Measurements</h3>
     <div class="form-group row">
     {#each new_recipe_ingredients as nri, i}
-     <label for={nri.id} class="col-sm-2 col-form-label">{nri.Ingredient} ({nri.Brand})</label>
+     <label for={nri.id} class="col-sm-2 col-form-label">{nri.Ingredient}</label>
      <div class="col-sm-10">
       <input id={nri.id} class="form-control" type="text" bind:value={nri.value} /> <strong>{nri.Quantity_Measurement}</strong>
      </div>
@@ -304,10 +304,16 @@
                 <label class="form-check-label" for="xampleRadios4">
                     Side Dish
                 </label>
-            </div>            
+            </div>         
             <div class="form-check">
-                <input class="form-check-input" type="radio" bind:group={new_recipe_meal_type} value="Drinks" id="xampleRadios5">
+                <input class="form-check-input" type="radio" bind:group={new_recipe_meal_type} value="Dessert" id="xampleRadios5">
                 <label class="form-check-label" for="xampleRadios5">
+                    Dessert
+                </label>
+            </div>                
+            <div class="form-check">
+                <input class="form-check-input" type="radio" bind:group={new_recipe_meal_type} value="Drinks" id="xampleRadios6">
+                <label class="form-check-label" for="xampleRadios6">
                     Drink
                 </label>
             </div>     

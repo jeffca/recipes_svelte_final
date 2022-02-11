@@ -1,9 +1,8 @@
 <script>
   import { onMount } from "svelte";
-  import { claims } from '../stores.js';
+  import { claims, groceryListCount } from '../stores.js';
   import {link} from 'svelte-spa-router' 
-  import { executeGraphql, loginAsGuest } from "../helpers.js";
-  import { addToGroceryList, addAllItemsToGroceryList, addUserRecipe } from "../helpers.js";
+  import { executeGraphql, loginAsGuest, addToGroceryList, addAllItemsToGroceryList, addUserRecipe } from "../helpers.js";
   import { userInfo, idToken } from '@dopry/svelte-auth0';
 
   export let params;
@@ -31,14 +30,16 @@
                 ingredients {
                     id
                     Ingredient
+                    Quantity_Measurement
                 }
-                Quantity_Measurement
                 Quantity
             }
         }
         `
+    console.log(q);
     let temp2 = await executeGraphql(q, $claims);
     ingredients = temp2.data.ingredients_recipes;
+    console.log(ingredients);
 
 
     q = `
@@ -60,15 +61,14 @@
 
   } 
 
+  async function preAddToGroceryList(ingredient, claims) {
+    let temp = await addToGroceryList(ingredient, claims);
+    console.log("item added to grocery list!");
+    $groceryListCount = $groceryListCount + 1;
+  }
+
+
   if (!$claims) {
-    // idToken.subscribe(async token =>  {
-    // if (token) {
-    //   console.log('user is logged in!');
-    //   $claims = idToken;
-    //   console.log("claims store is set to @dopry/svelte-auth0's idToken (JWT token from Auth0)!");
-    //   findRecipe();
-    //  }
-    // });
     $claims =  loginAsGuest();
     findRecipe();
   } else {
@@ -95,8 +95,8 @@
     <ul class='list-group'>
       {#each ingredients as ing }
       <li class='list-group-item text-center'>     
-        <span><a href="/ingredients/{ing.ingredients.id}" use:link class="ingredientsBtn">{ing.ingredients.Ingredient}</a> ({ing.Quantity} {ing.Quantity_Measurement})</span>
-        <span><button on:click={() => addToGroceryList(ing.ingredients.Ingredient, $claims)} class='btn btn-sm btn-success addToGroceryList'><img class="svg" src="/open-iconic-master/svg/cart.svg" alt='cart'> &nbsp;Add to Grocery List</button></span>
+        <span><a href="/ingredients/{ing.ingredients.id}" use:link class="ingredientsBtn">{ing.ingredients.Ingredient}</a> ({ing.Quantity} {ing.ingredients.Quantity_Measurement})</span>
+        <span><button on:click={() => preAddToGroceryList(ing.ingredients.Ingredient, $claims)} class='btn btn-sm btn-success addToGroceryList'><img class="svg" src="/open-iconic-master/svg/cart.svg" alt='cart'> &nbsp;Add to Grocery List</button></span>
       </li>
       {/each}
     </ul>

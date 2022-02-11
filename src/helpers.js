@@ -58,7 +58,7 @@ function addUserRecipe(recipeId, claims) {
       });       
 }
 
-function addToGroceryList(ingredient, claims) {
+  async function addToGroceryList(ingredient, claims) {
     fetch('https://graphql-jeffrecipes.herokuapp.com/v1/graphql', {
         method: 'POST',
         headers: { 
@@ -81,13 +81,12 @@ function addToGroceryList(ingredient, claims) {
       })
         .then(res => res.json())
         .then(res => {
-            countGroceryList(claims)
             console.log(res.data);
             return res.data;
       });       
   }
 
-  function addAllItemsToGroceryList(items, disabled) {
+  async function addAllItemsToGroceryList(items, disabled) {
     disabled = "disabled";
     console.log(items);
     for (var i = 0; i < items.length; i++) {
