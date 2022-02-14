@@ -508,13 +508,13 @@
 </ul> -->
 
 <ul class="nav nav-pills nav-fill">
-  <li class="nav-item col-md-6">
-    <a href="/food" use:link class="btn btn-lg btn-outline-success">Cook Food</a>
+  <li class="nav-item col-md-2">
+    <a href="/food" use:link class="btn btn-lg btn-outline-light">Cook Food</a>
   </li>
-<!--   <li class="nav-item col-sm-6">
-    <a href="/grocerylist" use:link class="btn btn-lg btn-light">Open Grocery List</a>
+  <li class="nav-item col-sm-6">
+    <a href="/order" use:link class="btn btn-lg btn-success">Order Food</a>
   </li>  
- -->
+
 </ul>
     <!-- {#if recipes.length > 0}
       <span class="nav-link menu" on:click={() => viewRecipes()}><button type="button" class="btn btn-lg btn-outline-primary">Recipes</button></span> <span class="badge badge-success">Complete</span>

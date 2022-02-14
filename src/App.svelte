@@ -18,6 +18,9 @@
 	import MealsDetailComponent from './components/MealsDetailComponent.svelte';
 	import IngredientsComponent from './components/IngredientsComponent.svelte';
 
+	import OrderComponent from './components/OrderComponent.svelte';
+
+
 
 	import LoginSuccessfulComponent from './components/authentication/LoginSuccessfulComponent.svelte';
 
@@ -89,6 +92,7 @@
 	'/meals': MealsComponent,
 	'/meals/history': MealsHistoryComponent,
 	'/meals/:id': MealsDetailComponent,
+	'/order': OrderComponent,
 
 	//API 
 	'/callback': LoginSuccessfulComponent,
@@ -105,7 +109,7 @@
 
 	{#if !$idToken }
 		<div class="text-left container-fluid">
-			<h2 class="text-center" id="title">Groceries, Recipes And Meal Prep</h2>
+			<h2 class="text-center" id="title">Order from Chef Jeff</h2>
  			<div class="text-center">
 				<Auth0Context domain="jeffca.auth0.com" client_id="URjctPE9nuCr4V9rFYWXbfEx04gZ9Faa" callback_url="{env	}" logout_url="http://localhost:5000">
 					<Auth0LoginButton class="btn btn-lg" preserveRoute=true>Login</Auth0LoginButton>
