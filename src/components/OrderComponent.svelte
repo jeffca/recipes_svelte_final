@@ -11,10 +11,10 @@
 
   let q;
 
-  onMount(async () => {
-        
-    q =   
-            `
+
+  async function openMenu(claims) {
+    let q = 
+          `
             {
               categories(where: {scope: {_eq: "Menu"}}, order_by: {DisplayOrder: asc}) {
                 menu {
@@ -27,19 +27,29 @@
 
               }
             }
-            `
-    let temp = await executeGraphql(q, $claims);
-    menu = temp.data.categories;
-    categories = [];
+          `
+    let temp = await executeGraphql(q, claims);
+    return temp.data.categories;
+  }
 
-    for (var i = 0; i < menu.length; i++) {
-        if (!categories.includes(menu[i].category)) {
-            categories.push(menu[i].category)
-        }
-    }
-    console.log(categories);
+  onMount(async () => {
+      if (!$claims) {
+        $claims =  await loginAsGuest();
+        menu = await openMenu($claims);
+      } else {
+        menu = await openMenu($claims);
+      }        
+      console.log(menu);
+      categories = [];
 
-    console.log(menu);
+      for (var i = 0; i < menu.length; i++) {
+          if (!categories.includes(menu[i].category)) {
+              categories.push(menu[i].category)
+          }
+      }
+      console.log(categories);
+
+      console.log(menu);
 
 });
 
@@ -48,17 +58,17 @@
 <h1 class="text-center">Menu</h1>
 
 {#if menu }
-<table class="table">
+<table class="table center">
     <thead>
     </thead>
     <tbody>
     {#each categories as cat }
         <tr>
-            <td><h1><strong>{cat}</strong></h1></td>        
+            <td><h2><strong>{cat}</strong></h2></td>        
             {#each menu as men }
                 {#if men.category == cat}
                     <tr>
-                        <h2>{men.menu.menu.Item}</h2>
+                        <button class="btn btn-lg btn-outline-dark float-center">{men.menu.menu.Item}</button>
                     </tr>
 
                     <tr>
@@ -77,4 +87,6 @@
     {/each}
     </tbody>
 </table>
+{:else }
+    <p>Loading...</p>
 {/if}
