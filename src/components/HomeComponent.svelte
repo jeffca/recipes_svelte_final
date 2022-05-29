@@ -509,10 +509,10 @@
 
 <ul class="nav nav-pills nav-fill">
   <li class="nav-item col-md-2">
-    <a href="/food" use:link class="btn btn-lg btn-outline-light">Cook Food</a>
+    <a href="/food" use:link class="btn btn-lg btn-success">Cook Food</a>
   </li>
   <li class="nav-item col-sm-6">
-    <a href="/order" use:link class="btn btn-lg btn-success">Order Food</a>
+    <a href="/order" use:link class="btn btn-lg btn-warning">Order Food</a>
   </li>  
 
 </ul>
